@@ -1,10 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4bhkdy8xvorf"]
 
-[ext_resource type="Script" path="res://character_body_3d_Movement.gd" id="1_wd70r"]
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_y6bkd"]
 [ext_resource type="Script" path="res://player.gd" id="2_1gn0c"]
-
-[sub_resource type="Environment" id="Environment_0e5aw"]
+[ext_resource type="Environment" path="grass.webp" id="3_hdwnd"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -22,7 +20,7 @@ shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
-script = ExtResource("1_wd70r")
+script = ExtResource("2_1gn0c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = ExtResource("1_y6bkd")

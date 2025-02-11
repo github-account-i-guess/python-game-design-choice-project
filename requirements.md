@@ -1,0 +1,19 @@
+# Requirements
+- car (camera follows car, has collision)
+- car moves
+	- w to move foward
+	- a & d to turn
+	- s to move backwards
+	- shift to drift (then boosts after drifting)
+	- allow snaking :D
+- road
+	- car travels faster on the road
+	- floor that you travel slower on
+	- hills
+	- differnt maps (Made in blender)
+- checkpoints
+	- hitbox -> you are required to hit all of the boxes before completing lap
+	- lap checkpoint -> increases lap counter by one and resets all the other checkpoint states
+- menu
+	- map selection
+	- time tracking
