@@ -17,27 +17,30 @@ light_volumetric_fog_energy = 1.162
 light_angular_distance = 43.64
 shadow_enabled = true
 
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
 script = ExtResource("2_1gn0c")
+speed = null
+fall_acceleration = null
 
-[node name="Pivot" type="Node3D" parent="CharacterBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Pivot"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = ExtResource("1_y6bkd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 
-[node name="CameraPivot" type="Marker3D" parent="CharacterBody3D/Pivot/MeshInstance3D"]
+[node name="CameraPivot" type="Marker3D" parent="CharacterBody3D/MeshInstance3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 398.15, -219.797, 2124.21)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/MeshInstance3D/CameraPivot"]
+transform = Transform3D(-1, 3.69464e-08, -7.92319e-08, 0, 0.906308, 0.422618, 8.74227e-08, 0.422618, -0.906308, -100.317, 129.949, -630.406)
+fov = 71.6
+near = 0.005
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 3.69464e-08, -7.92319e-08, 0, 0.906308, 0.422618, 8.74227e-08, 0.422618, -0.906308, -100.317, 129.949, -630.406)
-fov = 71.6
-near = 0.005
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.798509, 0, 0.601982, 0, 1, 0, -0.601982, 0, 0.798509, -154.814, -102.23, 462.749)
