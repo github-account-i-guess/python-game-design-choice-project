@@ -37,7 +37,6 @@ fov = 71.6
 near = 0.005
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_hdwnd")
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
 
