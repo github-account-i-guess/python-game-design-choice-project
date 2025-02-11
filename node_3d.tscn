@@ -1,13 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=13 format=3 uid="uid://b4bhkdy8xvorf"]
 
 [ext_resource type="Script" path="res://character_body_3d_Movement.gd" id="1_wd70r"]
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_y6bkd"]
+[ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="2_5ongj"]
+[ext_resource type="ArrayMesh" uid="uid://cm58ub4vw8i7d" path="res://mount.blend1.obj" id="4_bplar"]
+[ext_resource type="Script" path="res://mount_blend_1.gd" id="5_6p5jj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tknma"]
+albedo_texture = ExtResource("2_5ongj")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d1vjl"]
+ground_bottom_color = Color(0.15344, 0.193133, 0.0414209, 1)
+ground_energy_multiplier = 1.1
+sun_curve = 0.3
+
+[sub_resource type="Sky" id="Sky_wrqg5"]
+sky_material = SubResource("ProceduralSkyMaterial_d1vjl")
 
 [sub_resource type="Environment" id="Environment_0e5aw"]
+background_mode = 2
+sky = SubResource("Sky_wrqg5")
+ambient_light_sky_contribution = 0.85
+ambient_light_energy = 1.25
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
 [sub_resource type="Compositor" id="Compositor_8wfa6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quh84"]
+albedo_texture = ExtResource("2_5ongj")
 
 [node name="Node3D" type="Node3D"]
 
@@ -24,11 +45,12 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -
 script = ExtResource("1_wd70r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+material_override = SubResource("StandardMaterial3D_tknma")
 mesh = ExtResource("1_y6bkd")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/MeshInstance3D"]
-transform = Transform3D(-4, 1.47786e-07, -3.16928e-07, 0, 3.62523, 1.69047, 3.49691e-07, 1.69047, -3.62523, -3.11932, 300, -397.415)
+transform = Transform3D(-4, 1.47786e-07, -3.16928e-07, 0, 3.62523, 1.69047, 3.49691e-07, 1.69047, -3.62523, 671.404, 245.95, -1075.61)
 fov = 71.6
 near = 0.005
 
@@ -36,3 +58,9 @@ near = 0.005
 environment = SubResource("Environment_0e5aw")
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
+
+[node name="Mount_blend1" type="MeshInstance3D" parent="."]
+transform = Transform3D(64.8605, 0, 0, 0, 1, 0, 0, 0, 79.9703, 101.092, 28.2248, -921.954)
+material_override = SubResource("StandardMaterial3D_quh84")
+mesh = ExtResource("4_bplar")
+script = ExtResource("5_6p5jj")
