@@ -22,7 +22,7 @@ shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
-script = ExtResource("1_wd70r")
+script = ExtResource("2_1gn0c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = ExtResource("1_y6bkd")
@@ -37,7 +37,6 @@ fov = 71.6
 near = 0.005
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_hdwnd")
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
 
