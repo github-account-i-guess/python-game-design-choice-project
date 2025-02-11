@@ -41,14 +41,15 @@ func _physics_process(delta):
 		#direction.x += 10
 		angle += 0.1
 	if Input.is_action_pressed("move_back"):
-		direction.z -= 10
-	if Input.is_action_pressed("move_forward"):
 		direction.z += 10
+	if Input.is_action_pressed("move_forward"):
+		direction.z -= 10
 #
-	#if direction != Vector3.ZERO:
+	$Pivot.basis = Basis.looking_at(Vector3(0, 0, 1).rotated(normalAxis, angle))
+	if direction != Vector3.ZERO:
 		direction = direction.rotated(normalAxis, angle)
 		#direction = direction.normalized()
-		$Pivot.basis = Basis.looking_at(direction)
+		#$Pivot.basis = Basis.looking_at(direction)
 
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
