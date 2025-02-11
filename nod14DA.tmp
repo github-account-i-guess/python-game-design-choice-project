@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=5 format=3 uid="uid://b4bhkdy8xvorf"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_y6bkd"]
-[ext_resource type="Script" path="res://player.gd" id="2_1gn0c"]
-[ext_resource type="Environment" path="grass.webp" id="3_hdwnd"]
+
+[sub_resource type="Environment" id="Environment_0e5aw"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -20,25 +20,17 @@ shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
-script = ExtResource("2_1gn0c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = ExtResource("1_y6bkd")
 skeleton = NodePath("../..")
 
-[node name="CameraPivot" type="Marker3D" parent="CharacterBody3D/MeshInstance3D"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 398.15, -219.797, 2124.21)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/MeshInstance3D/CameraPivot"]
-transform = Transform3D(-1, 3.69464e-08, -7.92319e-08, 0, 0.906308, 0.422618, 8.74227e-08, 0.422618, -0.906308, -100.317, 129.949, -630.406)
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/MeshInstance3D"]
+transform = Transform3D(-4, 1.47786e-07, -3.16928e-07, 0, 3.62523, 1.69047, 3.49691e-07, 1.69047, -3.62523, -3.11932, 300, -397.415)
 fov = 71.6
 near = 0.005
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_hdwnd")
+environment = SubResource("Environment_0e5aw")
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.798509, 0, 0.601982, 0, 1, 0, -0.601982, 0, 0.798509, -154.814, -102.23, 462.749)
-mesh = ExtResource("1_y6bkd")
