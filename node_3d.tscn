@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=8 format=3 uid="uid://b4bhkdy8xvorf"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_y6bkd"]
 [ext_resource type="Script" path="res://player.gd" id="2_1gn0c"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_cuk8g"]
+
+[sub_resource type="Sky" id="Sky_sj2uu"]
+sky_material = SubResource("PhysicalSkyMaterial_cuk8g")
+
+[sub_resource type="Environment" id="Environment_263q4"]
+background_mode = 2
+sky = SubResource("Sky_sj2uu")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -31,6 +40,7 @@ skeleton = NodePath("../../..")
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 398.15, -219.797, 2124.21)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_263q4")
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
 
