@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=6 format=3 uid="uid://b4bhkdy8xvorf"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_y6bkd"]
+[ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_yxdjc"]
 [ext_resource type="Script" path="res://player.gd" id="2_1gn0c"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
@@ -17,27 +18,35 @@ light_volumetric_fog_energy = 1.162
 light_angular_distance = 43.64
 shadow_enabled = true
 
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+script = ExtResource("1_yxdjc")
+speed = null
+fall_acceleration = null
+angle = null
+normalAxis = null
+
+[node name="Pivot" type="Node3D" parent="VehicleBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/Pivot"]
+mesh = ExtResource("1_y6bkd")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="VehicleBody3D/Pivot/MeshInstance3D"]
+transform = Transform3D(-4, 1.47786e-07, -3.16928e-07, 0, 3.62523, 1.69047, 3.49691e-07, 1.69047, -3.62523, -3.11841, 299.999, -397.416)
+fov = 71.6
+near = 0.005
+
+[node name="CameraPivot" type="Marker3D" parent="VehicleBody3D/Pivot/MeshInstance3D/Camera3D"]
+transform = Transform3D(-1, 0, 8.74227e-08, 3.69464e-08, 0.906308, 0.422618, -7.92319e-08, 0.422618, -0.906308, -100.317, 148.647, -626.261)
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -99.5374, 54.9492, -531.052)
 script = ExtResource("2_1gn0c")
 
-[node name="Pivot" type="Node3D" parent="CharacterBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Pivot"]
-mesh = ExtResource("1_y6bkd")
-skeleton = NodePath("../../..")
-
-[node name="CameraPivot" type="Marker3D" parent="CharacterBody3D/Pivot/MeshInstance3D"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 398.15, -219.797, 2124.21)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
 compositor = SubResource("Compositor_8wfa6")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 3.69464e-08, -7.92319e-08, 0, 0.906308, 0.422618, 8.74227e-08, 0.422618, -0.906308, -100.317, 129.949, -630.406)
-fov = 71.6
-near = 0.005
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.798509, 0, 0.601982, 0, 1, 0, -0.601982, 0, 0.798509, -154.814, -102.23, 462.749)
