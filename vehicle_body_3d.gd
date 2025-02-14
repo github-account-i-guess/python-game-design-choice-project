@@ -12,10 +12,13 @@ func _physics_process(delta):
 	velocity.y = 0
 	var speed = velocity.length()
 	#var direction = Vector3.ZERO
-	if Input.is_action_pressed("move_right") and angle > -PI/3:
+	var cap = PI/3
+	if Input.is_action_pressed("drift"):
+		cap = PI/4
+	if Input.is_action_pressed("move_right") and angle > -cap:
 		#direction.x -= 10
 		angle -= 0.05
-	elif  Input.is_action_pressed("move_left") and angle < PI/3:
+	elif  Input.is_action_pressed("move_left") and angle < cap:
 		#direction.x += 10	
 		angle += 0.05
 	else:
@@ -27,10 +30,11 @@ func _physics_process(delta):
 		engine_force = 0
 		#accelTime -= 1
 	if Input.is_action_pressed("move_back"):
-		#engine_force -= 10
-		brake = 2.0
+		if speed > 10:
+			brake = 2.0
+		engine_force -= 200
 	#engine_force = speedMap(accelTime)
-	print(speed)
 	$Camera3D.setFov(speed/2 + 90)
+	print(speed)
 	steering = angle
 	

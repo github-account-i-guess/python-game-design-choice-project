@@ -1,7 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=20 format=3 uid="uid://b4bhkdy8xvorf"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_v68ge"]
+[ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1rsja4np58fx" path="res://grass.tres" id="2_ck1h1"]
+[ext_resource type="PhysicsMaterial" uid="uid://b5cnpr44h4mn4" path="res://road.tres" id="2_hdb16"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_dwm7o"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
@@ -12,7 +15,8 @@
 size = Vector3(400, 2, 400)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fduqb"]
-albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
+albedo_color = Color(0.490196, 0.47451, 0.490196, 1)
+albedo_texture = ExtResource("2_8wbdb")
 metallic = 0.76
 roughness = 0.52
 
@@ -42,6 +46,12 @@ top_radius = 2.0
 bottom_radius = 2.0
 height = 0.5
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5wsy"]
+size = Vector3(1200, 2, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4da8t"]
+size = Vector3(1200, 2, 200)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -67,19 +77,20 @@ transform = Transform3D(0.0624875, 0, 0.0012511, 0, 0.0625, 0, -0.0012511, 0, 0.
 mesh = ExtResource("1_3m54h")
 
 [node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+physics_material_override = ExtResource("2_ck1h1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_35rrq")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("BoxMesh_lx6vo")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../..")
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.877, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 40, -400)
 script = ExtResource("1_v68ge")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
@@ -138,3 +149,51 @@ mesh = SubResource("CylinderMesh_mm3tr")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 59.2681, 9.70626, 0)
+
+[node name="road" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -500)
+physics_material_override = ExtResource("2_hdb16")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="road"]
+shape = SubResource("BoxShape3D_d5wsy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="road/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_4da8t")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../../../floor")
+
+[node name="road2" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -500, 5, 0)
+physics_material_override = ExtResource("2_hdb16")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="road2"]
+shape = SubResource("BoxShape3D_d5wsy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="road2/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_4da8t")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../../../floor")
+
+[node name="road3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 500, 5, 0)
+physics_material_override = ExtResource("2_hdb16")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="road3"]
+shape = SubResource("BoxShape3D_d5wsy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="road3/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_4da8t")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../../../floor")
+
+[node name="road4" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, 500)
+physics_material_override = ExtResource("2_hdb16")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="road4"]
+shape = SubResource("BoxShape3D_d5wsy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="road4/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_4da8t")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../../../floor")
