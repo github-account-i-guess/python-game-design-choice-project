@@ -89,6 +89,9 @@ gravity_scale = 3.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -1, 0)
 script = ExtResource("1_v68ge")
+added_engine_force = null
+angle = null
+normalAxis = null
 
 [node name="BodyMesh" type="MeshInstance3D" parent="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
@@ -134,7 +137,6 @@ mesh = SubResource("CylinderMesh_mm3tr")
 [node name="BackLeftWheel" type="VehicleWheel3D" parent="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -8)
 use_as_traction = true
-wheel_roll_influence = 1.0
 wheel_radius = 2.0
 suspension_stiffness = 5.0
 suspension_max_force = 600000.0
@@ -146,7 +148,6 @@ mesh = SubResource("CylinderMesh_mm3tr")
 [node name="BackRightWheel" type="VehicleWheel3D" parent="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -8)
 use_as_traction = true
-wheel_roll_influence = 1.0
 wheel_radius = 2.0
 suspension_stiffness = 5.0
 suspension_max_force = 600000.0
