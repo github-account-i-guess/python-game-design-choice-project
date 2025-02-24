@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsmfaum8espen"]
+
+[ext_resource type="Script" path="res://boost.gd" id="1_nyxrj"]
+[ext_resource type="Script" path="res://character_body_3d.gd" id="2_81r1o"]
+[ext_resource type="BoxMesh" uid="uid://b76i5ji2uqetc" path="res://default-car.tres" id="2_441ui"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="3_ncql5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_msst2"]
+size = Vector3(14, 10, 24)
+
+[node name="Testing" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_nyxrj")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 193.465)
+mesh = ExtResource("2_441ui")
+skeleton = NodePath("../../MeshInstance3D2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.812286, -1.2588, 193.797)
+shape = SubResource("BoxShape3D_msst2")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.43132, 1.08952, 1.29636)
+script = ExtResource("2_81r1o")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("2_441ui")
+skeleton = NodePath("../../MeshInstance3D2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_msst2")
+
+[node name="Camera" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-4, 1.47786e-07, -3.16928e-07, 0, 3.62523, 1.69047, 3.49691e-07, 1.69047, -3.62523, -2.50528, 106.178, -131.265)
+fov = 71.6
+near = 0.005
+script = ExtResource("3_ncql5")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_msst2")
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]

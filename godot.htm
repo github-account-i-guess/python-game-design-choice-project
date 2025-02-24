@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Search object in the hierarchy using $&quot;../&quot; + variable_with_obj_name dont work - Help - Godot Forum</title>
+    <meta name="description" content="Godot Version
+v4.2.1.stable.official [b09f793f5] 
+Question
+Hi everyone. 
+I am trying to put together a path of an object and the name of that object in a string, but I get an error saying: Invalid operands ‘Object’ and ‘&amp;hellip;">
+    <meta name="generator" content="Discourse 3.4.0.beta4-dev - https://github.com/discourse/discourse version 26134b897a84be7d1e94debe9764b1df7266bef5">
+<link rel="icon" type="image/png" href="https://forum.godotengine.org/uploads/default/optimized/2X/6/6aa102e258d388445ee33e276c62cec922ccb756_2_32x32.png">
+<link rel="apple-touch-icon" type="image/png" href="https://forum.godotengine.org/uploads/default/optimized/2X/4/4b0a7fa8a6334634b94a13d421f0d99e6f04e21f_2_180x180.svg">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ededed">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#333639">
+
+<meta name="color-scheme" content="light dark">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<link rel="canonical" href="https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525" />
+
+<link rel="search" type="application/opensearchdescription+xml" href="https://forum.godotengine.org/opensearch.xml" title="Godot Forum Search">
+
+    <link href="/stylesheets/color_definitions_godot-light_14_5_90f4bf1af7154e6333eb342844c4f0494ccfc932.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" class="light-scheme"/><link href="/stylesheets/color_definitions_godot-dark_15_5_ac206a2ac9e642eeba474f3205c48584eabffe88.css?__ws=forum.godotengine.org" media="(prefers-color-scheme: dark)" rel="stylesheet" class="dark-scheme"/>
+
+  <link href="/stylesheets/desktop_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="desktop"  />
+
+
+
+  <link href="/stylesheets/checklist_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="checklist"  />
+  <link href="/stylesheets/discourse-details_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="discourse-details"  />
+  <link href="/stylesheets/discourse-lazy-videos_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="discourse-lazy-videos"  />
+  <link href="/stylesheets/discourse-local-dates_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="discourse-local-dates"  />
+  <link href="/stylesheets/discourse-narrative-bot_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="discourse-narrative-bot"  />
+  <link href="/stylesheets/discourse-presence_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="discourse-presence"  />
+  <link href="/stylesheets/discourse-solved_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="discourse-solved"  />
+  <link href="/stylesheets/docker_manager_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="docker_manager"  />
+  <link href="/stylesheets/footnote_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="footnote"  />
+  <link href="/stylesheets/poll_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="poll"  />
+  <link href="/stylesheets/spoiler-alert_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="spoiler-alert"  />
+  <link href="/stylesheets/poll_desktop_1c75e68965ba63c0b63abb10fb2514d72277bff2.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="poll_desktop"  />
+
+  <link href="/stylesheets/desktop_theme_9_a23c0d9257e24e19da9539f850fda68cba1f97ee.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="desktop_theme" data-theme-id="9" data-theme-name="custom header links"/>
+<link href="/stylesheets/desktop_theme_3_e9aa769da3cbc75c620e27a4d71cba95b61df745.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="desktop_theme" data-theme-id="3" data-theme-name="godot tweaks"/>
+<link href="/stylesheets/desktop_theme_12_8497322318172ccaeb4d4528be13bdf32378d137.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="desktop_theme" data-theme-id="12" data-theme-name="post badges"/>
+<link href="/stylesheets/desktop_theme_7_3dddee68983edaf20a23ea3e31dec3c0c66a24a7.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="desktop_theme" data-theme-id="7" data-theme-name="search banner"/>
+<link href="/stylesheets/desktop_theme_5_13ebfcfad98a540810a59b24fd9d79a75fb70374.css?__ws=forum.godotengine.org" media="all" rel="stylesheet" data-target="desktop_theme" data-theme-id="5" data-theme-name="godot theme"/>
+
+    
+<script defer="" data-domain="forum.godotengine.org" src="https://plausible.godot.foundation/js/script.file-downloads.outbound-links.js" nonce="uC9Dc63TNIobdzV0ysLffB6vO"></script>
+<script defer="" src="/theme-javascripts/08d7abd1ff2cc3a67333ae0d6bb21835be6c69f3.js?__ws=forum.godotengine.org" data-theme-id="3" nonce="uC9Dc63TNIobdzV0ysLffB6vO"></script>
+
+    
+        <link rel="alternate nofollow" type="application/rss+xml" title="RSS feed of &#39;Search object in the hierarchy using $&quot;../&quot; + variable_with_obj_name dont work&#39;" href="https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525.rss" />
+    <meta property="og:site_name" content="Godot Forum" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="https://forum.godotengine.org/uploads/default/original/2X/c/cbfa764bec13cc2f9506f1b9c9685e40766af7ba.png" />
+<meta property="og:image" content="https://forum.godotengine.org/uploads/default/original/2X/c/cbfa764bec13cc2f9506f1b9c9685e40766af7ba.png" />
+<meta property="og:url" content="https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525" />
+<meta name="twitter:url" content="https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525" />
+<meta property="og:title" content="Search object in the hierarchy using $&quot;../&quot; + variable_with_obj_name dont work" />
+<meta name="twitter:title" content="Search object in the hierarchy using $&quot;../&quot; + variable_with_obj_name dont work" />
+<meta property="og:description" content="Godot Version v4.2.1.stable.official [b09f793f5]  Question Hi everyone.  I am trying to put together a path of an object and the name of that object in a string, but I get an error saying: Invalid operands ‘Object’ and ‘String’ in operator ‘+’.  What can I do?  I have already tried $“…/” + str(character_move_name)  It tells me that a node and a string cannot be joined together.  I imagine the solution must be easy once you know it, but I really don’t know how to concatenate the path string and t..." />
+<meta name="twitter:description" content="Godot Version v4.2.1.stable.official [b09f793f5]  Question Hi everyone.  I am trying to put together a path of an object and the name of that object in a string, but I get an error saying: Invalid operands ‘Object’ and ‘String’ in operator ‘+’.  What can I do?  I have already tried $“…/” + str(character_move_name)  It tells me that a node and a string cannot be joined together.  I imagine the solution must be easy once you know it, but I really don’t know how to concatenate the path string and t..." />
+<meta property="og:article:section" content="Help" />
+<meta property="og:article:section:color" content="478CBF" />
+<meta property="og:article:tag" content="godot-4" />
+<meta property="og:article:tag" content="gdscript" />
+<meta name="twitter:label1" value="Reading time" />
+<meta name="twitter:data1" value="1 mins 🕑" />
+<meta name="twitter:label2" value="Likes" />
+<meta name="twitter:data2" value="1 ❤" />
+<meta property="article:published_time" content="2024-10-20T05:53:21+00:00" />
+<meta property="og:ignore_canonical" content="true" />
+
+
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"QAPage","name":"Search object in the hierarchy using $\"../\" + variable_with_obj_name dont work","mainEntity":{"@type":"Question","name":"Search object in the hierarchy using $\"../\" + variable_with_obj_name dont work","text":"<a name=\"godot-version-1\" class=\"anchor\" href=\"#godot-version-1\"><\/a>Godot Version\n\nv4.2.1.stable.official [b09f793f5]\n\n<a name=\"question-2\" class=\"anchor\" href=\"#question-2\"><\/a>Question\n\nHi everyone.\n\nI am trying to put together a path of an object and the name of that object in a string, but I get an error saying: Invalid operands ‘Object’ and ‘String’ in operator ‘+’.\n\nWhat can I do?\n\nI have already tried $“…/” + str(chara&hellip;","upvoteCount":0,"answerCount":1,"datePublished":"2024-10-20T05:53:21.881Z","author":{"@type":"Person","name":"morronno","url":"https://forum.godotengine.org/u/morronno"},"acceptedAnswer":{"@type":"Answer","text":"[image] morronno:\n\ntween.tween_property($“…/” + character_move_name ,“position”,positions.get(positionTo),1)\n\nDo like this:\n\ntween.tween_property(get_node(“…/” + character_move_name) ,“position”,positions.get(positionTo),1)\n\nIt will probably works.","upvoteCount":0,"datePublished":"2024-10-20T06:16:11.570Z","url":"https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525/2","author":{"@type":"Person","name":"KingGD","url":"https://forum.godotengine.org/u/KingGD"}}}}</script>
+  </head>
+  <body class="crawler ">
+    
+<script defer="" src="/theme-javascripts/d6e9f8bade4b87c77fc22ae0093934033313ba00.js?__ws=forum.godotengine.org" data-theme-id="6" nonce="uC9Dc63TNIobdzV0ysLffB6vO"></script>
+
+    <header>
+  <a href="/">
+    Godot Forum
+  </a>
+</header>
+
+    <div id="main-outlet" class="wrap" role="main">
+        <div id="topic-title">
+    <h1>
+      <a href="/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525">Search object in the hierarchy using $&quot;../&quot; + variable_with_obj_name dont work</a>
+    </h1>
+
+      <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="/c/help/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #478CBF'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Help</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </span>
+      </div>
+
+      <div class="topic-category">
+        <div class='discourse-tags list-tags'>
+            <a href='https://forum.godotengine.org/tag/godot-4' class='discourse-tag' rel="tag">godot-4</a>, 
+            <a href='https://forum.godotengine.org/tag/gdscript' class='discourse-tag' rel="tag">gdscript</a>
+        </div>
+      </div>
+  </div>
+
+  
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting'>
+      <meta itemprop='headline' content='Search object in the hierarchy using $&quot;../&quot; + variable_with_obj_name dont work'>
+      <link itemprop='url' href='https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525'>
+      <meta itemprop='datePublished' content='2024-10-20T05:53:21Z'>
+        <meta itemprop='articleSection' content='Help'>
+      <meta itemprop='keywords' content='godot-4, gdscript'>
+      <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop='name' content='Godot Foundation'>
+          <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+            <meta itemprop='url' content='https://forum.godotengine.org/uploads/default/original/2X/8/890dcdc70ae9860e1c4efa37c103c7cf463b6afa.svg'>
+          </div>
+      </div>
+
+
+          <div id='post_1'  class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" rel='nofollow' href='https://forum.godotengine.org/u/morronno'><span itemprop='name'>morronno</span></a>
+                
+              </span>
+
+                <link itemprop="mainEntityOfPage" href="https://forum.godotengine.org/t/search-object-in-the-hierarchy-using-variable-with-obj-name-dont-work/87525">
+
+
+              <span class="crawler-post-infos">
+                  <time  datetime='2024-10-20T05:53:21Z' class='post-time'>
+                    October 20, 2024,  5:53am
+                  </time>
+                  <meta itemprop='dateModified' content='2024-10-20T05:53:21Z'>
+              <span itemprop='position'>1</span>
+              </span>
+            </div>
+            <div class='post' itemprop='text'>
+              <h3><a name="godot-version-1" class="anchor" href="#godot-version-1"></a>Godot Version</h3>
+<p>v4.2.1.stable.official [b09f793f5]</p>
+<h3><a name="question-2" class="anchor" href="#question-2"></a>Question</h3>
+<p>Hi everyone.<br>
+I am trying to put together a path of an object and the name of that object in a string, but I get an error saying: Invalid operands ‘Object’ and ‘String’ in operator ‘+’.<br>
+What can I do?<br>
+I have already tried $“…/” + str(character_move_name)<br>
+It tells me that a node and a string cannot be joined together.</p>
+<p>I imagine the solution must be easy once you know it, but I really don’t know how to concatenate the path string and the text string.<br>
+All the code below<br>
+func moves_character(positionTo: String, character_name : String):<br>
+var character_move_name = “char_” + character_name.to_lower()<br>
+var tween = get_tree().create_tween()<br>
+tween.set_ease(Tween.EASE_OUT)<br>
+tween.set_trans(Tween.TRANS_QUAD)<br>
+<span class="hashtag-raw">#Here</span> below is the problem i dont understand<br>
+tween.tween_property($“…/” + character_move_name ,“position”,positions.get(positionTo),1)<br>
+pass</p>
+            </div>
+
+            <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+              <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+              <meta itemprop="userInteractionCount" content="0" />
+              <span class='post-likes'></span>
+            </div>
+
+          </div>
+          <div id='post_2' itemprop='comment' itemscope itemtype='http://schema.org/Comment' class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" rel='nofollow' href='https://forum.godotengine.org/u/KingGD'><span itemprop='name'>KingGD</span></a>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop='datePublished' datetime='2024-10-20T06:16:11Z' class='post-time'>
+                    October 20, 2024,  6:16am
+                  </time>
+                  <meta itemprop='dateModified' content='2024-10-20T06:16:11Z'>
+              <span itemprop='position'>2</span>
+              </span>
+            </div>
+            <div class='post' itemprop='text'>
+              <aside class="quote no-group" data-username="morronno" data-post="1" data-topic="87525">
+<div class="title">
+<div class="quote-controls"></div>
+<img loading="lazy" alt="" width="24" height="24" src="https://forum.godotengine.org/user_avatar/forum.godotengine.org/morronno/48/35871_2.png" class="avatar"> morronno:</div>
+<blockquote>
+<p>tween.tween_property($“…/” + character_move_name ,“position”,positions.get(positionTo),1)</p>
+</blockquote>
+</aside>
+<p>Do like this:</p>
+<pre><code class="lang-auto">tween.tween_property(get_node(“…/” + character_move_name) ,“position”,positions.get(positionTo),1)
+</code></pre>
+<p>It will probably works.</p>
+            </div>
+
+            <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+              <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+              <meta itemprop="userInteractionCount" content="0" />
+              <span class='post-likes'></span>
+            </div>
+
+          </div>
+          <div id='post_3' itemprop='comment' itemscope itemtype='http://schema.org/Comment' class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" rel='nofollow' href='https://forum.godotengine.org/u/morronno'><span itemprop='name'>morronno</span></a>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop='datePublished' datetime='2024-10-20T09:01:00Z' class='post-time'>
+                    October 20, 2024,  9:01am
+                  </time>
+                  <meta itemprop='dateModified' content='2024-10-20T09:01:00Z'>
+              <span itemprop='position'>3</span>
+              </span>
+            </div>
+            <div class='post' itemprop='text'>
+              <p>Thank you soo much</p>
+            </div>
+
+            <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+              <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+              <meta itemprop="userInteractionCount" content="1" />
+              <span class='post-likes'>1 Like</span>
+            </div>
+
+          </div>
+          <div id='post_4' itemprop='comment' itemscope itemtype='http://schema.org/Comment' class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" rel='nofollow' href='https://forum.godotengine.org/u/system'><span itemprop='name'>system</span></a>
+                
+                  Closed 
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop='datePublished' datetime='2024-11-19T09:01:07Z' class='post-time'>
+                    November 19, 2024,  9:01am
+                  </time>
+                  <meta itemprop='dateModified' content='2024-11-19T09:01:07Z'>
+              <span itemprop='position'>4</span>
+              </span>
+            </div>
+            <div class='post' itemprop='text'>
+              <p>This topic was automatically closed 30 days after the last reply. New replies are no longer allowed.</p>
+            </div>
+
+            <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+              <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+              <meta itemprop="userInteractionCount" content="0" />
+              <span class='post-likes'></span>
+            </div>
+
+          </div>
+    </div>
+
+
+    
+
+
+
+
+    </div>
+    <footer class="container wrap">
+  <nav class='crawler-nav'>
+    <ul>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/' itemprop="url">Home </a>
+        </span>
+      </li>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/categories' itemprop="url">Categories </a>
+        </span>
+      </li>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/guidelines' itemprop="url">Guidelines </a>
+        </span>
+      </li>
+        <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+          <span itemprop='name'>
+            <a href='/tos' itemprop="url">Terms of Service </a>
+          </span>
+        </li>
+        <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+          <span itemprop='name'>
+            <a href='https://godotengine.org/privacy-policy/' itemprop="url">Privacy Policy </a>
+          </span>
+        </li>
+    </ul>
+  </nav>
+  <p class='powered-by-link'>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+    
+    
+  </body>
+  
+</html>
