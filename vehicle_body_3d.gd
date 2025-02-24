@@ -4,6 +4,8 @@ extends VehicleBody3D
 @export var angle = 0
 
 @export var normalAxis = Vector3(0, 1, 0)
+var check_point_pos = Vector3.ZERO
+
 var boost = 0
 var prevSpeed = 0
 var frontWheels: Array[VehicleWheel3D]
@@ -135,3 +137,18 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 		print("boosted")
 		linear_velocity *= 2
 	pass # Replace with function body.
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	print("detect")
+	save_check_point(self.position.x, self.position.y, self.position.z)
+
+
+func _on_deathzone_area_entered(area: Area3D) -> void:
+	print("die")
+	global_position = check_point_pos
+
+func save_check_point(pos_x, pos_y, pos_z):
+	check_point_pos.x = pos_x
+	check_point_pos.y = pos_y
+	check_point_pos.z = pos_z

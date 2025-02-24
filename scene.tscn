@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=25 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_v68ge"]
 [ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
-[ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="2_ck1h1"]
-[ext_resource type="PhysicsMaterial" uid="uid://bnleut52scgpe" path="res://road.tres" id="2_hdb16"]
+[ext_resource type="PhysicsMaterial" path="res://grass.tres" id="2_ck1h1"]
+[ext_resource type="PhysicsMaterial" path="res://road.tres" id="2_hdb16"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_dwm7o"]
-[ext_resource type="BoxMesh" uid="uid://b76i5ji2uqetc" path="res://default-car.tres" id="5_pvuty"]
+[ext_resource type="BoxMesh" uid="uid://cc2hckgxm70ba" path="res://default-car.tres" id="5_pvuty"]
 [ext_resource type="Script" path="res://ramp_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]
 
@@ -53,6 +53,12 @@ size = Vector3(1131.37, 2, 200)
 [sub_resource type="BoxMesh" id="BoxMesh_4da8t"]
 size = Vector3(1200, 2, 200)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_insi8"]
+size = Vector3(100, 100, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
+size = Vector3(10000, 1, 10000)
+
 [node name="Game" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -87,7 +93,7 @@ mesh = SubResource("BoxMesh_lx6vo")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../..")
 
-[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+[node name="VehicleBody3D" type="VehicleBody3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 456.636, 7.0637, -474.843)
 mass = 100.0
 gravity_scale = 3.0
@@ -249,4 +255,19 @@ mesh = SubResource("BoxMesh_4da8t")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../../../floor")
 
+[node name="checkpoint1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 448.045, 0, 24.0307)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoint1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2326, 0, 15.0342)
+shape = SubResource("BoxShape3D_insi8")
+
+[node name="deathzone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathzone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -235.197, 0)
+shape = SubResource("BoxShape3D_0v8n8")
+
 [connection signal="area_entered" from="VehicleBody3D/VehicleArea" to="VehicleBody3D" method="_on_vehicle_area_entered"]
+[connection signal="area_entered" from="checkpoint1" to="VehicleBody3D" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="deathzone" to="VehicleBody3D" method="_on_deathzone_area_entered"]
