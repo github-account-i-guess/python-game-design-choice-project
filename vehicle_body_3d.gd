@@ -1,5 +1,5 @@
 extends VehicleBody3D
-@export var added_engine_force = 2100
+@export var added_engine_force = 3000
 
 @export var angle = 0
 
@@ -22,7 +22,6 @@ func _ready():
 
 func _physics_process(delta):
 	#print(delta)
-	engine_force = 0
 	var velocity = linear_velocity
 	velocity.y = 0
 	var speed = velocity.length()
@@ -56,7 +55,7 @@ func _physics_process(delta):
 	if drifting:
 	
 		#steeringCap = PI/4
-		if (left or right) and boost < 60 * 3:
+		if (left or right) and boost < 60:
 			boost += 1
 		#engine_force = 0
 		#brake = 1
@@ -92,14 +91,12 @@ func _physics_process(delta):
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
 		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
 		var increasedDirection = direction.normalized() * 10 * (0.3 + boost/4) 
-		print(boost)
 		#increasedDirection.y += 5
 		#print(direction)
 		#linear_velocity *= 99/100
 		linear_velocity += increasedDirection
 		#print (angular_velocity)
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
-		print(angular_velocity)
 		boost = 0
 	#if Input.is_action_just_pressed("jump"):
 		#linear_velocity += Vector3(0, 30, 0)
@@ -110,6 +107,8 @@ func _physics_process(delta):
 	#print(speed)
 	#print(engine_force)
 	steering = angle
+	#print(engine_force)
+	#print(speed)
 	#if linear_velocity.y >= 0:
 		#print(speed)
 	#print(speed - prevSpeed)
