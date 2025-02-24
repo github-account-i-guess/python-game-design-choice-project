@@ -52,8 +52,7 @@ func _physics_process(delta):
 		engine_force = -added_engine_force/2
 	#if Input.is_action_just_pressed("drift"):
 			#linear_velocity += Vector3(0, 30, 0)
-	if drifting:
-	
+	if drifting and linear_velocity.y > -1:
 		#steeringCap = PI/4
 		if (left or right) and boost < 60:
 			boost += 1
@@ -68,11 +67,7 @@ func _physics_process(delta):
 			$BackLeftWheel.wheel_roll_influence = 5
 		if left:
 			$BackRightWheel.wheel_roll_influence = 5
-					
-		#$FrontLeftWheel.wheel_friction_slip = 10
-		#$FrontRightWheel.wheel_friction_slip = 10
-		$BodyMesh.mesh.material.albedo_color = Color(0, 0, 1, 0.5)		
-		#linear_velocity.y = 0
+		$BodyMesh.mesh.material.albedo_color = Color(0, 0, 1, 0.5)
 	else:
 		for wheel in wheels:
 			wheel.wheel_friction_slip = 10.5
@@ -90,7 +85,7 @@ func _physics_process(delta):
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
 		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
-		var increasedDirection = direction.normalized() * 10 * (0.3 + boost/4) 
+		var increasedDirection = direction.normalized() * 10 * (boost/4) 
 		#increasedDirection.y += 5
 		#print(direction)
 		#linear_velocity *= 99/100
@@ -109,8 +104,8 @@ func _physics_process(delta):
 	steering = angle
 	#print(engine_force)
 	#print(speed)
-	#if linear_velocity.y >= 0:
-		#print(speed)
+	if linear_velocity.y >= 0:
+		print(speed)
 	#print(speed - prevSpeed)
 	#prevSpeed = speed
 	#rotation.x = 0
@@ -134,4 +129,9 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 	if area == get_node("../Boost"):
 		print("boosted")
 		linear_velocity *= 2
+	pass # Replace with function body.
+
+
+func _on_body_entered(body: Node) -> void:
+	print(body)
 	pass # Replace with function body.
