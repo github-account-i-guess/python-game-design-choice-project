@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=25 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_v68ge"]
@@ -52,6 +52,12 @@ size = Vector3(1131.37, 2, 200)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4da8t"]
 size = Vector3(1200, 2, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_insi8"]
+size = Vector3(100, 100, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
+size = Vector3(10000, 1, 10000)
 
 [node name="Game" type="Node3D"]
 
@@ -261,4 +267,19 @@ skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../../../floor")
 
 [connection signal="body_entered" from="VehicleBody3D" to="VehicleBody3D" method="_on_body_entered"]
+[node name="checkpoint1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 448.045, 0, 24.0307)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoint1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2326, 0, 15.0342)
+shape = SubResource("BoxShape3D_insi8")
+
+[node name="deathzone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathzone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -235.197, 0)
+shape = SubResource("BoxShape3D_0v8n8")
+
 [connection signal="area_entered" from="VehicleBody3D/VehicleArea" to="VehicleBody3D" method="_on_vehicle_area_entered"]
+[connection signal="area_entered" from="checkpoint1" to="VehicleBody3D" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="deathzone" to="VehicleBody3D" method="_on_deathzone_area_entered"]
