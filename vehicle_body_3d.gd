@@ -133,12 +133,6 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 		linear_velocity *= 2
 	pass # Replace with function body.
 
-
-<<<<<<< HEAD
-func _on_body_entered(body: Node) -> void:
-	print(body)
-	pass # Replace with function body.
-=======
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	print("detect")
 	save_check_point(self.position.x, self.position.y, self.position.z)
@@ -152,4 +146,3 @@ func save_check_point(pos_x, pos_y, pos_z):
 	check_point_pos.x = pos_x
 	check_point_pos.y = pos_y
 	check_point_pos.z = pos_z
->>>>>>> main
