@@ -80,7 +80,8 @@ mesh = ExtResource("1_3m54h")
 transform = Transform3D(0.0624875, 0, 0.0012511, 0, 0.0625, 0, -0.0012511, 0, 0.0624875, 50.83, 18.3506, -30.9912)
 mesh = ExtResource("1_3m54h")
 
-[node name="floor" type="StaticBody3D" parent="."]
+[node name="floor" type="StaticBody3D" parent="." groups=["slow"]]
+editor_description = "slow"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 physics_material_override = ExtResource("2_ck1h1")
 
@@ -173,7 +174,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D/VehicleArea"]
 shape = SubResource("BoxShape3D_gvx3c")
 
-[node name="Boost" type="Area3D" parent="."]
+[node name="Boost" type="Area3D" parent="." groups=["boost"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 455.771, 4.24368, -97.1151)
 
 [node name="BodyMesh" type="MeshInstance3D" parent="Boost"]
@@ -280,6 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -235.197, 0)
 shape = SubResource("BoxShape3D_0v8n8")
 
 [connection signal="body_entered" from="VehicleBody3D" to="VehicleBody3D" method="_on_body_entered"]
+[connection signal="body_exited" from="VehicleBody3D" to="VehicleBody3D" method="_on_body_exited"]
 [connection signal="area_entered" from="VehicleBody3D/VehicleArea" to="VehicleBody3D" method="_on_vehicle_area_entered"]
 [connection signal="area_entered" from="checkpoint1" to="VehicleBody3D" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="deathzone" to="VehicleBody3D" method="_on_deathzone_area_entered"]

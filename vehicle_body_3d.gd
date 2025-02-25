@@ -5,6 +5,7 @@ extends VehicleBody3D
 
 @export var normalAxis = Vector3(0, 1, 0)
 var check_point_pos = Vector3.ZERO
+var slow = false
 
 var boost = 0
 var prevSpeed = 0
@@ -18,7 +19,7 @@ func _ready():
 	wheels = backWheels.duplicate()
 	wheels.append_array(frontWheels)
 	#print(wheels)
-	for wheel in wheels:
+	for wheel in wheels:	
 		wheel.wheel_roll_influence = 0
 		wheel.wheel_friction_slip = 8
 
@@ -49,20 +50,15 @@ func _physics_process(delta):
 		angle -= 0.01 * sign(angle) * (1 + speed/30)
 
 	if Input.is_action_pressed("move_back"):
-		if speed > 10:
-			brake = 2.0
 		engine_force = -added_engine_force/2
 	#if Input.is_action_just_pressed("drift"):
 			#linear_velocity += Vector3(0, 30, 0)
 	if drifting and linear_velocity.y > -1:
-		#steeringCap = PI/4
-		if (left or right) and boost < 60:
+		if (left or right) and boost < 120:
 			boost += 1
-		#engine_force = 0
-		#brake = 1
+
 		for wheel in backWheels:
 			wheel.wheel_friction_slip = 1
-			#wheel.wheel_roll_influence = 100
 		#for wheel in frontWheels:
 			#wheel.wheel_friction_slip = 10
 		if right:
@@ -73,62 +69,42 @@ func _physics_process(delta):
 	else:
 		for wheel in wheels:
 			wheel.wheel_friction_slip = 10.5
-		#if boost > 0:
-			#boost -= 1
-			##$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
-			##linear_velocity.y = 0
-			##if abs(linear_velocity.y) > 0.01:
-				##glo.y = 0
-			#if boost < 2 or abs(steering) < 1:
-				#
-		#else:
 		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)		
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
 		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
-		var increasedDirection = direction.normalized() * 10 * (boost/4) 
-		#increasedDirection.y += 5
-		#print(direction)
-		#linear_velocity *= 99/100
+		var increasedDirection = direction.normalized() * 10 * (boost/3) 
+
 		linear_velocity += increasedDirection
-		#print (angular_velocity)
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
-	#if Input.is_action_just_pressed("jump"):
-		#linear_velocity += Vector3(0, 30, 0)
 	#engine_force = speedMap(accelTime)
-	#for wheel in wheels:
-		#print(wheel.wheel_roll_influence)
+
 	$Camera.setFov(sqrt(speed) + 90)
-	#print(speed)
-	#print(engine_force)
+
 	steering = angle
-	#print(engine_force)
-	#print(speed)
+
 	if linear_velocity.y >= 0:
 		print(speed)
-	#print(speed - prevSpeed)
-	#prevSpeed = speed
-	#rotation.x = 0
-	#rotation.z = 0
-	#if (left != right):
-		#linear_velocity.z += 1
-	#if int(linear_velocity.length()) % 100 == 50:
-		##linear_velocity *- 0
-		#$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)		
-		#linear_velocity += Vector3(0, 5, 0)
-#func _process(delta):
-	#print(state.get_contact_count())
-#func body_entered(body: Node):
-	#print(body)
-#func body_exited(body: Node):
-	#print(body)
+	if slow and linear_velocity.length() > 75: 
+		linear_velocity = linear_velocity.normalized() * 75
 
+
+func _on_body_entered(body: Node):
+	print("body: " + str(body))
+	if (body.is_in_group("slow")):
+		slow = true
+	pass
+func _on_body_exited(body: Node) -> void:
+	print("body: " + str(body))
+	if (body.is_in_group("slow")):
+		slow = false
+	pass # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
-	print(area)
-	if area == get_node("../Boost"):
+	print("area: " + str(area))
+	if area.is_in_group("boost"):
 		print("boosted")
 		linear_velocity *= 2
 	pass # Replace with function body.
