@@ -88,7 +88,7 @@ func _physics_process(delta):
 	if linear_velocity.y >= 0:
 		print(speed)
 	if slow and linear_velocity.length() > 75: 
-		linear_velocity = linear_velocity.normalized() * 75
+		linear_velocity -= linear_velocity.normalized() * 34
 
 
 func _on_body_entered(body: Node):
@@ -106,7 +106,7 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 	print("area: " + str(area))
 	if area.is_in_group("boost"):
 		print("boosted")
-		linear_velocity *= 2
+		linear_velocity += 200 * Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), area.global_rotation.y)
 	pass # Replace with function body.
 
 func _on_area_3d_area_entered(area: Area3D) -> void:

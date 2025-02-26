@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci8wakxd1whaf"]
+
+[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
+[ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
+
+[sub_resource type="Compositor" id="Compositor_qm2ux"]
+
+[node name="Audreyville AutoRacingPlace" type="Node3D"]
+
+[node name="VehicleBody3D" parent="." instance=ExtResource("1_r064m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+
+[node name="road2" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 1524.26, 424.264, 0)
+
+[node name="road" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -350.621, 110.71, -340.685)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+camera_attributes = SubResource("CameraAttributesPractical_esbta")
+compositor = SubResource("Compositor_qm2ux")

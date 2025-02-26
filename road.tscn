@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck0tat2hr2r0p"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="1_b57iu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5wsy"]
+size = Vector3(1131.37, 2, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4da8t"]
+size = Vector3(1200, 2, 200)
+
+[sub_resource type="Skin" id="Skin_i0ldq"]
+
+[node name="road" type="StaticBody3D"]
+physics_material_override = ExtResource("1_b57iu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_d5wsy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D2"]
+mesh = SubResource("BoxMesh_4da8t")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../../../floor")
