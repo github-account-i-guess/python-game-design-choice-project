@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt8gm0t8uk8ij"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://duojanthew73q" path="res://wall.tres" id="1_qm4o4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ufx0y"]
+size = Vector3(600, 2, 600)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ufoh"]
+size = Vector3(600, 2, 600)
+
+[sub_resource type="Skin" id="Skin_jfiqp"]
+
+[node name="wall" type="StaticBody3D"]
+physics_material_override = ExtResource("1_qm4o4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ufx0y")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D2"]
+mesh = SubResource("BoxMesh_5ufoh")
+skin = SubResource("Skin_jfiqp")
+skeleton = NodePath("../../../floor")

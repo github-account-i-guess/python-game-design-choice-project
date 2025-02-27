@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci8wakxd1whaf"]
+[gd_scene load_steps=7 format=3 uid="uid://ci8wakxd1whaf"]
 
 [ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
+[ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="2_nfr4j"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
+[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
 
@@ -12,8 +14,26 @@
 [node name="VehicleBody3D" parent="." instance=ExtResource("1_r064m")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
 
+[node name="wall" parent="." instance=ExtResource("2_nfr4j")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3500, 300, 0)
+
 [node name="road2" parent="." instance=ExtResource("2_ok1ub")]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 1524.26, 424.264, 0)
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 1690.89, 104.189, 0)
+
+[node name="road4" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1700, 0, -1200)
+
+[node name="road3" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1000, 0, -700)
+
+[node name="road9" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3400, 0, 700)
+
+[node name="road6" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3400, 0, -500)
+
+[node name="road5" parent="." instance=ExtResource("2_ok1ub")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2900, 0, -1200)
 
 [node name="road" parent="." instance=ExtResource("2_ok1ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
@@ -25,3 +45,9 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 camera_attributes = SubResource("CameraAttributesPractical_esbta")
 compositor = SubResource("Compositor_qm2ux")
+
+[node name="Boost2" parent="." instance=ExtResource("3_flppw")]
+transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648, -1, 7.5904e-09, -4.30473e-08, 2181.77, 193.378, 45)
+
+[node name="Boost" parent="." instance=ExtResource("3_flppw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 200, 0, 0)

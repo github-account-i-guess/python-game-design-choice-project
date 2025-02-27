@@ -6,6 +6,7 @@ extends VehicleBody3D
 @export var normalAxis = Vector3(0, 1, 0)
 var check_point_pos = Vector3.ZERO
 var slow = false
+var numBodiesCollided = 0
 
 var boost = 0
 var prevSpeed = 0
@@ -53,7 +54,7 @@ func _physics_process(delta):
 		engine_force = -added_engine_force/2
 	#if Input.is_action_just_pressed("drift"):
 			#linear_velocity += Vector3(0, 30, 0)
-	if drifting and linear_velocity.y > -1:
+	if drifting and numBodiesCollided > 0:
 		if (left or right) and boost < 120:
 			boost += 1
 
@@ -85,8 +86,8 @@ func _physics_process(delta):
 
 	steering = angle
 
-	if linear_velocity.y >= 0:
-		print(speed)
+	#if linear_velocity.y >= 0:
+		#print(speed)
 	if slow and linear_velocity.length() > 75: 
 		linear_velocity -= linear_velocity.normalized() * 34
 
@@ -95,11 +96,13 @@ func _on_body_entered(body: Node):
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = true
+	numBodiesCollided += 1
 	pass
 func _on_body_exited(body: Node) -> void:
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = false
+	numBodiesCollided -= 1
 	pass # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
