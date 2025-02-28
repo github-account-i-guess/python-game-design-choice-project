@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt8gm0t8uk8ij"]
+[gd_scene load_steps=7 format=3 uid="uid://dt8gm0t8uk8ij"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://duojanthew73q" path="res://wall.tres" id="1_qm4o4"]
+[ext_resource type="Texture2D" uid="uid://dfji3puctv54c" path="res://smith.jpg" id="2_105py"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ufx0y"]
 size = Vector3(600, 2, 600)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dbok"]
+metallic = 1.0
+metallic_texture = ExtResource("2_105py")
+roughness_texture = ExtResource("2_105py")
+
 [sub_resource type="BoxMesh" id="BoxMesh_5ufoh"]
+material = SubResource("StandardMaterial3D_0dbok")
 size = Vector3(600, 2, 600)
 
 [sub_resource type="Skin" id="Skin_jfiqp"]

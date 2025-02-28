@@ -93,7 +93,11 @@ func _physics_process(delta):
 		linear_velocity -= linear_velocity.normalized() * 34
 	print(fastFall)
 	if fastFall > 0:
-		gravity_scale = 0.5
+		if linear_velocity.y > 0:
+			fastFall = 0
+		gravity_scale = 20
+		global_rotation.x = 0
+		global_rotation.z = 0
 		$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)
 		fastFall -= 1
 	else:
