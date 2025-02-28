@@ -13,6 +13,7 @@ var prevSpeed = 0
 var frontWheels: Array[VehicleWheel3D]
 var wheels: Array[VehicleWheel3D]
 var backWheels: Array[VehicleWheel3D]
+var fastFall = 0
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -90,12 +91,21 @@ func _physics_process(delta):
 		#print(speed)
 	if slow and linear_velocity.length() > 75: 
 		linear_velocity -= linear_velocity.normalized() * 34
+	print(fastFall)
+	if fastFall > 0:
+		gravity_scale = 0.5
+		$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)
+		fastFall -= 1
+	else:
+		gravity_scale = 3
 
 
 func _on_body_entered(body: Node):
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = true
+	if (body.is_in_group("fast_fall")):
+		fastFall = 120
 	numBodiesCollided += 1
 	pass
 func _on_body_exited(body: Node) -> void:
