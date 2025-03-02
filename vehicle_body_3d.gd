@@ -14,6 +14,9 @@ var frontWheels: Array[VehicleWheel3D]
 var wheels: Array[VehicleWheel3D]
 var backWheels: Array[VehicleWheel3D]
 var fastFall = 0
+var airTime = 0
+var airDashAvailable = false
+var airBoost = 0
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -52,12 +55,17 @@ func _physics_process(delta):
 		angle -= 0.01 * sign(angle) * (1 + speed/30)
 
 	if Input.is_action_pressed("move_back"):
-		engine_force = -added_engine_force/2
+		engine_force = -added_engine_force 
+		#linear_velocity *= 0.9999
 	#if Input.is_action_just_pressed("drift"):
 			#linear_velocity += Vector3(0, 30, 0)
-	if drifting and numBodiesCollided > 0:
-		if (left or right) and boost < 120:
-			boost += 1
+	if drifting:
+		if (left or right) and boost < 60:
+			if (numBodiesCollided == 0):
+				airBoost += 1
+				boost += 0.3
+			else:
+				boost += 1
 
 		for wheel in backWheels:
 			wheel.wheel_friction_slip = 1
@@ -74,13 +82,16 @@ func _physics_process(delta):
 		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)		
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
-	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
+	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (numBodiesCollided > 0 or airDashAvailable):
 		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
-		var increasedDirection = direction.normalized() * 10 * (boost/3) 
-
+		var increasedDirection = direction.normalized() * 10 * (boost/3)
+		print(airBoost)
+		increasedDirection.y += airBoost/2
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
+		airBoost = 0
+		airDashAvailable = false
 	#engine_force = speedMap(accelTime)
 
 	$Camera.setFov(sqrt(speed) + 90)
@@ -91,7 +102,7 @@ func _physics_process(delta):
 		#print(speed)
 	if slow and linear_velocity.length() > 75: 
 		linear_velocity -= linear_velocity.normalized() * 34
-	print(fastFall)
+	#print(fastFall)
 	if fastFall > 0:
 		if linear_velocity.y > 0:
 			fastFall = 0
@@ -102,7 +113,13 @@ func _physics_process(delta):
 		fastFall -= 1
 	else:
 		gravity_scale = 3
-
+	if numBodiesCollided == 0:
+		if airTime == 0:
+			airDashAvailable = true
+		airTime += 1
+	elif airTime:
+		airTime = 0
+	#print (airDashAvailable)
 
 func _on_body_entered(body: Node):
 	print("body: " + str(body))

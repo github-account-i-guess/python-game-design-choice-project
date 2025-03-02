@@ -27,7 +27,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1000, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3400, 0, 700)
 
 [node name="grass" parent="road9" instance=ExtResource("3_cpf2n")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -693.999, -2.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
 [node name="road13" parent="road9" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(-3.93402e-07, 0, 1, 0, 1, 0, -1, 0, -3.93402e-07, 1000, 0, 500)

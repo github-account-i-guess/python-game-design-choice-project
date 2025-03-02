@@ -13,6 +13,9 @@
 
 [node name="VehicleBody3D" parent="." instance=ExtResource("1_r064m")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 5, 0)
+added_engine_force = null
+angle = null
+normalAxis = null
 
 [node name="road2" parent="." instance=ExtResource("2_ok1ub")]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 1690.89, 104.189, 0)
