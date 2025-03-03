@@ -1,8 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7a1ura8hwh4o"]
+[gd_scene load_steps=20 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
-[ext_resource type="PackedScene" uid="uid://hw7xthm70m45" path="res://ui.tscn" id="1_5d8h2"]
-[ext_resource type="Script" path="res://scene.gd" id="1_ljxyl"]
 [ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
 [ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="2_ck1h1"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
@@ -42,9 +40,6 @@ size = Vector3(1131.37, 2, 200)
 size = Vector3(10000, 2, 10000)
 
 [node name="Game" type="Node3D"]
-script = ExtResource("1_ljxyl")
-
-[node name="ui" parent="." instance=ExtResource("1_5d8h2")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -350.622, 109.98, -340.695)
@@ -75,8 +70,8 @@ mesh = SubResource("BoxMesh_lx6vo")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../..")
 
-[node name="vehicle" parent="." instance=ExtResource("4_x8unt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 7.064, -400)
+[node name="VehicleBody3D" parent="." instance=ExtResource("4_x8unt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 7.064, -475)
 
 [node name="Boost" parent="." instance=ExtResource("5_mafpr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 452.113, 5, -257.207)
@@ -114,17 +109,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 500, 5
 [node name="road2" parent="." instance=ExtResource("9_ovry7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -500, 5, 0)
 
-[node name="checkpoint4" parent="." instance=ExtResource("10_04k6s")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -400, 0, -500)
-
-[node name="checkpoint3" parent="." instance=ExtResource("10_04k6s")]
-transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -500, 0, 400)
-
-[node name="checkpoint2" parent="." instance=ExtResource("10_04k6s")]
-transform = Transform3D(2.38498e-08, 0, -2, 0, 2, 0, 2, 0, 2.38498e-08, 400, 0, 500)
-
 [node name="checkpoint" parent="." instance=ExtResource("10_04k6s")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)
 
 [node name="deathzone" type="Area3D" parent="." groups=["deathzone"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
