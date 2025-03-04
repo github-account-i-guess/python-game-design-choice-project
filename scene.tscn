@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
 [ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="2_ck1h1"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
-[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="4_x8unt"]
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="4_x8unt"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="5_mafpr"]
 [ext_resource type="Script" path="res://ramp_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]

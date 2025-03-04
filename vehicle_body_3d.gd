@@ -7,6 +7,7 @@ extends VehicleBody3D
 var check_point_pos = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
+var jumpSpeed = 20
 
 var boost = 0
 var prevSpeed = 0
@@ -21,7 +22,7 @@ func _ready():
 	wheels = backWheels.duplicate()
 	wheels.append_array(frontWheels)
 	#print(wheels)
-	for wheel in wheels:	
+	for wheel in wheels:
 		wheel.wheel_roll_influence = 0
 		wheel.wheel_friction_slip = 8
 
@@ -71,16 +72,20 @@ func _physics_process(delta):
 	else:
 		for wheel in wheels:
 			wheel.wheel_friction_slip = 10.5
-		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)		
+		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
 		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
-		var increasedDirection = direction.normalized() * 10 * (boost/3) 
+		var increasedDirection = direction.normalized() * 10 * (boost/3)
 
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
+	if Input.is_action_pressed("jump") and numBodiesCollided > 0:
+		print("jump")
+		linear_velocity.y = jumpSpeed
+		
 	#engine_force = speedMap(accelTime)
 
 	$Camera.setFov(sqrt(speed) + 90)
@@ -89,7 +94,7 @@ func _physics_process(delta):
 
 	#if linear_velocity.y >= 0:
 		#print(speed)
-	if slow and linear_velocity.length() > 75: 
+	if slow and linear_velocity.length() > 75:
 		linear_velocity -= linear_velocity.normalized() * 34
 	print(fastFall)
 	if fastFall > 0:
