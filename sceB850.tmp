@@ -43,7 +43,6 @@ size = Vector3(10000, 2, 10000)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_ljxyl")
-numCheckpoints = 4
 
 [node name="ui" parent="." instance=ExtResource("1_5d8h2")]
 
@@ -117,15 +116,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -500, 
 
 [node name="checkpoint4" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -400, 0, -500)
-checkpointNum = 3
 
 [node name="checkpoint3" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -500, 0, 400)
-checkpointNum = 2
 
 [node name="checkpoint2" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(2.38498e-08, 0, -2, 0, 2, 0, 2, 0, 2.38498e-08, 400, 0, 500)
-checkpointNum = 1
 
 [node name="checkpoint" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)

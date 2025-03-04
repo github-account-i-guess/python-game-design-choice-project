@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dylujcm8vevo3"]
+[gd_scene load_steps=6 format=3 uid="uid://dylujcm8vevo3"]
+
+[ext_resource type="Script" path="res://checkpoint.gd" id="1_ojwxn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_insi8"]
 size = Vector3(100, 100, 1)
@@ -14,6 +16,7 @@ size = Vector3(100, 100, 1)
 [sub_resource type="Skin" id="Skin_i0ldq"]
 
 [node name="checkpoint" type="Area3D" groups=["checkpoint"]]
+script = ExtResource("1_ojwxn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_insi8")

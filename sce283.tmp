@@ -78,6 +78,9 @@ skeleton = NodePath("../..")
 
 [node name="vehicle" parent="." instance=ExtResource("4_x8unt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 7.064, -400)
+added_engine_force = null
+angle = null
+normalAxis = null
 
 [node name="Boost" parent="." instance=ExtResource("5_mafpr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 452.113, 5, -257.207)

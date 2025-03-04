@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8e2e7giej5te"]
+[gd_scene load_steps=8 format=3 uid="uid://b8e2e7giej5te"]
 
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_8jf8j"]
 [ext_resource type="BoxMesh" uid="uid://wvvi6rjaoi2r" path="res://boosted-car.tres" id="2_tgdgw"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_y3jnv"]
-[ext_resource type="PackedScene" uid="uid://dylujcm8vevo3" path="res://checkpoint.tscn" id="4_itiab"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qall0"]
 size = Vector3(14, 10, 24)
@@ -99,9 +98,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleArea"]
 shape = SubResource("BoxShape3D_gvx3c")
-
-[node name="checkpoint3" parent="." instance=ExtResource("4_itiab")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -500, 0, 400)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

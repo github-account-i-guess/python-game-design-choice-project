@@ -4,6 +4,7 @@ extends VehicleBody3D
 @export var angle = 0
 
 @export var normalAxis = Vector3(0, 1, 0)
+var numCheckpoints = 0
 var check_point = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
@@ -14,6 +15,7 @@ var frontWheels: Array[VehicleWheel3D]
 var wheels: Array[VehicleWheel3D]
 var backWheels: Array[VehicleWheel3D]
 var fastFall = 0
+var curCheckpoint = -1
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -91,7 +93,6 @@ func _physics_process(delta):
 		#print(speed)
 	if slow and linear_velocity.length() > 75: 
 		linear_velocity -= linear_velocity.normalized() * 34
-	print(fastFall)
 	if fastFall > 0:
 		if linear_velocity.y > 0:
 			fastFall = 0
@@ -126,6 +127,10 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 		linear_velocity += 200 * Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
 		save_check_point(area)
+		var num = area.checkpointNum
+		print(numCheckpoints)
+		if (num == curCheckpoint + 1 or (curCheckpoint == numCheckpoints - 1 and num == 0)):
+			curCheckpoint = num
 	if area.is_in_group("deathzone"):
 		global_position = check_point.global_position
 		angular_velocity = Vector3.ZERO
