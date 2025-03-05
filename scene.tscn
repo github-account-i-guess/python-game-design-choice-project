@@ -1,13 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4bhkdy8xvorf"]
+[gd_scene load_steps=16 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
-[ext_resource type="PhysicsMaterial" uid="uid://bnleut52scgpe" path="res://road.tres" id="2_hdb16"]
-[ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="2_m6pcm"]
-[ext_resource type="PackedScene" path="res://vehicle.tscn" id="4_x8unt"]
-[ext_resource type="PackedScene" path="res://boost.tscn" id="5_mafpr"]
+[ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
+[ext_resource type="PackedScene" path="res://grass_scene.tscn" id="2_m6pcm"]
+[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="4_x8unt"]
+[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="5_mafpr"]
 [ext_resource type="Script" path="res://ramp_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]
-[ext_resource type="PackedScene" path="res://road.tscn" id="9_ovry7"]
+[ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
