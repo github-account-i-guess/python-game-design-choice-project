@@ -62,11 +62,7 @@ func _physics_process(delta):
 			#linear_velocity += Vector3(0, 30, 0)
 	if drifting:
 		if (left or right) and boost < 60:
-			if (numBodiesCollided == 0):
-				airBoost += 1
-				boost += 0.3
-			else:
-				boost += 1
+			boost += 1
 
 		for wheel in backWheels:
 			wheel.wheel_friction_slip = 1
@@ -86,24 +82,13 @@ func _physics_process(delta):
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (numBodiesCollided > 0 or airDashAvailable):
 		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
-<<<<<<< HEAD
-
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
 	if Input.is_action_pressed("jump") and numBodiesCollided > 0:
 		print("jump")
 		linear_velocity.y = jumpSpeed
-		
-=======
-		print(airBoost)
-		increasedDirection.y += airBoost/2
-		linear_velocity += increasedDirection
-		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
-		boost = 0
-		airBoost = 0
-		airDashAvailable = false
->>>>>>> 2025-2-12-vehicle
+				
 	#engine_force = speedMap(accelTime)
 
 	$Camera.setFov(sqrt(speed) + 90)
