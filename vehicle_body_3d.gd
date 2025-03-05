@@ -4,7 +4,8 @@ extends VehicleBody3D
 @export var angle = 0
 
 @export var normalAxis = Vector3(0, 1, 0)
-var check_point_pos = Vector3.ZERO
+var numCheckpoints = 0
+var check_point = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
 var jumpSpeed = 20
@@ -18,6 +19,7 @@ var fastFall = 0
 var airTime = 0
 var airDashAvailable = false
 var airBoost = 0
+var curCheckpoint = -1
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -138,18 +140,19 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 	if area.is_in_group("boost"):
 		print("boosted")
 		linear_velocity += 200 * Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), area.global_rotation.y)
+	if area.is_in_group("checkpoint"):
+		save_check_point(area)
+		var num = area.checkpointNum
+		print(numCheckpoints)
+		if (num == curCheckpoint + 1 or (curCheckpoint == numCheckpoints - 1 and num == 0)):
+			curCheckpoint = num
+	if area.is_in_group("deathzone"):
+		global_position = check_point.global_position
+		angular_velocity = Vector3.ZERO
+		linear_velocity = Vector3.ZERO
+		global_rotation = check_point.global_rotation
 	pass # Replace with function body.
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	print("detect")
-	save_check_point(self.position.x, self.position.y, self.position.z)
 
-
-func _on_deathzone_area_entered(area: Area3D) -> void:
-	print("die")
-	global_position = check_point_pos
-
-func save_check_point(pos_x, pos_y, pos_z):
-	check_point_pos.x = pos_x
-	check_point_pos.y = pos_y
-	check_point_pos.z = pos_z
+func save_check_point(checkpoint):
+	check_point = checkpoint
