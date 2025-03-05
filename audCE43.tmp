@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci8wakxd1whaf"]
+[gd_scene load_steps=7 format=3 uid="uid://kh1tfkqo8v1i"]
 
-[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
-[ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
-[ext_resource type="PackedScene" path="res://grass_scene.tscn" id="3_cpf2n"]
-[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
+[ext_resource type="PackedScene" path="res://vehicle.tscn" id="1_r064m"]
+[ext_resource type="PackedScene" path="res://road.tscn" id="2_ok1ub"]
+[ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="3_cpf2n"]
+[ext_resource type="PackedScene" path="res://boost.tscn" id="3_flppw"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
 
@@ -13,6 +13,9 @@
 
 [node name="VehicleBody3D" parent="." instance=ExtResource("1_r064m")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 5, 0)
+added_engine_force = null
+angle = null
+normalAxis = null
 
 [node name="road2" parent="." instance=ExtResource("2_ok1ub")]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 1690.89, 104.189, 0)
