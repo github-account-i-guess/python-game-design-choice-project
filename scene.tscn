@@ -1,10 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7a1ura8hwh4o"]
+[gd_scene load_steps=18 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
-[ext_resource type="PackedScene" uid="uid://hw7xthm70m45" path="res://ui.tscn" id="1_5d8h2"]
+[ext_resource type="PackedScene" uid="uid://c1v3o37jxa8m1" path="res://ui.tscn" id="1_5d8h2"]
 [ext_resource type="Script" path="res://scene.gd" id="1_ljxyl"]
-[ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
-[ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="2_ck1h1"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
 [ext_resource type="PackedScene" path="res://grass_scene.tscn" id="2_m6pcm"]
 [ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="4_x8unt"]
@@ -12,7 +10,7 @@
 [ext_resource type="Script" path="res://ramp_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
-[ext_resource type="PackedScene" uid="uid://dylujcm8vevo3" path="res://checkpoint.tscn" id="10_04k6s"]
+[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="10_04k6s"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -25,9 +23,6 @@ size = Vector3(1131.37, 2, 200)
 size = Vector3(1131.37, 2, 200)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_insi8"]
-size = Vector3(100, 100, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
 size = Vector3(10000, 2, 10000)

@@ -12,4 +12,8 @@ func _process(delta: float) -> void:
 	time += delta
 	$ui/infoList/speed.text = "Speed: " + str(round($vehicle.linear_velocity.length()))
 	$ui/infoList/time.text = "Time: " + str(round(time))
-	$ui/infoList/checkpoint.text = "Checkpoint: " + str(round($vehicle.curCheckpoint))
+	$ui/infoList/checkpoint.text = "Checkpoint: " + str(round($vehicle.curCheckpoint) + 1)
+	var curCheckpoint = $vehicle.curCheckpoint
+	for node in get_children():
+		if node.is_in_group("checkpoint"):
+			node.visible = node.checkpointNum > curCheckpoint

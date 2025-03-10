@@ -62,7 +62,7 @@ func _physics_process(delta):
 		#linear_velocity *= 0.9999
 	#if Input.is_action_just_pressed("drift"):
 			#linear_velocity += Vector3(0, 30, 0)
-	if drifting:
+	if drifting and airTime < 60:
 		if (left or right) and boost < 60:
 			boost += 1
 
