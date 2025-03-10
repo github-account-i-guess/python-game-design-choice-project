@@ -8,20 +8,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="infoList" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="time" type="Label" parent="infoList"]
+[node name="rightAlign" type="VBoxContainer" parent="."]
 layout_mode = 2
-text = "abc
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="speed" type="Label" parent="rightAlign"]
+layout_mode = 2
+text = "Speed
+"
+horizontal_alignment = 2
+
+[node name="leftAlign" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="lap" type="Label" parent="leftAlign"]
+layout_mode = 2
+text = "Lap"
+
+[node name="checkpoint" type="Label" parent="leftAlign"]
+layout_mode = 2
+text = "Checkpoint
 "
 
-[node name="checkpoint" type="Label" parent="infoList"]
+[node name="time" type="Label" parent="leftAlign"]
 layout_mode = 2
-text = "asljkads;da;skdl;askdl;askd;laksdl;kasl;dkas;ldkasl;dk;laskd;laskd;laksld;kasdl;"
+text = "Time
+"
 
-[node name="speed" type="Label" parent="infoList"]
+[node name="lapTime" type="Label" parent="leftAlign"]
 layout_mode = 2
-text = "asljkads;da;skdl;askdl;askd;laksdl;kasl;dkas;ldkasl;dk;laskd;laskd;laksld;kasdl;"
+text = "Lap Time
+"
+
+[node name="avgLap" type="Label" parent="leftAlign"]
+layout_mode = 2
+text = "Average Lap (Needs one lap)
+"
+
+[node name="threeLap" type="Label" parent="leftAlign"]
+layout_mode = 2
+text = "3 Lap (not done yet)"

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
-[ext_resource type="PackedScene" path="res://grass_scene.tscn" id="3_cpf2n"]
+[ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="3_cpf2n"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]

@@ -20,6 +20,10 @@ var airTime = 0
 var airDashAvailable = false
 var airBoost = 0
 var curCheckpoint = -1
+var laps = 0
+var lapTimes = []
+var time = 0
+var lapTime = 0
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -118,6 +122,7 @@ func _physics_process(delta):
 		airTime += 1
 	elif airTime:
 		airTime = 0
+	lapTime += delta
 	#print (airDashAvailable)
 
 func _on_body_entered(body: Node):
@@ -127,13 +132,13 @@ func _on_body_entered(body: Node):
 	if (body.is_in_group("fast_fall")):
 		fastFall = 120
 	numBodiesCollided += 1
-	pass
+	
 func _on_body_exited(body: Node) -> void:
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = false
 	numBodiesCollided -= 1
-	pass # Replace with function body.
+	 # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
 	print("area: " + str(area))
@@ -144,14 +149,21 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 		save_check_point(area)
 		var num = area.checkpointNum
 		print(numCheckpoints)
-		if (num == curCheckpoint + 1 or (curCheckpoint == numCheckpoints - 1 and num == 0)):
+
+		if num == curCheckpoint + 1:
 			curCheckpoint = num
+		if curCheckpoint == numCheckpoints - 1 and num == 0:
+			curCheckpoint = num
+			laps += 1
+			time += lapTime
+			lapTimes.append(lapTime)
+			lapTime = 0
 	if area.is_in_group("deathzone"):
 		global_position = check_point.global_position
 		angular_velocity = Vector3.ZERO
 		linear_velocity = Vector3.ZERO
 		global_rotation = check_point.global_rotation
-	pass # Replace with function body.
+	# Replace with function body.
 
 
 func save_check_point(checkpoint):
