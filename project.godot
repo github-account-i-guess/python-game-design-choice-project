@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 import/blender/enabled=false
 
+[global_group]
+
+powerup=""
+
 [input]
 
 move_right={

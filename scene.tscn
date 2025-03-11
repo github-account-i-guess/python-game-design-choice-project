@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7a1ura8hwh4o"]
+[gd_scene load_steps=24 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
 [ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://ramp_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
+[ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="10_h8d02"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -41,7 +42,17 @@ size = Vector3(100, 100, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
 size = Vector3(10000, 1, 10000)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jckt"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xr1g1"]
+albedo_texture = ExtResource("10_h8d02")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2j5ic"]
+size = Vector3(10, 10, 10)
+
 [node name="Game" type="Node3D"]
+transform = Transform3D(0.899177, 0, 0, 0, 0.899177, 0, 0, 0, 0.899177, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -350.622, 109.98, -340.695)
@@ -123,3 +134,14 @@ shape = SubResource("BoxShape3D_insi8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="deathzone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -235.197, 0)
 shape = SubResource("BoxShape3D_0v8n8")
+
+[node name="Powerup" type="Area3D" parent="." groups=["powerup"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -253.811, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Powerup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.03824, 269.205, -9.61252)
+shape = SubResource("BoxShape3D_1jckt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Powerup/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_xr1g1")
+mesh = SubResource("BoxMesh_2j5ic")

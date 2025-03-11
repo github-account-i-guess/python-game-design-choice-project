@@ -7,7 +7,9 @@ extends VehicleBody3D
 var check_point_pos = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
-var jumpSpeed = 20
+var jumpSpeed = 50
+var powerupBoost = 60
+
 
 var boost = 0
 var prevSpeed = 0
@@ -68,11 +70,11 @@ func _physics_process(delta):
 			$BackLeftWheel.wheel_roll_influence = 5
 		if left:
 			$BackRightWheel.wheel_roll_influence = 5
-		$BodyMesh.mesh.material.albedo_color = Color(0, 0, 1, 0.5)
+		#$BodyMesh.mesh.material.albedo_color = Color(0, 0, 1, 0.5)
 	else:
 		for wheel in wheels:
 			wheel.wheel_friction_slip = 10.5
-		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
+		#$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
@@ -126,7 +128,15 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 		print("boosted")
 		linear_velocity += 200 * Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), area.global_rotation.y)
 	pass # Replace with function body.
-
+	
+func _on_powerup_area_entered(area: Area3D) -> void:
+	print("area: " + str(area))
+	if area.is_in_group("powerup"):
+		print("powerup")
+		angular_velocity.y += 10000
+		
+		
+		
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	print("detect")
 	save_check_point(self.position.x, self.position.y, self.position.z)

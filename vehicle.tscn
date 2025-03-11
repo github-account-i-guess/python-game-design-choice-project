@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://drmyoipwem24v"]
+[gd_scene load_steps=13 format=3 uid="uid://drmyoipwem24v"]
 
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_8jf8j"]
-[ext_resource type="BoxMesh" uid="uid://cqktq0w4natm5" path="res://boosted-car.tres" id="2_tgdgw"]
+[ext_resource type="ArrayMesh" uid="uid://c4c6ouc6win60" path="res://Part Studio 1.obj" id="3_8xqbr"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_y3jnv"]
+[ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="4_r01as"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qall0"]
-size = Vector3(14, 10, 24)
+size = Vector3(14, 7.62512, 24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cnn0"]
+albedo_texture = ExtResource("4_r01as")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nagx3"]
 albedo_color = Color(0, 0, 0, 1)
@@ -15,6 +19,15 @@ material = SubResource("StandardMaterial3D_nagx3")
 top_radius = 2.0
 bottom_radius = 2.0
 height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xfwi"]
+albedo_texture = ExtResource("4_r01as")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyhcc"]
+albedo_texture = ExtResource("4_r01as")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1x75"]
+albedo_texture = ExtResource("4_r01as")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvx3c"]
 size = Vector3(14, 10, 24)
@@ -29,12 +42,12 @@ max_contacts_reported = 8
 script = ExtResource("1_8jf8j")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
-mesh = ExtResource("2_tgdgw")
+transform = Transform3D(-1.63302e-05, -468.07, -2.00979e-05, 0, -2.046e-05, 459.786, -373.59, 2.046e-05, 8.78507e-13, -6.11176, 2.64571, 0.388319)
+mesh = ExtResource("3_8xqbr")
 skeleton = NodePath("../../MeshInstance3D2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.81256, 0)
 shape = SubResource("BoxShape3D_qall0")
 
 [node name="Camera" type="Camera3D" parent="."]
@@ -54,6 +67,7 @@ suspension_max_force = 600000.0
 
 [node name="wheel" type="MeshInstance3D" parent="FrontLeftWheel"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0cnn0")
 mesh = SubResource("CylinderMesh_mm3tr")
 
 [node name="FrontRightWheel" type="VehicleWheel3D" parent="."]
@@ -67,6 +81,7 @@ suspension_max_force = 600000.0
 
 [node name="wheel" type="MeshInstance3D" parent="FrontRightWheel"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0xfwi")
 mesh = SubResource("CylinderMesh_mm3tr")
 
 [node name="BackLeftWheel" type="VehicleWheel3D" parent="."]
@@ -79,6 +94,7 @@ suspension_max_force = 600000.0
 
 [node name="wheel" type="MeshInstance3D" parent="BackLeftWheel"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_oyhcc")
 mesh = SubResource("CylinderMesh_mm3tr")
 
 [node name="BackRightWheel" type="VehicleWheel3D" parent="."]
@@ -91,6 +107,7 @@ suspension_max_force = 600000.0
 
 [node name="wheel" type="MeshInstance3D" parent="BackRightWheel"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_s1x75")
 mesh = SubResource("CylinderMesh_mm3tr")
 
 [node name="VehicleArea" type="Area3D" parent="."]
@@ -98,6 +115,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleArea"]
 shape = SubResource("BoxShape3D_gvx3c")
+
+[node name="PartStudio1" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.11965, 23.1868, 1.43175, 0, -1.8267, 18.5568, 21.4842, -3.36689, -0.2079, 24.1627, 24.4041, 6.99438)
+mesh = ExtResource("3_8xqbr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
