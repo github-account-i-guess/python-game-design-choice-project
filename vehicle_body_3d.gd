@@ -2,13 +2,14 @@ extends VehicleBody3D
 @export var added_engine_force = 3000
 
 @export var angle = 0
-
-@export var normalAxis = Vector3(0, 1, 0)
+const xAxis = Vector3(1, 0, 0)
+const yAxis = Vector3(0, 1, 0)
+const zAxis = Vector3(0, 0, 1)
 var numCheckpoints = 0
 var check_point = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
-var jumpSpeed = 20
+var jumpSpeed = 20/2
 
 var boost = 0
 var prevSpeed = 0
@@ -86,14 +87,15 @@ func _physics_process(delta):
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (numBodiesCollided > 0 or airDashAvailable):
-		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
+		var direction = zAxis.rotated(yAxis, steering + global_rotation.y)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
 	if Input.is_action_pressed("jump") and numBodiesCollided > 0:
-		print("jump")
-		linear_velocity.y = jumpSpeed
+		#print("jump")
+		#linear_velocity.y = jumpSpeed
+		linear_velocity += Vector3(0, jumpSpeed, 0).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 				
 	#engine_force = speedMap(accelTime)
 
@@ -144,7 +146,7 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 	print("area: " + str(area))
 	if area.is_in_group("boost"):
 		print("boosted")
-		linear_velocity += 200 * Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), area.global_rotation.y)
+		linear_velocity += 200 * zAxis.rotated(yAxis, area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
 		save_check_point(area)
 		var num = area.checkpointNum

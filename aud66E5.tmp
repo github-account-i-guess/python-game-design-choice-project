@@ -71,6 +71,9 @@ transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, -1
 
 [node name="vehicle" parent="." instance=ExtResource("1_r064m")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2700, 0, 2500)
+added_engine_force = null
+angle = null
+normalAxis = null
 
 [node name="checkpoint2" parent="." instance=ExtResource("4_0qgot")]
 transform = Transform3D(-2.12132, 0, -2.12132, 0, 3, 0, 2.12132, 0, -2.12132, 3400, 0, 1200)
