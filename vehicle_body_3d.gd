@@ -9,7 +9,7 @@ var numCheckpoints = 0
 var check_point = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
-var jumpSpeed = 20/2
+var jumpSpeed = 11#20
 
 var boost = 0
 var prevSpeed = 0
@@ -96,7 +96,8 @@ func _physics_process(delta):
 		#print("jump")
 		#linear_velocity.y = jumpSpeed
 		linear_velocity += Vector3(0, jumpSpeed, 0).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
-				
+	if Input.is_action_just_pressed("reset"):
+		die()
 	#engine_force = speedMap(accelTime)
 
 	$Camera.setFov(sqrt(speed) + 90)
@@ -126,7 +127,11 @@ func _physics_process(delta):
 		airTime = 0
 	lapTime += delta
 	#print (airDashAvailable)
-
+func die():
+	global_position = check_point.global_position
+	angular_velocity = Vector3.ZERO
+	linear_velocity = Vector3.ZERO
+	global_rotation = check_point.global_rotation
 func _on_body_entered(body: Node):
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
@@ -161,10 +166,7 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 			lapTimes.append(lapTime)
 			lapTime = 0
 	if area.is_in_group("deathzone"):
-		global_position = check_point.global_position
-		angular_velocity = Vector3.ZERO
-		linear_velocity = Vector3.ZERO
-		global_rotation = check_point.global_rotation
+		die()
 	# Replace with function body.
 
 

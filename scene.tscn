@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
 [ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="10_04k6s"]
+[ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="12_ftc2e"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -23,9 +24,6 @@ size = Vector3(1131.37, 2, 200)
 size = Vector3(1131.37, 2, 200)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
-size = Vector3(10000, 2, 10000)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_ljxyl")
@@ -105,8 +103,4 @@ checkpointNum = 1
 [node name="checkpoint" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)
 
-[node name="deathzone" type="Area3D" parent="." groups=["deathzone"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="deathzone"]
-shape = SubResource("BoxShape3D_0v8n8")
+[node name="deathzone" parent="." instance=ExtResource("12_ftc2e")]
