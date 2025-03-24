@@ -10,6 +10,7 @@ var check_point = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
 var jumpSpeed = 11#20
+var firstCheckpoint = null;
 
 var boost = 0
 var prevSpeed = 0
@@ -98,6 +99,15 @@ func _physics_process(delta):
 		linear_velocity += Vector3(0, jumpSpeed, 0).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 	if Input.is_action_just_pressed("reset"):
 		die()
+	if Input.is_action_just_pressed("full_reset"):
+		curCheckpoint = -1
+		laps = 0
+		lapTimes = []
+		time = 0
+		lapTime = 0
+		boost = 0
+		save_check_point(firstCheckpoint)
+		die()
 	#engine_force = speedMap(accelTime)
 
 	$Camera.setFov(sqrt(speed) + 90)
@@ -153,18 +163,19 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 		print("boosted")
 		linear_velocity += 200 * zAxis.rotated(yAxis, area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
-		save_check_point(area)
 		var num = area.checkpointNum
 		print(numCheckpoints)
 
 		if num == curCheckpoint + 1:
 			curCheckpoint = num
+			save_check_point(area)
 		if curCheckpoint == numCheckpoints - 1 and num == 0:
 			curCheckpoint = num
 			laps += 1
 			time += lapTime
 			lapTimes.append(lapTime)
 			lapTime = 0
+			save_check_point(area)
 	if area.is_in_group("deathzone"):
 		die()
 	# Replace with function body.
