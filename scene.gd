@@ -21,7 +21,8 @@ func _process(delta: float) -> void:
 	var lapTimes = $vehicle.lapTimes
 	if len(lapTimes) > 0:
 		$ui/leftAlign/avgLap.text = "Average Lap: " + str(round($vehicle.time/len(lapTimes)) + 1)
-	#$ui/leftAlign/threeLap.text = "Lap: " + str(round(lapTimes.reduce(func(a,b): return a + b, 0)/lapTimes) + 1)
+		if len(lapTimes) > 3:
+			$ui/leftAlign/threeLap.text = "Lap: " + str(round(lapTimes.reduce(func(a,b,i): return a + b if i < 3 else 0, 0)/lapTimes) + 1)
 	var curCheckpoint = $vehicle.curCheckpoint
 	for node in get_children():
 		if node.is_in_group("checkpoint"):

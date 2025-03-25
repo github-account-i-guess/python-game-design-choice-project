@@ -142,6 +142,8 @@ func die():
 	angular_velocity = Vector3.ZERO
 	linear_velocity = Vector3.ZERO
 	global_rotation = check_point.global_rotation
+	if curCheckpoint == 0 and laps == 0:
+		lapTime = 0
 func _on_body_entered(body: Node):
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):

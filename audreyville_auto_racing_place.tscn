@@ -119,11 +119,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2900, 
 [node name="road5" parent="rampSegment" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2400, 0, -1200)
 
-[node name="checkpoint3" parent="." groups=["boost"] instance=ExtResource("4_0qgot")]
+[node name="checkpoint3" parent="." instance=ExtResource("4_0qgot")]
 transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 3300, 0, 2500)
 checkpointNum = 2
 
-[node name="checkpoint2" parent="." groups=["boost"] instance=ExtResource("4_0qgot")]
+[node name="checkpoint2" parent="." instance=ExtResource("4_0qgot")]
 transform = Transform3D(2.12132, 0, 2.12132, 0, 3, 0, -2.12132, 0, 2.12132, 3400, 0, 1200)
 checkpointNum = 1
 
@@ -141,7 +141,7 @@ transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648
 [node name="Boost" parent="." instance=ExtResource("3_flppw")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 200, 0, 0)
 
-[node name="checkpoint4" parent="." groups=["boost"] instance=ExtResource("4_0qgot")]
+[node name="checkpoint4" parent="." instance=ExtResource("4_0qgot")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, -684.322, 70, 2400)
 checkpointNum = 3
 

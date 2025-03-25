@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0r4ijmu8d760"]
+[gd_scene load_steps=3 format=3 uid="uid://c0r4ijmu8d760"]
 
 [ext_resource type="Script" path="res://map-selector.gd" id="1_4qpjf"]
+
+[sub_resource type="GDScript" id="GDScript_0t6b6"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func _button_pressed():
+	print(\"a\")
+	print(get_tree().get_root().get_node(\"/VBoxContainer\"))
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -22,3 +39,10 @@ text = "Choose A Map!"
 [node name="mapSelector" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
 script = ExtResource("1_4qpjf")
+
+[node name="map-button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start!"
+script = SubResource("GDScript_0t6b6")
+
+[connection signal="pressed" from="VBoxContainer/map-button" to="VBoxContainer/mapSelector" method="_on_mapbutton_pressed"]
