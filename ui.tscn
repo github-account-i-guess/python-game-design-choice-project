@@ -1,53 +1,9 @@
-[gd_scene format=3 uid="uid://bitw2k14ryyw7"]
+[gd_scene format=3 uid="uid://b64hmb1pmb36a"]
 
-[node name="ui" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="rightAlign" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="speed" type="Label" parent="rightAlign"]
-layout_mode = 2
-text = "Speed
-"
-horizontal_alignment = 2
-
-[node name="leftAlign" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="lap" type="Label" parent="leftAlign"]
-layout_mode = 2
-text = "Lap"
-
-[node name="checkpoint" type="Label" parent="leftAlign"]
-layout_mode = 2
-text = "Checkpoint
-"
-
-[node name="time" type="Label" parent="leftAlign"]
-layout_mode = 2
-text = "Time
-"
-
-[node name="lapTime" type="Label" parent="leftAlign"]
-layout_mode = 2
-text = "Lap Time
-"
-
-[node name="avgLap" type="Label" parent="leftAlign"]
-layout_mode = 2
-text = "Average Lap (Needs one lap)
-"
-
-[node name="threeLap" type="Label" parent="leftAlign"]
-layout_mode = 2
-text = "3 Lap (not done yet)"
