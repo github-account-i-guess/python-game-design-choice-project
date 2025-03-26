@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://ea8dw1u7ai2m"]
+
+[ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_y6bkd"]
+[ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="2_3uslf"]
+[ext_resource type="ArrayMesh" uid="uid://bg4uhpgxa7ih8" path="res://Wii_Coconut_Mall.obj" id="3_ut4r3"]
+[ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="4_byp01"]
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="4_fohoa"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_cuk8g"]
+
+[sub_resource type="Sky" id="Sky_sj2uu"]
+sky_material = SubResource("PhysicalSkyMaterial_cuk8g")
+
+[sub_resource type="Environment" id="Environment_263q4"]
+background_mode = 2
+sky = SubResource("Sky_sj2uu")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
+
+[sub_resource type="Compositor" id="Compositor_8wfa6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yh2gy"]
+albedo_texture = ExtResource("2_3uslf")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rgfwx"]
+size = Vector3(1e+10, 7.625, 1e+16)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1975.41, 197.667, -1804.84)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -350.622, 109.98, -340.695)
+light_energy = 0.354
+light_indirect_energy = 3.424
+light_volumetric_fog_energy = 1.162
+light_angular_distance = 43.64
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_263q4")
+camera_attributes = SubResource("CameraAttributesPractical_7nf4p")
+compositor = SubResource("Compositor_8wfa6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.798509, 0, 0.601982, 0, 1, 0, -0.601982, 0, 0.798509, -154.814, -102.23, 462.749)
+mesh = ExtResource("1_y6bkd")
+
+[node name="WiiCoconutMall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_yh2gy")
+mesh = ExtResource("3_ut4r3")
+
+[node name="Area3D" type="RigidBody3D" parent="WiiCoconutMall"]
+mass = 1000.0
+physics_material_override = ExtResource("4_byp01")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WiiCoconutMall/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4991.48, 0, -7830.63)
+shape = SubResource("BoxShape3D_rgfwx")
+
+[node name="VehicleBody3D" parent="." instance=ExtResource("4_fohoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.3355, 80.3512)

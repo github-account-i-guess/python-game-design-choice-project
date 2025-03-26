@@ -1,0 +1,11 @@
+Model Information:
+* title:	mario kart Wii - Rainbow Road
+* source:	https://sketchfab.com/3d-models/mario-kart-wii-rainbow-road-531e819dbb8e4493a667a0a3f5b3e013
+* author:	H,yoshi (https://sketchfab.com/HY2245)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "mario kart Wii - Rainbow Road" (https://sketchfab.com/3d-models/mario-kart-wii-rainbow-road-531e819dbb8e4493a667a0a3f5b3e013) by H,yoshi (https://sketchfab.com/HY2245) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
