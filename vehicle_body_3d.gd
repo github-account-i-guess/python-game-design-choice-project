@@ -2,14 +2,17 @@ extends VehicleBody3D
 @export var added_engine_force = 3000
 
 @export var angle = 0
-
-@export var normalAxis = Vector3(0, 1, 0)
-var check_point_pos = Vector3.ZERO
+const xAxis = Vector3(1, 0, 0)
+const yAxis = Vector3(0, 1, 0)
+const zAxis = Vector3(0, 0, 1)
+var numCheckpoints = 0
+var check_point = Vector3.ZERO
 var slow = false
 var numBodiesCollided = 0
-var jumpSpeed = 50
+var jumpSpeed = 11#50
 var powerupBoost = 60
 
+var firstCheckpoint = null;
 
 var boost = 0
 var prevSpeed = 0
@@ -17,6 +20,14 @@ var frontWheels: Array[VehicleWheel3D]
 var wheels: Array[VehicleWheel3D]
 var backWheels: Array[VehicleWheel3D]
 var fastFall = 0
+var airTime = 0
+var airDashAvailable = false
+var airBoost = 0
+var curCheckpoint = -1
+var laps = 0
+var lapTimes = []
+var time = 0
+var lapTime = 0
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -55,11 +66,12 @@ func _physics_process(delta):
 		angle -= 0.01 * sign(angle) * (1 + speed/30)
 
 	if Input.is_action_pressed("move_back"):
-		engine_force = -added_engine_force/2
+		engine_force = -added_engine_force 
+		#linear_velocity *= 0.9999
 	#if Input.is_action_just_pressed("drift"):
 			#linear_velocity += Vector3(0, 30, 0)
-	if drifting and numBodiesCollided > 0:
-		if (left or right) and boost < 120:
+	if drifting and airTime < 60:
+		if (left or right) and boost < 60:
 			boost += 1
 
 		for wheel in backWheels:
@@ -77,17 +89,27 @@ func _physics_process(delta):
 		#$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
-	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back"):
-		var direction = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), steering + global_rotation.y)
+	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (numBodiesCollided > 0 or airDashAvailable):
+		var direction = zAxis.rotated(yAxis, steering + global_rotation.y)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
-
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
 	if Input.is_action_pressed("jump") and numBodiesCollided > 0:
-		print("jump")
-		linear_velocity.y = jumpSpeed
-		
+		#print("jump")
+		#linear_velocity.y = jumpSpeed
+		linear_velocity += Vector3(0, jumpSpeed, 0).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
+	if Input.is_action_just_pressed("reset"):
+		die()
+	if Input.is_action_just_pressed("full_reset"):
+		curCheckpoint = -1
+		laps = 0
+		lapTimes = []
+		time = 0
+		lapTime = 0
+		boost = 0
+		save_check_point(firstCheckpoint)
+		die()
 	#engine_force = speedMap(accelTime)
 
 	$Camera.setFov(sqrt(speed) + 90)
@@ -98,15 +120,32 @@ func _physics_process(delta):
 		#print(speed)
 	if slow and linear_velocity.length() > 75:
 		linear_velocity -= linear_velocity.normalized() * 34
-	print(fastFall)
+	#print(fastFall)
 	if fastFall > 0:
-		gravity_scale = 0.5
+		if linear_velocity.y > 0:
+			fastFall = 0
+		gravity_scale = 20
+		global_rotation.x = 0
+		global_rotation.z = 0
 		$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)
 		fastFall -= 1
 	else:
 		gravity_scale = 3
-
-
+	if numBodiesCollided == 0:
+		if airTime == 0:
+			airDashAvailable = true
+		airTime += 1
+	elif airTime:
+		airTime = 0
+	lapTime += delta
+	#print (airDashAvailable)
+func die():
+	global_position = check_point.global_position
+	angular_velocity = Vector3.ZERO
+	linear_velocity = Vector3.ZERO
+	global_rotation = check_point.global_rotation
+	if curCheckpoint == 0 and laps == 0:
+		lapTime = 0
 func _on_body_entered(body: Node):
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
@@ -114,39 +153,37 @@ func _on_body_entered(body: Node):
 	if (body.is_in_group("fast_fall")):
 		fastFall = 120
 	numBodiesCollided += 1
-	pass
+	
 func _on_body_exited(body: Node) -> void:
 	print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = false
 	numBodiesCollided -= 1
-	pass # Replace with function body.
+	 # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
 	print("area: " + str(area))
 	if area.is_in_group("boost"):
 		print("boosted")
-		linear_velocity += 200 * Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), area.global_rotation.y)
-	pass # Replace with function body.
-	
-func _on_powerup_area_entered(area: Area3D) -> void:
-	print("area: " + str(area))
-	if area.is_in_group("powerup"):
-		print("powerup")
-		angular_velocity.y += 10000
-		
-		
-		
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	print("detect")
-	save_check_point(self.position.x, self.position.y, self.position.z)
+		linear_velocity += 200 * zAxis.rotated(yAxis, area.global_rotation.y)
+	if area.is_in_group("checkpoint"):
+		var num = area.checkpointNum
+		print(numCheckpoints)
+
+		if num == curCheckpoint + 1:
+			curCheckpoint = num
+			save_check_point(area)
+		if curCheckpoint == numCheckpoints - 1 and num == 0:
+			curCheckpoint = num
+			laps += 1
+			time += lapTime
+			lapTimes.append(lapTime)
+			lapTime = 0
+			save_check_point(area)
+	if area.is_in_group("deathzone"):
+		die()
+	# Replace with function body.
 
 
-func _on_deathzone_area_entered(area: Area3D) -> void:
-	print("die")
-	global_position = check_point_pos
-
-func save_check_point(pos_x, pos_y, pos_z):
-	check_point_pos.x = pos_x
-	check_point_pos.y = pos_y
-	check_point_pos.z = pos_z
+func save_check_point(checkpoint):
+	check_point = checkpoint

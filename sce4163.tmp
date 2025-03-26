@@ -1,21 +1,36 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7a1ura8hwh4o"]
+[gd_scene load_steps=22 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
-[ext_resource type="PackedScene" uid="uid://bitw2k14ryyw7" path="res://ui.tscn" id="1_5d8h2"]
+[ext_resource type="PackedScene" uid="uid://hw7xthm70m45" path="res://ui.tscn" id="1_5d8h2"]
 [ext_resource type="Script" path="res://scene.gd" id="1_ljxyl"]
+[ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_8wbdb"]
+[ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="2_ck1h1"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
-[ext_resource type="PackedScene" path="res://grass_scene.tscn" id="2_m6pcm"]
 [ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="4_x8unt"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="5_mafpr"]
 [ext_resource type="Script" path="res://ramp_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://ramp.gd" id="8_by8di"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
-[ext_resource type="PackedScene" uid="uid://bkk5gbg70vjwv" path="res://checkpoint.tscn" id="10_04k6s"]
-[ext_resource type="PackedScene" path="res://deathzone.tscn" id="12_ftc2e"]
+[ext_resource type="PackedScene" uid="uid://dylujcm8vevo3" path="res://checkpoint.tscn" id="10_04k6s"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
 [sub_resource type="Compositor" id="Compositor_8wfa6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_35rrq"]
+size = Vector3(800, 2, 800)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fduqb"]
+albedo_color = Color(0.490196, 0.47451, 0.490196, 1)
+albedo_texture = ExtResource("2_8wbdb")
+metallic = 0.76
+roughness = 0.52
+
+[sub_resource type="BoxMesh" id="BoxMesh_lx6vo"]
+material = SubResource("StandardMaterial3D_fduqb")
+size = Vector3(800, 2, 800)
+
+[sub_resource type="Skin" id="Skin_i0ldq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d5wsy"]
 size = Vector3(1131.37, 2, 200)
@@ -23,7 +38,8 @@ size = Vector3(1131.37, 2, 200)
 [sub_resource type="BoxMesh" id="BoxMesh_1lg22"]
 size = Vector3(1131.37, 2, 200)
 
-[sub_resource type="Skin" id="Skin_i0ldq"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
+size = Vector3(10000, 2, 10000)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_ljxyl")
@@ -47,10 +63,24 @@ mesh = ExtResource("1_3m54h")
 transform = Transform3D(0.0624875, 0, 0.0012511, 0, 0.0625, 0, -0.0012511, 0, 0.0624875, 50.83, 18.3506, -30.9912)
 mesh = ExtResource("1_3m54h")
 
-[node name="grass" parent="." instance=ExtResource("2_m6pcm")]
+[node name="floor" type="StaticBody3D" parent="." groups=["slow"]]
+editor_description = "slow"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+physics_material_override = ExtResource("2_ck1h1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_35rrq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_lx6vo")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../..")
 
 [node name="vehicle" parent="." instance=ExtResource("4_x8unt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 7.064, -400)
+added_engine_force = null
+angle = null
+normalAxis = null
 
 [node name="Boost" parent="." instance=ExtResource("5_mafpr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 452.113, 5, -257.207)
@@ -74,7 +104,7 @@ shape = SubResource("BoxShape3D_d5wsy")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="rampParent/ramp/CollisionShape3D2"]
 mesh = SubResource("BoxMesh_1lg22")
 skin = SubResource("Skin_i0ldq")
-skeleton = NodePath("../../../../grass")
+skeleton = NodePath("../../../../floor")
 
 [node name="road" parent="." instance=ExtResource("9_ovry7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -500)
@@ -103,4 +133,8 @@ checkpointNum = 1
 [node name="checkpoint" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)
 
-[node name="deathzone" parent="." instance=ExtResource("12_ftc2e")]
+[node name="deathzone" type="Area3D" parent="." groups=["deathzone"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathzone"]
+shape = SubResource("BoxShape3D_0v8n8")

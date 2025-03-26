@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://lb10vh1vh4nk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0v8n8"]
+size = Vector3(10000, 2, 10000)
+
+[node name="deathzone" type="Area3D" groups=["deathzone"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0v8n8")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://boost.gd" id="1_nyxrj"]
 [ext_resource type="Script" path="res://character_body_3d.gd" id="2_81r1o"]
-[ext_resource type="BoxMesh" uid="uid://b76i5ji2uqetc" path="res://default-car.tres" id="2_441ui"]
+[ext_resource type="BoxMesh" path="res://default-car.tres" id="2_441ui"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_ncql5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_msst2"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgfhwo1y02ite"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="1_qdsxs"]
+[ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="2_hx4xg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_35rrq"]
+size = Vector3(800, 2, 800)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fduqb"]
+albedo_color = Color(0.490196, 0.47451, 0.490196, 1)
+albedo_texture = ExtResource("2_hx4xg")
+metallic = 0.76
+roughness = 0.52
+
+[sub_resource type="BoxMesh" id="BoxMesh_lx6vo"]
+material = SubResource("StandardMaterial3D_fduqb")
+size = Vector3(800, 2, 800)
+
+[sub_resource type="Skin" id="Skin_i0ldq"]
+
+[node name="grass" type="StaticBody3D" groups=["slow"]]
+editor_description = "slow"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+physics_material_override = ExtResource("1_qdsxs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_35rrq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lx6vo")
+skin = SubResource("Skin_i0ldq")
+skeleton = NodePath("../..")

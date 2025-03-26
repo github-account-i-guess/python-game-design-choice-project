@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drmyoipwem24v"]
+[gd_scene load_steps=13 format=3 uid="uid://b8e2e7giej5te"]
 
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_8jf8j"]
 [ext_resource type="ArrayMesh" uid="uid://c4c6ouc6win60" path="res://Part Studio 1.obj" id="3_8xqbr"]
@@ -32,7 +32,7 @@ albedo_texture = ExtResource("4_r01as")
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvx3c"]
 size = Vector3(14, 10, 24)
 
-[node name="VehicleBody3D" type="VehicleBody3D"]
+[node name="vehicle" type="VehicleBody3D"]
 mass = 100.0
 gravity_scale = 3.0
 center_of_mass_mode = 1

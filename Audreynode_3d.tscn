@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm6ywqegw8ybj"]
+[gd_scene load_steps=14 format=3 uid="uid://b8h8vbnoht45m"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="2_e3aqp"]
 [ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="2_ki5fx"]
