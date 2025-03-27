@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://ci8wakxd1whaf"]
 
-[ext_resource type="PackedScene" uid="uid://c1v3o37jxa8m1" path="res://ui.tscn" id="1_6krwj"]
+[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="1_6krwj"]
 [ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
 [ext_resource type="Script" path="res://scene.gd" id="1_ut4mm"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
@@ -147,3 +147,6 @@ checkpointNum = 3
 
 [node name="deathzone" parent="." instance=ExtResource("9_5olts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 986.949, -40, 0)
+
+[node name="grass2" parent="." instance=ExtResource("3_cpf2n")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 647.438, 0, 1250)
