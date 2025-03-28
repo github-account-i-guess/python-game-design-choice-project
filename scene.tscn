@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7a1ura8hwh4o"]
+[gd_scene load_steps=19 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
-[ext_resource type="PackedScene" uid="uid://c1v3o37jxa8m1" path="res://ui.tscn" id="1_5d8h2"]
+[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="1_5d8h2"]
 [ext_resource type="Script" path="res://scene.gd" id="1_ljxyl"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
 [ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="2_m6pcm"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
 [ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="10_04k6s"]
 [ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="12_ftc2e"]
+[ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="13_ackod"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -104,3 +105,6 @@ checkpointNum = 1
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)
 
 [node name="deathzone" parent="." instance=ExtResource("12_ftc2e")]
+
+[node name="wall" parent="." instance=ExtResource("13_ackod")]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, 1.9, 0, -1.9, -8.30516e-08, 0, 0, 601.768)

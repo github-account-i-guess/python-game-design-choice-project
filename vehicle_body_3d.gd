@@ -88,7 +88,7 @@ func _physics_process(delta):
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (numBodiesCollided > 0 or airDashAvailable):
-		var direction = zAxis.rotated(yAxis, steering + global_rotation.y)
+		var direction = zAxis.rotated(yAxis, steering + global_rotation.y).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)

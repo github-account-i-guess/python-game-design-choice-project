@@ -148,5 +148,8 @@ checkpointNum = 3
 [node name="deathzone" parent="." instance=ExtResource("9_5olts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 986.949, -40, 0)
 
+[node name="grass3" parent="." instance=ExtResource("3_cpf2n")]
+transform = Transform3D(-4.95, 0, -7.47429e-07, 0, 4.95, 0, 7.47429e-07, 0, -4.95, 2960, -4, 666.08)
+
 [node name="grass2" parent="." instance=ExtResource("3_cpf2n")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 647.438, 0, 1250)
+transform = Transform3D(-2.16371e-07, 0, 4.95, 0, 4.95, 0, -4.95, 0, -2.16371e-07, -1000, -4, 666.081)
