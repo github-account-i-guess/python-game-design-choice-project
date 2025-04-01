@@ -4,9 +4,9 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var parent = self.get_parent()
-	for i in range(3):
-		var childNodes = get_children()
-		for childNode in childNodes:
+	var childNodes = get_children()
+	for childNode in childNodes:
+		for i in range(3):
 			#print(childNode.name)
 			var dup = childNode.duplicate()
 			add_child(dup)
@@ -14,6 +14,7 @@ func _ready() -> void:
 			if "rotateSelf" in dup:
 				dup.rotateSelf(i)
 		#parent.add_child(dup)
+	print(get_children())
 	pass # Replace with function body.
 
 

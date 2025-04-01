@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7a1ura8hwh4o"]
+[gd_scene load_steps=18 format=3 uid="uid://b7a1ura8hwh4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://dd3pmdttnd581" path="res://cYBertruck.obj" id="1_3m54h"]
 [ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="1_5d8h2"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
 [ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="10_04k6s"]
 [ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="12_ftc2e"]
-[ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="13_ackod"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
@@ -52,15 +51,16 @@ mesh = ExtResource("1_3m54h")
 [node name="vehicle" parent="." instance=ExtResource("4_x8unt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 7.064, -400)
 
-[node name="Boost" parent="." instance=ExtResource("5_mafpr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 452.113, 5, -257.207)
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 575.576, 29.4396, 428.832)
 fov = 70.0
 
 [node name="rampParent" type="Node3D" parent="."]
 script = ExtResource("7_mxmrp")
+
+[node name="Boost" parent="rampParent" instance=ExtResource("5_mafpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 452.113, 5, -257.207)
+script = ExtResource("8_by8di")
 
 [node name="ramp" type="StaticBody3D" parent="rampParent"]
 transform = Transform3D(0.348182, -0.0613939, -0.353553, 0.0868241, 0.492404, 0, 0.348182, -0.0613939, 0.353553, -225, 45, -225)
@@ -104,6 +104,3 @@ checkpointNum = 1
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)
 
 [node name="deathzone" parent="." instance=ExtResource("12_ftc2e")]
-
-[node name="wall" parent="." instance=ExtResource("13_ackod")]
-transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, 1.9, 0, -1.9, -8.30516e-08, -3.06085, -3.05176e-05, 606.418)
