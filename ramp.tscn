@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dufhsxmflrgp"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="1_3168e"]
-[ext_resource type="Script" path="res://ramp.gd" id="2_4wab1"]
+[ext_resource type="Script" path="res://rotated.gd" id="2_4wab1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d5wsy"]
 size = Vector3(1200, 2, 200)

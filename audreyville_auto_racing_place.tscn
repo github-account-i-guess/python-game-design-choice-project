@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ci8wakxd1whaf"]
+[gd_scene load_steps=15 format=3 uid="uid://ci8wakxd1whaf"]
 
 [ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="1_6krwj"]
 [ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
@@ -8,26 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
 [ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="4_0qgot"]
 [ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="6_nry52"]
-[ext_resource type="Script" path="res://ramp.gd" id="7_2ko80"]
-[ext_resource type="Script" path="res://ramp_parent.gd" id="7_vokkp"]
-[ext_resource type="Texture2D" uid="uid://booskmgedv6da" path="res://grass.webp" id="9_4cmca"]
+[ext_resource type="Script" path="res://rotated.gd" id="7_2ko80"]
+[ext_resource type="Script" path="res://rotation_parent.gd" id="7_vokkp"]
 [ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="9_5olts"]
 [ext_resource type="PackedScene" uid="uid://k1ox2k0jgte0" path="res://lava.tscn" id="10_moxt5"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dgrod"]
-size = Vector3(800, 2, 800)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fduqb"]
-albedo_color = Color(0.490196, 0.47451, 0.490196, 1)
-albedo_texture = ExtResource("9_4cmca")
-metallic = 0.76
-roughness = 0.52
-
-[sub_resource type="BoxMesh" id="BoxMesh_cmge0"]
-material = SubResource("StandardMaterial3D_fduqb")
-size = Vector3(800, 2, 800)
-
-[sub_resource type="Skin" id="Skin_0kfwo"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
 
@@ -48,19 +32,28 @@ transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3400, 0, 700)
 
 [node name="grass2" parent="jumps" instance=ExtResource("3_cpf2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, -0.1, 0)
 script = ExtResource("7_vokkp")
 
 [node name="wall" parent="jumps/grass2" instance=ExtResource("6_nry52")]
-transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 400, -405, 0)
+transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
 script = ExtResource("7_2ko80")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="jumps/grass2"]
-shape = SubResource("BoxShape3D_dgrod")
+[node name="grass3" parent="jumps" instance=ExtResource("3_cpf2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, -0.1, 0)
+script = ExtResource("7_vokkp")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="jumps/grass2"]
-mesh = SubResource("BoxMesh_cmge0")
-skin = SubResource("Skin_0kfwo")
+[node name="wall" parent="jumps/grass3" instance=ExtResource("6_nry52")]
+transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
+script = ExtResource("7_2ko80")
+
+[node name="grass" parent="jumps" instance=ExtResource("3_cpf2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+script = ExtResource("7_vokkp")
+
+[node name="wall" parent="jumps/grass" instance=ExtResource("6_nry52")]
+transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
+script = ExtResource("7_2ko80")
 
 [node name="road12" parent="jumps" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(-1, 0, -4.37113e-07, 0, 1, 0, 4.37113e-07, 0, -1, 1100, 0, 1000)
@@ -150,7 +143,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2900, 
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2400, 0, -1200)
 
 [node name="checkpoint3" parent="." instance=ExtResource("4_0qgot")]
-transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 3300, 0, 2500)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 3100, 0, 2500)
 checkpointNum = 2
 
 [node name="checkpoint2" parent="." instance=ExtResource("4_0qgot")]
@@ -183,3 +176,8 @@ transform = Transform3D(-4.95, 0, 0, 0, -4.95, 4.32743e-07, 0, -4.32743e-07, -4.
 
 [node name="grass2" parent="." instance=ExtResource("3_cpf2n")]
 transform = Transform3D(4.95, 0, 0, 0, 4.95, 0, 0, 0, 4.95, 0, -4, 666.081)
+script = ExtResource("7_vokkp")
+
+[node name="wall" parent="grass2" instance=ExtResource("6_nry52")]
+transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
+script = ExtResource("7_2ko80")
