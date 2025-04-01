@@ -5,9 +5,14 @@ extends Node3D
 func _ready() -> void:
 	var parent = self.get_parent()
 	for i in range(3):
-		var dup = $ramp.duplicate()
-		add_child(dup)
-		dup.rotateSelf(i)
+		var childNodes = get_children()
+		for childNode in childNodes:
+			#print(childNode.name)
+			var dup = childNode.duplicate()
+			add_child(dup)
+			#print(dup.name)
+			if "rotateSelf" in dup:
+				dup.rotateSelf(i)
 		#parent.add_child(dup)
 	pass # Replace with function body.
 

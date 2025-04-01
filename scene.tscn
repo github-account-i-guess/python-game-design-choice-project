@@ -28,7 +28,6 @@ size = Vector3(1131.37, 2, 200)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_ljxyl")
-numCheckpoints = 4
 
 [node name="ui" parent="." instance=ExtResource("1_5d8h2")]
 
@@ -107,4 +106,4 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)
 [node name="deathzone" parent="." instance=ExtResource("12_ftc2e")]
 
 [node name="wall" parent="." instance=ExtResource("13_ackod")]
-transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, 1.9, 0, -1.9, -8.30516e-08, 0, 0, 601.768)
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, 1.9, 0, -1.9, -8.30516e-08, -3.06085, -3.05176e-05, 606.418)
