@@ -18,6 +18,7 @@ var frontWheels: Array[VehicleWheel3D]
 var wheels: Array[VehicleWheel3D]
 var backWheels: Array[VehicleWheel3D]
 var fastFall = 0
+var slowTime = 0
 var airTime = 0
 var airDashAvailable = false
 var airBoost = 0
@@ -117,7 +118,11 @@ func _physics_process(delta):
 	#if linear_velocity.y >= 0:
 		#print(speed)
 	if slow and linear_velocity.length() > 75:
-		linear_velocity -= linear_velocity.normalized() * 34
+		if slowTime > 3:
+			linear_velocity -= linear_velocity.normalized() * 34
+		slowTime += 1
+	else:
+		slowTime = 0
 	#print(fastFall)
 	if fastFall > 0:
 		if linear_velocity.y > 0:

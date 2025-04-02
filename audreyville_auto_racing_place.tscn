@@ -18,8 +18,9 @@
 [sub_resource type="Compositor" id="Compositor_qm2ux"]
 
 [node name="Audreyville AutoRacingPlace" type="Node3D"]
+transform = Transform3D(1.00157, 0, 0, 0, 1.00157, 0, 0, 0, 1.00157, 0, 0, 0)
 script = ExtResource("1_ut4mm")
-numCheckpoints = 4
+numCheckpoints = -1
 
 [node name="ui" parent="." instance=ExtResource("1_6krwj")]
 
@@ -28,6 +29,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="checkpoint1" parent="." instance=ExtResource("4_0qgot")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+checkpointNum = 0
 
 [node name="jumps" parent="." instance=ExtResource("2_ok1ub")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3400, 0, 700)
@@ -83,9 +85,6 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 500, 0, 
 [node name="end segment" parent="." instance=ExtResource("2_ok1ub")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -752.562, 0, 2499.22)
 
-[node name="grass2" parent="end segment" instance=ExtResource("3_cpf2n")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1400, 0, -1500)
-
 [node name="road10" parent="end segment" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1900, 0, -1500)
 
@@ -99,14 +98,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -1000)
 [node name="road8" parent="end segment" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000)
 
-[node name="grass" parent="end segment" instance=ExtResource("3_cpf2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -500)
-
 [node name="road7" parent="end segment" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -700, 0, -500)
 
 [node name="road12" parent="end segment" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -2000)
+
+[node name="checkpoint5" parent="." instance=ExtResource("4_0qgot")]
+transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 950, 0, 2400)
+checkpointNum = 3
 
 [node name="hill" parent="." instance=ExtResource("2_ok1ub")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2700, 0, 2500)
@@ -115,16 +115,19 @@ transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2700, 0,
 transform = Transform3D(-8.30516e-08, 0, -1.9, 0, 1.9, 0, 1.9, 0, -8.30516e-08, 0, 0, 0)
 
 [node name="wall2" parent="hill" instance=ExtResource("6_nry52")]
-transform = Transform3D(-1.9, 2.86892e-07, 1.25404e-14, 0, -8.30516e-08, 1.9, 2.86892e-07, 1.9, 8.30516e-08, -2311.13, 0, -100)
+transform = Transform3D(-1.87114, 1.64842e-07, 0.329932, 0.329932, -1.44218e-08, 1.87114, 1.64842e-07, 1.9, -1.44218e-08, -2311.13, 500, -100)
 
 [node name="wall" parent="hill" instance=ExtResource("6_nry52")]
-transform = Transform3D(-1.9, 1.66103e-07, -8.30516e-08, -8.30516e-08, 3.6303e-15, 1.9, 1.66103e-07, 1.9, 3.6303e-15, -1170, 0, -100)
+transform = Transform3D(1.87113, 1.26175e-09, 0.329932, 0.329932, -1.44218e-08, -1.87113, 1.26175e-09, 1.9, -1.44218e-08, -1170, 500, -100)
 
 [node name="road17" parent="hill" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 1, -2289.34, 205.262, 0)
 
 [node name="road18" parent="hill" instance=ExtResource("2_ok1ub")]
 transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, -1162.32, 205.262, 0)
+
+[node name="road8" parent="hill" instance=ExtResource("2_ok1ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, 0)
 
 [node name="road7" parent="hill" instance=ExtResource("2_ok1ub")]
 
