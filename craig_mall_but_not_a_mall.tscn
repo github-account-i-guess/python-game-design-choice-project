@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwn6d86ph2jba"]
+[gd_scene load_steps=23 format=3 uid="uid://c0r0xoqvr214c"]
 
-[ext_resource type="Script" path="res://craig_mall_but_not_a_mall.gd" id="1_4d7ib"]
-[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="1_eiug7"]
+[ext_resource type="Script" path="res://scene.gd" id="1_0mady"]
+[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_eiug7"]
 [ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="1_qfmxf"]
 [ext_resource type="PhysicsMaterial" uid="uid://duojanthew73q" path="res://wall.tres" id="2_1a6xp"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_2vyji"]
-[ext_resource type="PackedScene" uid="uid://68sx8gaiwq6f" path="res://checkpoint.tscn" id="5_e714g"]
+[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="5_e714g"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="6_ord32"]
 [ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="8_0r0bd"]
 
@@ -53,7 +53,8 @@ albedo_texture = ExtResource("1_qfmxf")
 [sub_resource type="BoxShape3D" id="BoxShape3D_etvq7"]
 
 [node name="CraigMall but not a mall" type="Node3D"]
-script = ExtResource("1_4d7ib")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3031, -6.10352e-05, 0.246277)
+script = ExtResource("1_0mady")
 numCheckpoints = 5
 
 [node name="StaticBody3D" type="MeshInstance3D" parent="."]
