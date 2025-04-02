@@ -5,12 +5,12 @@
 [ext_resource type="Script" path="res://scene.gd" id="1_ljxyl"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_hdb16"]
 [ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="2_m6pcm"]
-[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="4_x8unt"]
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="4_x8unt"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="5_mafpr"]
 [ext_resource type="Script" path="res://rotation_parent.gd" id="7_mxmrp"]
 [ext_resource type="Script" path="res://rotated.gd" id="8_by8di"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
-[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="10_04k6s"]
+[ext_resource type="PackedScene" uid="uid://68sx8gaiwq6f" path="res://checkpoint.tscn" id="10_04k6s"]
 [ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="12_ftc2e"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
@@ -90,15 +90,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -500, 
 
 [node name="checkpoint4" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -400, 0, -500)
-checkpointNum = 3
 
 [node name="checkpoint3" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -500, 0, 400)
-checkpointNum = 2
 
 [node name="checkpoint2" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(2.38498e-08, 0, -2, 0, 2, 0, 2, 0, 2.38498e-08, 400, 0, 500)
-checkpointNum = 1
 
 [node name="checkpoint" parent="." instance=ExtResource("10_04k6s")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 500, 7, -400)

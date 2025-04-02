@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8e2e7giej5te"]
+[gd_scene load_steps=8 format=3 uid="uid://drmyoipwem24v"]
 
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_8jf8j"]
-[ext_resource type="BoxMesh" uid="uid://wvvi6rjaoi2r" path="res://boosted-car.tres" id="2_tgdgw"]
+[ext_resource type="BoxMesh" uid="uid://cqktq0w4natm5" path="res://boosted-car.tres" id="2_tgdgw"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_y3jnv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qall0"]
