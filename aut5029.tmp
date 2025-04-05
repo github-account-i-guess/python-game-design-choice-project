@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://2vw7btapo8bs"]
+
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="1_7mh8s"]
+[ext_resource type="Script" path="res://scene.gd" id="1_gpi6u"]
+[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="2_sjekv"]
+[ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="3_usqaa"]
+[ext_resource type="PackedScene" uid="uid://68sx8gaiwq6f" path="res://checkpoint.tscn" id="4_5qwma"]
+[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="5_xuhyl"]
+[ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="7_h3tah"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_vc0nc"]
+
+[sub_resource type="Compositor" id="Compositor_1ooqr"]
+
+[node name="auto-map" type="Node3D"]
+script = ExtResource("1_gpi6u")
+numCheckpoints = null
+
+[node name="ui" parent="." instance=ExtResource("2_sjekv")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+camera_attributes = SubResource("CameraAttributesPractical_vc0nc")
+compositor = SubResource("Compositor_1ooqr")
+
+[node name="vehicle" parent="." instance=ExtResource("1_7mh8s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 28.4575, 22.8992)
+
+[node name="road" parent="." instance=ExtResource("3_usqaa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.1, 0)
+
+[node name="checkpoint2" parent="." instance=ExtResource("4_5qwma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60.0865)
+checkpointNum = 0
+
+[node name="checkpoint1" parent="." instance=ExtResource("4_5qwma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.5613)
+checkpointNum = 1
+
+[node name="Boost2" parent="." instance=ExtResource("5_xuhyl")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 80)
+
+[node name="Boost" parent="." instance=ExtResource("5_xuhyl")]
+
+[node name="grass2" parent="." instance=ExtResource("7_h3tah")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 1.625, 39.0307)

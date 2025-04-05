@@ -168,11 +168,11 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 	print("area: " + str(area))
 	if area.is_in_group("boost"):
 		print("boosted")
-		linear_velocity += 200 * zAxis.rotated(yAxis, area.global_rotation.y)
+		linear_velocity += 200 * zAxis.rotated(xAxis, area.global_rotation.x).rotated(yAxis, area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
 		var num = area.checkpointNum
-		print(numCheckpoints)
-
+		print("num: " + str(num))
+		print("curCheckpoint: " + str(curCheckpoint))
 		if num == curCheckpoint + 1:
 			curCheckpoint = num
 			save_check_point(area)
