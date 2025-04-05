@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://ci8wakxd1whaf"]
 
 [ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="1_6krwj"]
-[ext_resource type="PackedScene" uid="uid://b8e2e7giej5te" path="res://vehicle.tscn" id="1_r064m"]
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="1_r064m"]
 [ext_resource type="Script" path="res://scene.gd" id="1_ut4mm"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
 [ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="3_cpf2n"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
-[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="4_0qgot"]
+[ext_resource type="PackedScene" uid="uid://68sx8gaiwq6f" path="res://checkpoint.tscn" id="4_0qgot"]
 [ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="6_nry52"]
 [ext_resource type="Script" path="res://rotated.gd" id="7_2ko80"]
 [ext_resource type="Script" path="res://rotation_parent.gd" id="7_vokkp"]
-[ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="9_5olts"]
-[ext_resource type="PackedScene" uid="uid://k1ox2k0jgte0" path="res://lava.tscn" id="10_moxt5"]
+[ext_resource type="PackedScene" path="res://deathzone.tscn" id="9_5olts"]
+[ext_resource type="PackedScene" path="res://lava.tscn" id="10_moxt5"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
 

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://rotated.gd" id="8_by8di"]
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="9_ovry7"]
 [ext_resource type="PackedScene" uid="uid://68sx8gaiwq6f" path="res://checkpoint.tscn" id="10_04k6s"]
-[ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="12_ftc2e"]
+[ext_resource type="PackedScene" path="res://deathzone.tscn" id="12_ftc2e"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7nf4p"]
 
