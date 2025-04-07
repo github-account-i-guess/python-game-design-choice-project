@@ -33,13 +33,11 @@ func _ready():
 	frontWheels = [$FrontLeftWheel, $FrontRightWheel]
 	wheels = backWheels.duplicate()
 	wheels.append_array(frontWheels)
-	#print(wheels)
 	for wheel in wheels:
 		wheel.wheel_roll_influence = 0
 		wheel.wheel_friction_slip = 8
 
 func _physics_process(delta):
-	#print(delta)
 	var velocity = linear_velocity
 	velocity.y = 0
 	var speed = velocity.length()
@@ -95,7 +93,6 @@ func _physics_process(delta):
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
 	if Input.is_action_pressed("jump") and numBodiesCollided > 0:
-		#print("jump")
 		#linear_velocity.y = jumpSpeed
 		linear_velocity += Vector3(0, jumpSpeed, 0).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 	if Input.is_action_just_pressed("reset"):
@@ -116,15 +113,14 @@ func _physics_process(delta):
 	steering = angle
 
 	#if linear_velocity.y >= 0:
-		#print(speed)
 	if slow and linear_velocity.length() > 75:
 		if slowTime > 3:
 			linear_velocity -= linear_velocity.normalized() * 34
 		slowTime += 1
 	else:
 		slowTime = 0
-	#print(fastFall)
 	if fastFall > 0:
+		#print("fastFalling")
 		if linear_velocity.y > 0:
 			fastFall = 0
 		gravity_scale = 20
@@ -141,7 +137,6 @@ func _physics_process(delta):
 	elif airTime:
 		airTime = 0
 	lapTime += delta
-	#print (airDashAvailable)
 func die():
 	global_position = check_point.global_position
 	angular_velocity = Vector3.ZERO
@@ -150,7 +145,7 @@ func die():
 	if curCheckpoint == 0 and laps == 0:
 		lapTime = 0
 func _on_body_entered(body: Node):
-	print("body: " + str(body))
+	#print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = true
 	if (body.is_in_group("fast_fall")):
@@ -158,21 +153,19 @@ func _on_body_entered(body: Node):
 	numBodiesCollided += 1
 	
 func _on_body_exited(body: Node) -> void:
-	print("body: " + str(body))
+	#print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = false
 	numBodiesCollided -= 1
 	 # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
-	print("area: " + str(area))
+	#print("area: " + str(area))
 	if area.is_in_group("boost"):
-		print("boosted")
+		#print("boosted")
 		linear_velocity += 200 * zAxis.rotated(xAxis, area.global_rotation.x).rotated(yAxis, area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
 		var num = area.checkpointNum
-		print("num: " + str(num))
-		print("curCheckpoint: " + str(curCheckpoint))
 		if num == curCheckpoint + 1:
 			curCheckpoint = num
 			save_check_point(area)

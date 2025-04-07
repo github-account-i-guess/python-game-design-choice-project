@@ -9,7 +9,9 @@ class Level:
 var levels = [
 	Level.new("Random Map", "random"),
 	Level.new("Audrey Ville Autoracing Place", "audreyville_auto_racing_place.tscn"),
-	Level.new("Goofy Map", "scene.tscn")
+	Level.new("Square Map", "square.tscn"),
+	Level.new("Craig Cyclinder", "craig_mall_but_not_a_mall.tscn"),
+	Level.new("Auto-Map", "auto-map.tscn")
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +27,7 @@ func _process(delta: float) -> void:
 func _on_mapbutton_pressed() -> void:
 	var level = levels[selected]
 	if level.path == "random":
-		selected = randi_range(0, len(levels) - 1)
+		selected = randi_range(0, len(levels) - 2)
 		_on_mapbutton_pressed()
 		return
 	get_tree().change_scene_to_file(level.path)
