@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
 [ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="3_cpf2n"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
-[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="4_0qgot"]
+[ext_resource type="PackedScene" uid="uid://68sx8gaiwq6f" path="res://checkpoint.tscn" id="4_0qgot"]
 [ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="6_nry52"]
 [ext_resource type="Script" path="res://rotated.gd" id="7_2ko80"]
 [ext_resource type="Script" path="res://rotation_parent.gd" id="7_vokkp"]
-[ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="9_5olts"]
-[ext_resource type="PackedScene" uid="uid://k1ox2k0jgte0" path="res://lava.tscn" id="10_moxt5"]
+[ext_resource type="PackedScene" path="res://deathzone.tscn" id="9_5olts"]
+[ext_resource type="PackedScene" path="res://lava.tscn" id="10_moxt5"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
 

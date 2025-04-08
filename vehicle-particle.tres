@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://d23087i4lbxms"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1gno"]
@@ -5,3 +6,11 @@ albedo_color = Color(0.662745, 0.529412, 0.341176, 1)
 
 [resource]
 material = SubResource("StandardMaterial3D_w1gno")
+=======
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://btc788iodsoce"]
+
+[ext_resource type="Material" uid="uid://be48x6ml60g8" path="res://brown.tres" id="1_wltgr"]
+
+[resource]
+material = ExtResource("1_wltgr")
+>>>>>>> test-particles
