@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends OptionButton
 class Level:
 	var text: String
 	var path: String
@@ -17,20 +17,18 @@ var levels = [
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(len(levels)):
-		var button = Button.new()
-		button.text = levels[i].text
-		button.pressed.connect(_on_mapbutton_pressed(i))
-		add_child(button)
+		add_item(levels[i].text, i) 
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-func innerLambda(id: int): 
-	var level = levels[id]
+
+func _on_mapbutton_pressed() -> void:
+	var level = levels[selected]
 	if level.path == "random":
-		innerLambda(randi_range(0, len(levels) - 2))
+		selected = randi_range(0, len(levels) - 2)
+		_on_mapbutton_pressed()
 		return
 	get_tree().change_scene_to_file(level.path)
-func _on_mapbutton_pressed(id: int):
-	return func(): innerLambda(id) 
+	pass # Replace with function body.

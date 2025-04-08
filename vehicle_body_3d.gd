@@ -120,9 +120,9 @@ func _physics_process(delta):
 	else:
 		slowTime = 0
 	if fastFall > 0:
-		#print("fastFalling")
-		if linear_velocity.y > 0:
-			fastFall = 0
+		print("fastFalling")
+		#if linear_velocity.y > 0:
+			#fastFall = 0
 		gravity_scale = 20
 		global_rotation.x = 0
 		global_rotation.z = 0

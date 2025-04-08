@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://drmyoipwem24v"]
+[gd_scene load_steps=15 format=3 uid="uid://drmyoipwem24v"]
 
 [ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_8jf8j"]
 [ext_resource type="BoxMesh" uid="uid://wvvi6rjaoi2r" path="res://boosted-car.tres" id="2_tgdgw"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_y3jnv"]
-[ext_resource type="BoxMesh" uid="uid://btc788iodsoce" path="res://vehicle-particle.tres" id="4_gvisy"]
+[ext_resource type="Material" uid="uid://be48x6ml60g8" path="res://brown.tres" id="4_ls3w1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qall0"]
 size = Vector3(14, 10, 24)
@@ -44,13 +44,8 @@ damping_curve = SubResource("CurveTexture_a0g4p")
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_faglo")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugt3r"]
-albedo_color = Color(0.694118, 0.572549, 0.227451, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_qmtjx"]
-material = SubResource("StandardMaterial3D_ugt3r")
-text = "GAY"
-font_size = 60
+[sub_resource type="BoxMesh" id="BoxMesh_mcylg"]
+material = ExtResource("4_ls3w1")
 
 [node name="vehicle" type="VehicleBody3D"]
 mass = 100.0
@@ -137,27 +132,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26638, 2.10995, -10.5092)
 amount = 12
 lifetime = 0.05
 process_material = SubResource("ParticleProcessMaterial_uieyr")
-draw_pass_1 = ExtResource("4_gvisy")
-
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0036, 2.10995, -10.1347)
-amount = 23
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_uieyr")
-draw_pass_1 = SubResource("TextMesh_qmtjx")
+draw_pass_1 = SubResource("BoxMesh_mcylg")
 
 [node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74701, 2.10995, -10.5092)
 amount = 12
 lifetime = 0.05
 process_material = SubResource("ParticleProcessMaterial_uieyr")
-draw_pass_1 = ExtResource("4_gvisy")
-
-[node name="GPUParticles3D5" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19681, 2.10995, -10.1347)
-amount = 23
-process_material = SubResource("ParticleProcessMaterial_uieyr")
-draw_pass_1 = SubResource("TextMesh_qmtjx")
+draw_pass_1 = SubResource("BoxMesh_mcylg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

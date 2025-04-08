@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0r4ijmu8d760"]
+[gd_scene load_steps=4 format=3 uid="uid://c0r4ijmu8d760"]
 
 [ext_resource type="Script" path="res://map-selector.gd" id="1_4qpjf"]
+[ext_resource type="Script" path="res://map-selector-2.gd" id="1_cl07n"]
 
 [sub_resource type="GDScript" id="GDScript_0t6b6"]
 script/source = "extends Button
@@ -31,6 +32,7 @@ grow_vertical = 2
 layout_mode = 2
 offset_right = 986.0
 offset_bottom = 381.0
+script = ExtResource("1_4qpjf")
 
 [node name="Choose A Map" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -38,11 +40,15 @@ text = "Choose A Map!"
 
 [node name="mapSelector" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
-script = ExtResource("1_4qpjf")
+script = ExtResource("1_cl07n")
 
 [node name="map-button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Start!"
 script = SubResource("GDScript_0t6b6")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "---"
 
 [connection signal="pressed" from="VBoxContainer/map-button" to="VBoxContainer/mapSelector" method="_on_mapbutton_pressed"]

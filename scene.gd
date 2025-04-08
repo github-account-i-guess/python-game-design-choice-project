@@ -25,12 +25,10 @@ func _process(delta: float) -> void:
 	var lapTimes = $vehicle.lapTimes
 	if len(lapTimes) > 0:
 		$ui/leftAlign/avgLap.text = "Average Lap: " + str(round($vehicle.time/len(lapTimes))+ 1)
-	print(lapTimes)
 	if len(lapTimes) > 2 and threeLap == -1:
 		#var addLaps = func(a: int, b: int, i: int) -> int: 
 			#print("A: " + str(a) + ", B: " + str(b))
 			#return (a + b)
-		print("a")
 		threeLap = lapTimes.reduce(addLaps, 0)
 		get_tree().change_scene_to_file("lap_completed.tscn")
 	var threeLapText = ($vehicle.lapTime + $vehicle.time) if threeLap == -1 else threeLap

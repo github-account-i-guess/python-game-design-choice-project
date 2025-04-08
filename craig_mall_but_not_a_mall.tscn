@@ -63,14 +63,14 @@ material_override = SubResource("StandardMaterial3D_prylg")
 mesh = SubResource("TorusMesh_omolj")
 
 [node name="vehicle" parent="." instance=ExtResource("1_eiug7")]
-transform = Transform3D(-0.0335564, 0, -0.999437, 0, 1, 0, 0.999437, 0, -0.0335564, -10.936, 111.197, 432.711)
+transform = Transform3D(-0.0335564, 0, -0.999437, 0, 1, 0, 0.999437, 0, -0.0335564, -89.3449, 6.60271, 432.711)
 
 [node name="StaticBody3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(369.178, 0, 0, 0, -0.0474635, 0, 0, 0, 354.491, -962.964, 0, -10.731)
 material_override = SubResource("StandardMaterial3D_ok5j8")
 mesh = SubResource("TorusMesh_omolj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["fast_fall", "slow"]]
 transform = Transform3D(388.951, 0, 0, 0, -11.9752, 0, 0, 0, 370.259, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_4i4eq")
 mesh = SubResource("CylinderMesh_o172h")
@@ -81,7 +81,7 @@ physics_material_override = ExtResource("2_1a6xp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("CylinderShape3D_bpmog")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." groups=["fast_fall", "slow"]]
 transform = Transform3D(388.951, 0, 0, 0, -11.9752, 0, 0, 0, 370.259, -958.864, 0, 0)
 material_override = SubResource("StandardMaterial3D_6y1dm")
 mesh = SubResource("CylinderMesh_o172h")
