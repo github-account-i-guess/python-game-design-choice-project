@@ -1,0 +1,11 @@
+[gd_resource type="BoxMesh" load_steps=3 format=3 uid="uid://cfa1oyb7itv8n"]
+
+[ext_resource type="Texture2D" uid="uid://dehtnbuwrml7e" path="res://cobblestone.jpg" id="1_aaoni"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_555ay"]
+albedo_texture = ExtResource("1_aaoni")
+uv1_scale = Vector3(100, 10, 50)
+
+[resource]
+material = SubResource("StandardMaterial3D_555ay")
+size = Vector3(1200, 2, 200)

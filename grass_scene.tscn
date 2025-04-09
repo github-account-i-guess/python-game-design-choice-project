@@ -18,7 +18,7 @@ size = Vector3(800, 2, 800)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
 
-[node name="grass" type="StaticBody3D" groups=["slow"]]
+[node name="grass" type="StaticBody3D" groups=["ground", "slow"]]
 editor_description = "slow"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 physics_material_override = ExtResource("1_qdsxs")

@@ -11,7 +11,7 @@ size = Vector3(1200, 2, 200)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
 
-[node name="ramp" type="StaticBody3D"]
+[node name="ramp" type="StaticBody3D" groups=["ground"]]
 transform = Transform3D(-0.348182, 0.0613939, -0.353553, 0.0868241, 0.492404, 0, 0.348182, -0.0613939, -0.353553, 447.256, 53.7868, -414.005)
 physics_material_override = ExtResource("1_3168e")
 script = ExtResource("2_4wab1")

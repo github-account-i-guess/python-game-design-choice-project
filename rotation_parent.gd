@@ -14,7 +14,6 @@ func _ready() -> void:
 			if "rotateSelf" in dup:
 				dup.rotateSelf(i)
 		#parent.add_child(dup)
-	print(get_children())
 	pass # Replace with function body.
 
 

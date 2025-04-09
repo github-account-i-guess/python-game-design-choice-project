@@ -18,6 +18,7 @@ func addLaps(a: int, b: int) -> int:
 func _process(delta: float) -> void:
 	#$vehicle.time + 
 	$ui/rightAlign/speed.text = "Speed: " + str(round($vehicle.linear_velocity.length()))
+	$ui/rightAlign/airTime.text = "Air Time: " + str(round($vehicle.airTime))
 	$ui/leftAlign/time.text = "Total Time: " + str(round(($vehicle.lapTime + $vehicle.time)*100)/100)
 	$ui/leftAlign/lapTime.text = "Lap Time: " + str(round(($vehicle.lapTime)*100)/100)
 	$ui/leftAlign/checkpoint.text = "Checkpoint: " + str(round($vehicle.curCheckpoint) + 1)

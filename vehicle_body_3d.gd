@@ -8,7 +8,7 @@ const zAxis = Vector3(0, 0, 1)
 var numCheckpoints = 0
 var check_point = Vector3.ZERO
 var slow = false
-var numBodiesCollided = 0
+var groundBodiesCollided = 0
 var jumpSpeed = 11#20
 var firstCheckpoint = null;
 
@@ -86,13 +86,13 @@ func _physics_process(delta):
 		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
-	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (numBodiesCollided > 0 or airDashAvailable):
+	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (groundBodiesCollided > 0 or airDashAvailable):
 		var direction = zAxis.rotated(yAxis, steering + global_rotation.y).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
 		boost = 0
-	if Input.is_action_pressed("jump") and numBodiesCollided > 0:
+	if Input.is_action_pressed("jump") and groundBodiesCollided > 0:
 		#linear_velocity.y = jumpSpeed
 		linear_velocity += Vector3(0, jumpSpeed, 0).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 	if Input.is_action_just_pressed("reset"):
@@ -130,7 +130,7 @@ func _physics_process(delta):
 		fastFall -= 1
 	else:
 		gravity_scale = 3
-	if numBodiesCollided == 0:
+	if groundBodiesCollided == 0:
 		if airTime == 0:
 			airDashAvailable = true
 		airTime += 1
@@ -150,13 +150,15 @@ func _on_body_entered(body: Node):
 		slow = true
 	if (body.is_in_group("fast_fall")):
 		fastFall = 120
-	numBodiesCollided += 1
+	if (body.is_in_group("ground")):
+		groundBodiesCollided += 1
 	
 func _on_body_exited(body: Node) -> void:
 	#print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = false
-	numBodiesCollided -= 1
+	if (body.is_in_group("ground")):
+		groundBodiesCollided -= 1
 	 # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:

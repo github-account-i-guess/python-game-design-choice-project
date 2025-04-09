@@ -2,21 +2,19 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="1_b57iu"]
 [ext_resource type="Script" path="res://road.gd" id="2_x5is0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_4da8t"]
-size = Vector3(1200, 2, 200)
+[ext_resource type="BoxMesh" uid="uid://cfa1oyb7itv8n" path="res://road-mesh.tres" id="3_6ur6c"]
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d5wsy"]
 size = Vector3(1200, 2, 200)
 
-[node name="road" type="StaticBody3D"]
+[node name="road" type="StaticBody3D" groups=["ground"]]
 physics_material_override = ExtResource("1_b57iu")
 script = ExtResource("2_x5is0")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_4da8t")
+mesh = ExtResource("3_6ur6c")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../../../floor")
 
