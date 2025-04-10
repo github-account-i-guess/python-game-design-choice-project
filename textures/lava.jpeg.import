@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brbtofhdja534"
-path.s3tc="res://.godot/imported/lava.jpeg-2eca7984646170ae19226be9e69c8863.s3tc.ctex"
+uid="uid://3l70tu6bgpnc"
+path.s3tc="res://.godot/imported/lava.jpeg-1b157dab31ebafc64245c87f7be6cfb3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://lava.jpeg"
-dest_files=["res://.godot/imported/lava.jpeg-2eca7984646170ae19226be9e69c8863.s3tc.ctex"]
+source_file="res://textures/lava.jpeg"
+dest_files=["res://.godot/imported/lava.jpeg-1b157dab31ebafc64245c87f7be6cfb3.s3tc.ctex"]
 
 [params]
 

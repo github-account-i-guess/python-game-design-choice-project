@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4edbharjpywj"
-path="res://.godot/imported/asphalt.jpg-469694f1cb8b15887729ff5a24cdc9b7.ctex"
+uid="uid://bepldjc0o8w6g"
+path="res://.godot/imported/asphalt.jpg-5a1aefd9e42124ce6110cd163887e460.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asphalt.jpg"
-dest_files=["res://.godot/imported/asphalt.jpg-469694f1cb8b15887729ff5a24cdc9b7.ctex"]
+source_file="res://textures/asphalt.jpg"
+dest_files=["res://.godot/imported/asphalt.jpg-5a1aefd9e42124ce6110cd163887e460.ctex"]
 
 [params]
 

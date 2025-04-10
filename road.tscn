@@ -1,8 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck0tat2hr2r0p"]
+[gd_scene load_steps=8 format=3 uid="uid://ck0tat2hr2r0p"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="1_b57iu"]
 [ext_resource type="Script" path="res://road.gd" id="2_x5is0"]
-[ext_resource type="BoxMesh" uid="uid://cfa1oyb7itv8n" path="res://road-mesh.tres" id="3_6ur6c"]
+[ext_resource type="Texture2D" uid="uid://dhgh1cvp0mcwh" path="res://textures/cobblestone.jpg" id="3_s4bul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_555ay"]
+albedo_color = Color(0.89, 0.84639, 0.7654, 1)
+albedo_texture = ExtResource("3_s4bul")
+uv1_scale = Vector3(100, 10, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_otewb"]
+material = SubResource("StandardMaterial3D_555ay")
+size = Vector3(1200, 2, 200)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
 
@@ -14,7 +23,7 @@ physics_material_override = ExtResource("1_b57iu")
 script = ExtResource("2_x5is0")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = ExtResource("3_6ur6c")
+mesh = SubResource("BoxMesh_otewb")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../../../floor")
 

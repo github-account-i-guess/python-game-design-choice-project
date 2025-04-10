@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://drqneghxnhhoq"]
 
-[ext_resource type="Texture2D" uid="uid://co61bo84wvsw8" path="res://unnamed.texture.jpg" id="1_f1fdf"]
+[ext_resource type="Texture2D" path="res://unnamed.texture.jpg" id="1_f1fdf"]
 [ext_resource type="Script" path="res://back_to_main_menu.gd" id="2_h1qu6"]
 
 [node name="LapCompleted" type="Control"]

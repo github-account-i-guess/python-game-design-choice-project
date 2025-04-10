@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://k1ox2k0jgte0"]
 
-[ext_resource type="Texture2D" uid="uid://brbtofhdja534" path="res://lava.jpeg" id="1_8fuc7"]
 [ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="1_l6trg"]
+[ext_resource type="Texture2D" uid="uid://3l70tu6bgpnc" path="res://textures/lava.jpeg" id="1_vsj7g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_174j1"]
 size = Vector3(800, 0.1, 800)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1c46"]
-albedo_texture = ExtResource("1_8fuc7")
+albedo_texture = ExtResource("1_vsj7g")
 
 [sub_resource type="BoxMesh" id="BoxMesh_nc4gq"]
 material = SubResource("StandardMaterial3D_j1c46")

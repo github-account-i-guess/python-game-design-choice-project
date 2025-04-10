@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfji3puctv54c"
-path.s3tc="res://.godot/imported/smith.jpg-959772a893f0aaa9a5cee23bd86f641b.s3tc.ctex"
+uid="uid://dhgh1cvp0mcwh"
+path.s3tc="res://.godot/imported/cobblestone.jpg-1f5cba678cb41acb1e73a9da601b0b13.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://smith.jpg"
-dest_files=["res://.godot/imported/smith.jpg-959772a893f0aaa9a5cee23bd86f641b.s3tc.ctex"]
+source_file="res://textures/cobblestone.jpg"
+dest_files=["res://.godot/imported/cobblestone.jpg-1f5cba678cb41acb1e73a9da601b0b13.s3tc.ctex"]
 
 [params]
 
