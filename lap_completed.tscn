@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://drqneghxnhhoq"]
 
-[ext_resource type="Texture2D" path="res://unnamed.texture.jpg" id="1_f1fdf"]
+[ext_resource type="Texture2D" uid="uid://csowih1p84uw1" path="res://textures/unnamed.texture.jpg" id="1_yryj0"]
 [ext_resource type="Script" path="res://back_to_main_menu.gd" id="2_h1qu6"]
 
 [node name="LapCompleted" type="Control"]
@@ -11,15 +11,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0.490196, 0.490196, 0.490196, 0.403922)
+
 [node name="container" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1151.0
+offset_bottom = 650.0
+alignment = 2
+
+[node name="timesContainer" type="VBoxContainer" parent="container"]
+layout_mode = 2
 
 [node name="backToMainMenu" type="Button" parent="container"]
 layout_mode = 2
 text = "Back To Main Menu"
-icon = ExtResource("1_f1fdf")
+icon = ExtResource("1_yryj0")
 script = ExtResource("2_h1qu6")
 
 [connection signal="pressed" from="container/backToMainMenu" to="container/backToMainMenu" method="_on_pressed"]

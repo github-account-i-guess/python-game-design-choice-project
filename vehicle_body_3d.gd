@@ -27,6 +27,8 @@ var laps = 0
 var lapTimes = []
 var time = 0
 var lapTime = 0
+var collidedCylinders = []
+var cylinderTime = 0
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -80,12 +82,14 @@ func _physics_process(delta):
 		if left:
 			$BackRightWheel.wheel_roll_influence = 5
 		$BodyMesh.mesh.material.albedo_color = Color(0, 0, 1, 0.5)
+		gravity_scale = 5
 	else:
 		for wheel in wheels:
 			wheel.wheel_friction_slip = 10.5
 		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
+		gravity_scale = 3
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (groundBodiesCollided > 0 or airDashAvailable):
 		var direction = zAxis.rotated(yAxis, steering + global_rotation.y).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
@@ -128,14 +132,26 @@ func _physics_process(delta):
 		global_rotation.z = 0
 		$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)
 		fastFall -= 1
-	else:
-		gravity_scale = 3
+	#else:
+		#gravity_scale = 3
 	if groundBodiesCollided == 0:
+		$LParticle.visible = false
+		$RParticle.visible = false
 		if airTime == 0:
 			airDashAvailable = true
 		airTime += 1
 	elif airTime:
 		airTime = 0
+		
+	for area in collidedCylinders:
+		var x = global_position.x - area.global_position.x
+		var z = global_position.z - area.global_position.z
+		linear_velocity += Vector3(x, 0, z)/(10000) * cylinderTime
+	if len(collidedCylinders) > 0 and cylinderTime < 1000:
+		cylinderTime += 1
+	else:
+		cylinderTime = 0
+		
 	lapTime += delta
 func die():
 	global_position = check_point.global_position
@@ -145,13 +161,21 @@ func die():
 	if curCheckpoint == 0 and laps == 0:
 		lapTime = 0
 func _on_body_entered(body: Node):
-	#print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = true
 	if (body.is_in_group("fast_fall")):
 		fastFall = 120
 	if (body.is_in_group("ground")):
 		groundBodiesCollided += 1
+		#print("body: " + str(body.get_child(0).mesh.material))
+		#print("body: " + str($LParticle.process_material))
+		$LParticle.visible = true
+		$RParticle.visible = true
+		if "mesh" in body.get_child(0):
+			$LParticle.draw_pass_1.material = body.get_child(0).mesh.material
+			$RParticle.draw_pass_1.material = body.get_child(0).mesh.material
+		
+
 	
 func _on_body_exited(body: Node) -> void:
 	#print("body: " + str(body))
@@ -180,8 +204,16 @@ func _on_vehicle_area_entered(area: Area3D) -> void:
 			save_check_point(area)
 	if area.is_in_group("deathzone"):
 		die()
+	if area.is_in_group("cylinder"):
+		collidedCylinders.append(area)
 	# Replace with function body.
 
 
 func save_check_point(checkpoint):
 	check_point = checkpoint
+
+
+func _on_vehicle_area_area_exited(area: Area3D) -> void:
+	if area.is_in_group("cylinder"):
+		collidedCylinders.pop_at(collidedCylinders.find(area))
+	pass # Replace with function body.

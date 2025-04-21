@@ -144,3 +144,4 @@ draw_pass_1 = SubResource("BoxMesh_mcylg")
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="area_entered" from="VehicleArea" to="." method="_on_vehicle_area_entered"]
+[connection signal="area_exited" from="VehicleArea" to="." method="_on_vehicle_area_area_exited"]

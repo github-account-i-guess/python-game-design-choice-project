@@ -10,7 +10,7 @@ var levels = [
 	Level.new("Random Map", "random"),
 	Level.new("Audrey Ville Autoracing Place", "audreyville_auto_racing_place.tscn"),
 	Level.new("Square Map", "square.tscn"),
-	Level.new("Craig Cyclinder", "craig_mall_but_not_a_mall.tscn"),
+	Level.new("Craig Circles", "craig_mall_but_not_a_mall.tscn"),
 	Level.new("Auto-Map", "auto-map.tscn")
 ]
 

@@ -27,6 +27,7 @@ deathzone=""
 checkpoint=""
 boost=""
 ground=""
+cylinder=""
 
 [input]
 

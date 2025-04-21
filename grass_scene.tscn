@@ -3,9 +3,6 @@
 [ext_resource type="PhysicsMaterial" uid="uid://cms7ij68p35du" path="res://grass.tres" id="1_qdsxs"]
 [ext_resource type="Texture2D" uid="uid://da0xn2k6i3u37" path="res://textures/grass.jpg" id="2_7nqwj"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_35rrq"]
-size = Vector3(800, 2, 800)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0j85"]
 albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
 albedo_texture = ExtResource("2_7nqwj")
@@ -18,15 +15,18 @@ size = Vector3(800, 2, 800)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_35rrq"]
+size = Vector3(800, 2, 800)
+
 [node name="grass" type="StaticBody3D" groups=["ground", "slow"]]
 editor_description = "slow"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 physics_material_override = ExtResource("1_qdsxs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_35rrq")
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_lx6vo")
 skin = SubResource("Skin_i0ldq")
 skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_35rrq")

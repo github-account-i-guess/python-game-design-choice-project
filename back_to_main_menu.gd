@@ -14,4 +14,3 @@ func _process(delta: float) -> void:
 func _on_pressed() -> void:
 	print("back")
 	get_tree().change_scene_to_file("main_menu.tscn")
-	pass # Replace with function body.
