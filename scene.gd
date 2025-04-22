@@ -48,9 +48,14 @@ func _process(delta: float) -> void:
 			var nextCheckpoint = checkpoints[0 if $vehicle.curCheckpoint == numCheckpoints - 1 else $vehicle.curCheckpoint + 1]
 			print(nextCheckpoint)
 			print(nextCheckpoint.checkpointNum)
-			$vehicle.linear_velocity = (nextCheckpoint.global_position - $vehicle.global_position).normalized() * 1000
+
+			if Time.get_ticks_msec() % 3 == 0:
+				var vPos = $vehicle.global_position
+				var cPos = nextCheckpoint.global_position
+				$vehicle.global_rotation.y = atan2(vPos.y - cPos.y, vPos.x - cPos.x) - PI/2
+			else:
+				$vehicle.linear_velocity = (nextCheckpoint.global_position - $vehicle.global_position).normalized() * 1000
 			
-			$vehicle.basis = $vehicle.basis.looking_at(nextCheckpoint.global_position)
 	var threeLapText = ($vehicle.lapTime + $vehicle.time) if threeLap == -1 else threeLap
 	$ui/leftAlign/threeLap.text = "3 Lap: " + str(round(threeLapText*100)/100)
 	var curCheckpoint = $vehicle.curCheckpoint
