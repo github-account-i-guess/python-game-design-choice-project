@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0r4ijmu8d760"]
+[gd_scene load_steps=5 format=3 uid="uid://c0r4ijmu8d760"]
 
 [ext_resource type="Script" path="res://map-selector.gd" id="1_4qpjf"]
+[ext_resource type="Script" path="res://map-selector-2.gd" id="1_cl07n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1tyuy"]
 font_size = 20
@@ -39,6 +40,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4qpjf")
 
+[node name="mapSelector" type="OptionButton" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("1_cl07n")
+
 [node name="Choose A Map" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Choose A Map!"
@@ -62,3 +68,5 @@ text = "
 layout_mode = 2
 text = "Start!"
 script = SubResource("GDScript_0t6b6")
+
+[connection signal="pressed" from="VBoxContainer/map-button" to="VBoxContainer/mapSelector" method="_on_mapbutton_pressed"]

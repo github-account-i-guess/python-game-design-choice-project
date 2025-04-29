@@ -2,7 +2,6 @@ extends Node3D
 @export var numCheckpoints = 0
 var checkpoints = []
 var threeLap = -1
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for node in get_children():
@@ -16,8 +15,19 @@ func _ready() -> void:
 	$vehicle.numCheckpoints = numCheckpoints
 
 func addLaps(a: float, b: float) -> float: 
-	print("A: " + str(a) + ", B: " + str(b))
 	return (a + b)
+func save_bests (data):
+	var file = FileAccess.open("user://bests.save", FileAccess.WRITE)
+	file.store_line(JSON.stringify(data))
+func load_bests():
+	if not FileAccess.file_exists("user://bests.save"):
+		return {}
+	var file = FileAccess.open("user://bests.save", FileAccess.READ)
+	var json = JSON.new()
+	if json.parse(file.get_line()) == OK:
+		return json.data
+	else:
+		return {}
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#$vehicle.time + 
@@ -30,7 +40,7 @@ func _process(delta: float) -> void:
 	var lapTimes = $vehicle.lapTimes
 	if len(lapTimes) > 0:
 		$ui/leftAlign/avgLap.text = "Average Lap: " + str(round($vehicle.time/len(lapTimes))+ 1)
-	if len(lapTimes) > 0:
+	if len(lapTimes) > 2:
 		if threeLap == -1:
 			threeLap = lapTimes.reduce(addLaps, 0)
 			
@@ -44,10 +54,12 @@ func _process(delta: float) -> void:
 			var totalTimeNode = Label.new()
 			totalTimeNode.text = "Total: " + str(threeLap)
 			timesContainer.add_child(totalTimeNode)
+			var bests = load_bests()
+			bests[name] = threeLap
+			print(bests)
+			save_bests(bests)
 		else:
 			var nextCheckpoint = checkpoints[0 if $vehicle.curCheckpoint == numCheckpoints - 1 else $vehicle.curCheckpoint + 1]
-			print(nextCheckpoint)
-			print(nextCheckpoint.checkpointNum)
 
 			if Time.get_ticks_msec() % 3 == 0:
 				var vPos = $vehicle.global_position

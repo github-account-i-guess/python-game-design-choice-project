@@ -12,15 +12,21 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 650.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.490196, 0.490196, 0.490196, 0.403922)
 
 [node name="container" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 1151.0
-offset_bottom = 650.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 2
 
 [node name="timesContainer" type="VBoxContainer" parent="container"]
