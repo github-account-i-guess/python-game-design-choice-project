@@ -1,22 +1,12 @@
 extends Node3D
+@export var angle = PI/2
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var parent = self.get_parent()
 	var childNodes = get_children()
 	for childNode in childNodes:
-		for i in range(3):
-			#print(childNode.name)
+		for i in range(2*PI/angle - 1):
 			var dup = childNode.duplicate()
 			add_child(dup)
-			#print(dup.name)
 			if "rotateSelf" in dup:
-				dup.rotateSelf(i)
-		#parent.add_child(dup)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+				dup.rotateSelf(i, angle)

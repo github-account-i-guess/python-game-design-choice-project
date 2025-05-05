@@ -28,7 +28,7 @@ var lapTimes = []
 var time = 0
 var lapTime = 0
 var collidedCylinders = []
-var cylinderTime = 0
+#var cylinderTime = 0
 #var target_velocity = Vector3.ZERO
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
@@ -124,7 +124,6 @@ func _physics_process(delta):
 	else:
 		slowTime = 0
 	if fastFall > 0:
-		print("fastFalling")
 		#if linear_velocity.y > 0:
 			#fastFall = 0
 		gravity_scale = 20
@@ -146,11 +145,11 @@ func _physics_process(delta):
 	for area in collidedCylinders:
 		var x = global_position.x - area.global_position.x
 		var z = global_position.z - area.global_position.z
-		linear_velocity += Vector3(x, 0, z)/(10000) * cylinderTime
-	if len(collidedCylinders) > 0 and cylinderTime < 1000:
-		cylinderTime += 1
-	else:
-		cylinderTime = 0
+		linear_velocity += Vector3(x, 0, z)/25#Vector3(x, 0, z)/(10000) * cylinderTime
+	#if len(collidedCylinders) > 0: #and cylinderTime < 1000:
+		#cylinderTime += 1
+	#else:
+		#cylinderTime = 0
 		
 	lapTime += delta
 func die():
@@ -167,8 +166,6 @@ func _on_body_entered(body: Node):
 		fastFall = 120
 	if (body.is_in_group("ground")):
 		groundBodiesCollided += 1
-		#print("body: " + str(body.get_child(0).mesh.material))
-		#print("body: " + str($LParticle.process_material))
 		$LParticle.visible = true
 		$RParticle.visible = true
 		if "mesh" in body.get_child(0):
@@ -178,7 +175,6 @@ func _on_body_entered(body: Node):
 
 	
 func _on_body_exited(body: Node) -> void:
-	#print("body: " + str(body))
 	if (body.is_in_group("slow")):
 		slow = false
 	if (body.is_in_group("ground")):
@@ -186,9 +182,7 @@ func _on_body_exited(body: Node) -> void:
 	 # Replace with function body.
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
-	#print("area: " + str(area))
 	if area.is_in_group("boost"):
-		#print("boosted")
 		linear_velocity += 200 * zAxis.rotated(xAxis, area.global_rotation.x).rotated(yAxis, area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
 		var num = area.checkpointNum

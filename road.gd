@@ -4,7 +4,6 @@ extends StaticBody3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if length != 1200:
-		print($Mesh.mesh)
 		$Mesh.mesh = $Mesh.mesh.duplicate()
 		$Collision.shape = $Collision.shape.duplicate()
 		$Mesh.mesh.size.x = length

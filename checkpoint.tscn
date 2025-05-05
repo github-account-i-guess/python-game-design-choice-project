@@ -4,7 +4,7 @@
 [ext_resource type="BoxMesh" uid="uid://doyfdapnqukiq" path="res://checkpoint-mesh.tres" id="2_7vggb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_insi8"]
-size = Vector3(100, 100, 1)
+size = Vector3(100, 100, 100)
 
 [sub_resource type="Skin" id="Skin_i0ldq"]
 

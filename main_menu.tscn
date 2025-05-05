@@ -1,28 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0r4ijmu8d760"]
-
-[ext_resource type="Script" path="res://map-selector.gd" id="1_4qpjf"]
+[gd_scene load_steps=2 format=3 uid="uid://c0r4ijmu8d760"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1tyuy"]
 font_size = 20
 
-[sub_resource type="GDScript" id="GDScript_0t6b6"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-func _button_pressed():
-	print(\"a\")
-	print(get_tree().get_root().get_node(\"/VBoxContainer\"))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[node name="Main Menu" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,35 +11,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="container" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4qpjf")
 
-[node name="Choose A Map" type="Label" parent="VBoxContainer"]
+[node name="Choose A Map" type="Label" parent="container"]
 layout_mode = 2
 text = "Choose A Map!"
 label_settings = SubResource("LabelSettings_1tyuy")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="container"]
 layout_mode = 2
 text = "
 "
 
-[node name="maps" type="VBoxContainer" parent="VBoxContainer"]
+[node name="maps" type="VBoxContainer" parent="container"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="container"]
 layout_mode = 2
 text = "
 "
-
-[node name="map-button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Start!"
-script = SubResource("GDScript_0t6b6")

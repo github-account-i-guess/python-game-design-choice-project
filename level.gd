@@ -28,9 +28,15 @@ func load_bests():
 		return json.data
 	else:
 		return {}
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func doBackgroundGameplay():
+	var nextCheckpoint = checkpoints[0 if $vehicle.curCheckpoint == numCheckpoints - 1 else $vehicle.curCheckpoint + 1]
+	if Time.get_ticks_msec() % 3 == 0:
+		var vPos = $vehicle.global_position
+		var cPos = nextCheckpoint.global_position
+		$vehicle.global_rotation.y = atan2(vPos.y - cPos.y, vPos.x - cPos.x) - PI/2
+	else:
+		$vehicle.linear_velocity = (nextCheckpoint.global_position - $vehicle.global_position).normalized() * 1000
 func _process(delta: float) -> void:
-	#$vehicle.time + 
 	$ui/rightAlign/speed.text = "Speed: " + str(round($vehicle.linear_velocity.length()))
 	$ui/rightAlign/airTime.text = "Air Time: " + str(round($vehicle.airTime))
 	$ui/leftAlign/time.text = "Total Time: " + str(round(($vehicle.lapTime + $vehicle.time)*100)/100)
@@ -44,34 +50,12 @@ func _process(delta: float) -> void:
 		if threeLap == -1:
 			threeLap = lapTimes.reduce(addLaps, 0)
 			
-			get_tree().root.get_child(0).add_child(preload("res://lap_completed.tscn").instantiate())
-			var timesContainer = $LapCompleted/container/timesContainer
-			for i in range(len(lapTimes)):
-				var t = lapTimes[i]
-				var time = Label.new()
-				time.text = "Lap " + str(i + 1) + ": " + str(t)
-				timesContainer.add_child(time)
-			var totalTimeNode = Label.new()
-			totalTimeNode.text = "Total: " + str(threeLap)
-			timesContainer.add_child(totalTimeNode)
-			var bests = load_bests()
-			bests[name] = threeLap
-			print(bests)
-			save_bests(bests)
+			get_tree().root.get_child(0).lapCompleted(threeLap, lapTimes)
 		else:
-			var nextCheckpoint = checkpoints[0 if $vehicle.curCheckpoint == numCheckpoints - 1 else $vehicle.curCheckpoint + 1]
-
-			if Time.get_ticks_msec() % 3 == 0:
-				var vPos = $vehicle.global_position
-				var cPos = nextCheckpoint.global_position
-				$vehicle.global_rotation.y = atan2(vPos.y - cPos.y, vPos.x - cPos.x) - PI/2
-			else:
-				$vehicle.linear_velocity = (nextCheckpoint.global_position - $vehicle.global_position).normalized() * 1000
-			
+			doBackgroundGameplay()
 	var threeLapText = ($vehicle.lapTime + $vehicle.time) if threeLap == -1 else threeLap
 	$ui/leftAlign/threeLap.text = "3 Lap: " + str(round(threeLapText*100)/100)
 	var curCheckpoint = $vehicle.curCheckpoint
 	for node in get_children():
 		if node.is_in_group("checkpoint"):
-			#node.visible = node.checkpointNum > curCheckpoint
 			node.visible = node.checkpointNum == (curCheckpoint + 1) % numCheckpoints

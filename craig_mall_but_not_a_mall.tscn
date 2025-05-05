@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0r0xoqvr214c"]
+[gd_scene load_steps=18 format=3 uid="uid://c0r0xoqvr214c"]
 
-[ext_resource type="Script" path="res://scene.gd" id="1_0mady"]
+[ext_resource type="Script" path="res://level.gd" id="1_0mady"]
 [ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="1_eiug7"]
 [ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_2vyji"]
 [ext_resource type="Material" uid="uid://dka56dvxct4jm" path="res://craigtile.tres" id="2_p0vmo"]
 [ext_resource type="Texture2D" uid="uid://csowih1p84uw1" path="res://textures/unnamed.texture.jpg" id="3_ayr0v"]
-[ext_resource type="CylinderMesh" uid="uid://dgio1qkwokpag" path="res://cylindercenter.tres" id="4_cihq4"]
 [ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="5_e714g"]
 [ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="6_ord32"]
 [ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="8_0r0bd"]
@@ -18,15 +17,15 @@ uv1_scale = Vector3(100, 100, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o172h"]
 material = SubResource("StandardMaterial3D_6ddb6")
-top_radius = 1.0
-bottom_radius = 1.0
+top_radius = 0.95
+bottom_radius = 0.95
 rings = 7
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bpmog"]
-radius = 1.0
+radius = 0.95
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0tsu2"]
-radius = 1.0
+radius = 0.95
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tp4v8"]
 custom_solver_bias = 0.095
@@ -57,10 +56,6 @@ transform = Transform3D(-370, 0, 3.23464e-05, 0, 370, 0, -3.23464e-05, 0, -370, 
 mesh = SubResource("CylinderMesh_o172h")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3/MeshInstance3D"]
-mesh = ExtResource("4_cihq4")
-skeleton = NodePath("../..")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("CylinderShape3D_bpmog")
 
@@ -71,11 +66,6 @@ transform = Transform3D(370, 0, 0, 0, -1.61732e-05, 370, 0, -370, -1.61732e-05, 
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_o172h")
 skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4/MeshInstance3D2"]
-transform = Transform3D(-1, 0, 8.74227e-08, -3.86808e-21, 1, -4.42457e-14, -8.74227e-08, -4.42457e-14, -1, 0, 0, 0)
-mesh = ExtResource("4_cihq4")
-skeleton = NodePath("../../../StaticBody3D3/MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -140,19 +130,19 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -348.2
 shadow_enabled = true
 
 [node name="checkpoint2" parent="." instance=ExtResource("5_e714g")]
-transform = Transform3D(-0.827461, 0.0385685, -0.560196, 0.0305357, 0.999253, 0.0236928, 0.560692, 0.00249885, -0.828022, -640.24, 1.78326, -271.982)
+transform = Transform3D(-1.65492, 0.0771371, -1.12039, 0.0610714, 1.99851, 0.0473855, 1.12138, 0.00499764, -1.65604, -640.24, 1.78326, -271.982)
 checkpointNum = 1
 
 [node name="checkpoint3" parent="." instance=ExtResource("5_e714g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1371.95, 44.3803, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1371.95, 44.3803, 0)
 checkpointNum = 2
 
 [node name="checkpoint4" parent="." instance=ExtResource("5_e714g")]
-transform = Transform3D(-0.771491, 0, 0.63624, 0, 1, 0, -0.63624, 0, -0.771491, -319.577, 0.499996, -257.795)
+transform = Transform3D(-1.54298, 0, 1.27248, 0, 2, 0, -1.27248, 0, -1.54298, -319.577, 0.499996, -257.795)
 checkpointNum = 3
 
 [node name="checkpoint5" parent="." instance=ExtResource("5_e714g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.096, 46.7751, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 419.096, 46.7751, 0)
 checkpointNum = 0
 
 [node name="Boost" parent="." instance=ExtResource("6_ord32")]
