@@ -58,6 +58,13 @@ script = ExtResource("1_8jf8j")
 
 [node name="dashDirection" type="Node3D" parent="."]
 
+[node name="preview" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+
+[node name="preview" type="MeshInstance3D" parent="preview"]
+mesh = ExtResource("2_tgdgw")
+skeleton = NodePath("../../MeshInstance3D2")
+
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 mesh = ExtResource("2_tgdgw")

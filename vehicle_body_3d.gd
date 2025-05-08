@@ -82,19 +82,20 @@ func _physics_process(delta):
 		if left:
 			$BackRightWheel.wheel_roll_influence = 5
 		$BodyMesh.mesh.material.albedo_color = Color(0, 0, 1, 0.5)
-		gravity_scale = 5
 	else:
 		for wheel in wheels:
 			wheel.wheel_friction_slip = 10.5
 		$BodyMesh.mesh.material.albedo_color = Color(0, 1, 0, 0.5)
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
-		gravity_scale = 3
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (groundBodiesCollided > 0 or airDashAvailable):
-		var direction = zAxis.rotated(yAxis, steering + global_rotation.y).rotated(xAxis, rotation.x).rotated(zAxis, rotation.z)
+		$dashDirection.position = Vector3(0, -1, 10)
+		$dashDirection.rotation = Vector3(0, steering, 0)
+		var direction = $dashDirection.global_position - global_position  #zAxis.rotated(yAxis, steering + global_rotation.y)#zAxis.rotated(xAxis, rotation.x).rotated(yAxis, steering + global_rotation.y)#.rotated(zAxis, rotation.z)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)
 		linear_velocity += increasedDirection
 		angular_velocity = angular_velocity.normalized() * min(angular_velocity.length(), 1/2)
+		#fastFall = boost
 		boost = 0
 	if Input.is_action_pressed("jump") and groundBodiesCollided > 0:
 		#linear_velocity.y = jumpSpeed
@@ -126,13 +127,14 @@ func _physics_process(delta):
 	if fastFall > 0:
 		#if linear_velocity.y > 0:
 			#fastFall = 0
-		gravity_scale = 20
-		global_rotation.x = 0
-		global_rotation.z = 0
-		$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)
-		fastFall -= 1
-	#else:
-		#gravity_scale = 3
+		if groundBodiesCollided == 0:
+			gravity_scale = 20
+			$BodyMesh.mesh.material.albedo_color = Color(1, 0, 0, 0.5)
+			fastFall -= 1
+		else:
+			fastFall = 0
+	else:
+		gravity_scale = 3
 	if groundBodiesCollided == 0:
 		$LParticle.visible = false
 		$RParticle.visible = false
@@ -145,13 +147,10 @@ func _physics_process(delta):
 	for area in collidedCylinders:
 		var x = global_position.x - area.global_position.x
 		var z = global_position.z - area.global_position.z
-		linear_velocity += Vector3(x, 0, z)/25#Vector3(x, 0, z)/(10000) * cylinderTime
-	#if len(collidedCylinders) > 0: #and cylinderTime < 1000:
-		#cylinderTime += 1
-	#else:
-		#cylinderTime = 0
+		linear_velocity += Vector3(x, 0, z)/25
 		
 	lapTime += delta
+	
 func die():
 	global_position = check_point.global_position
 	angular_velocity = Vector3.ZERO
