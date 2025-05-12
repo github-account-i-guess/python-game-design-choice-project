@@ -45,7 +45,6 @@ class Level:
 			bests[name] = -1
 		self.setBest(bests[name])
 	func getText():
-		print(best)
 		if self.name == "Random Map":
 				return self.name
 		elif self.best > -1:
@@ -56,7 +55,6 @@ class Level:
 		self.best = best
 		self.bestFloat = best
 func newLevel(name, path):
-	print("nL Bests: " + str(bests))
 	return Level.new(name, path, bests)
 var levels = [
 	newLevel("Random Map", "random"),
@@ -67,8 +65,11 @@ var levels = [
 ]
 func _ready() -> void:
 	mainMenu()
+func _process(delta: float) -> void:
+	if curLevel != "" and Input.is_action_just_pressed("pause"):
+		pauseMenu()
+	print(curLevel)
 func populateButtons(levels) -> void:
-	print("pB Bests: " + str(bests))
 	for i in range(len(levels)):
 		var button = Button.new()
 		button.text = levels[i].getText()
@@ -86,8 +87,10 @@ func innerLambda(id: int):
 func _on_mapbutton_pressed(id: int):
 	return func(): innerLambda(id)
 func clear():
-	for i in range(len(get_children())):
-		remove_child(get_child(i))
+	#for i in range(len(get_children())):
+		#remove_child(get_child(0))
+	for child in get_children():
+		remove_child(child)
 func lapCompleted(threeLap, lapTimes):
 	clear()
 	add_child(preload("res://lap_completed.tscn").instantiate())
@@ -112,8 +115,11 @@ func mainMenu():
 	clear()
 	add_child(node)
 	populateButtons(levels)
-
+	curLevel = ""
 func pauseMenu():
+	for node in get_children():
+		if node.name == "pause_menu":
+			return
 	var node = load("pause_menu.tscn").instantiate()
 	#clear()
 	add_child(node)
