@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyfnfyvb1krgc"]
+
+[sub_resource type="GDScript" id="GDScript_w1kvc"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	print(\"back\")
+	get_tree().root.get_child(0).mainMenu()
+
+
+func _on_resume_pressed() -> void:
+	get_tree().root.get_child(0).resume()
+	pass # Replace with function body.
+"
+
+[node name="pause_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="resume" type="Button" parent="container"]
+layout_mode = 2
+text = "Back To Main Menu"
+
+[node name="backToMainMenu" type="Button" parent="container"]
+layout_mode = 2
+text = "Back To Main Menu"
+script = SubResource("GDScript_w1kvc")
+
+[connection signal="pressed" from="container/resume" to="container/backToMainMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="container/backToMainMenu" to="container/backToMainMenu" method="_on_pressed"]

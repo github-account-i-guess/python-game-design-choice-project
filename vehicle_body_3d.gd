@@ -89,7 +89,7 @@ func _physics_process(delta):
 		for wheel in backWheels:
 			wheel.wheel_roll_influence = 0
 	if Input.is_action_just_released('drift') and not Input.is_action_pressed("move_back") and (groundBodiesCollided > 0 or airDashAvailable):
-		$dashDirection.position = Vector3(0, 0, 10)
+		$dashDirection.position = Vector3(0, 0, 20)
 		$dashDirection.rotation = Vector3(0, steering, 0)
 		var direction = $dashDirection.global_position - global_position  #zAxis.rotated(yAxis, steering + global_rotation.y)#zAxis.rotated(xAxis, rotation.x).rotated(yAxis, steering + global_rotation.y)#.rotated(zAxis, rotation.z)
 		var increasedDirection = direction.normalized() * 10 * (boost/3)

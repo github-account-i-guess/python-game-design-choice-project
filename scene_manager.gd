@@ -112,3 +112,11 @@ func mainMenu():
 	clear()
 	add_child(node)
 	populateButtons(levels)
+
+func pauseMenu():
+	var node = load("pause_menu.tscn").instantiate()
+	#clear()
+	add_child(node)
+	#populateButtons(levels)
+func resume():
+	remove_child($pause_menu)
