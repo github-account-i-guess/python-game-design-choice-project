@@ -1,19 +1,16 @@
 [gd_scene load_steps=18 format=3 uid="uid://c0r0xoqvr214c"]
 
-[ext_resource type="Script" path="res://level.gd" id="1_0mady"]
-[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="1_eiug7"]
-[ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="2_2vyji"]
-[ext_resource type="Material" uid="uid://dka56dvxct4jm" path="res://craigtile.tres" id="2_p0vmo"]
-[ext_resource type="Texture2D" uid="uid://csowih1p84uw1" path="res://textures/unnamed.texture.jpg" id="3_ayr0v"]
-[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="5_e714g"]
-[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="6_ord32"]
-[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="8_0r0bd"]
+[ext_resource type="Script" path="res://level.gd" id="1_y2spb"]
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="2_1gjm1"]
+[ext_resource type="PhysicsMaterial" uid="uid://dp2xefvjrw2go" path="res://road.tres" id="4_srnty"]
+[ext_resource type="Texture2D" uid="uid://dhgh1cvp0mcwh" path="res://textures/cobblestone.jpg" id="5_6lpxb"]
+[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="6_6kuk7"]
+[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="7_cjwcx"]
+[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="8_04p1b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ddb6"]
 transparency = 1
-albedo_color = Color(1, 1, 1, 0.917647)
-albedo_texture = ExtResource("3_ayr0v")
-uv1_scale = Vector3(100, 100, 1)
+albedo_color = Color(0.7, 0.658933, 0.546, 0.662745)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o172h"]
 material = SubResource("StandardMaterial3D_6ddb6")
@@ -32,6 +29,11 @@ custom_solver_bias = 0.095
 height = 1.0
 radius = 540.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvth3"]
+albedo_color = Color(0.61, 0.61, 0.61, 1)
+albedo_texture = ExtResource("5_6lpxb")
+uv1_scale = Vector3(20, 20, 1)
+
 [sub_resource type="TorusMesh" id="TorusMesh_omolj"]
 inner_radius = 1.0
 outer_radius = 1.5
@@ -44,9 +46,9 @@ outer_radius = 1.5
 
 [node name="CraigMall but not a mall" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3031, -6.10352e-05, 0.246277)
-script = ExtResource("1_0mady")
+script = ExtResource("1_y2spb")
 
-[node name="vehicle" parent="." instance=ExtResource("1_eiug7")]
+[node name="vehicle" parent="." instance=ExtResource("2_1gjm1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.096, 68.2913, 0)
 
 [node name="StaticBody3D3" type="Area3D" parent="." groups=["cylinder"]]
@@ -73,47 +75,47 @@ shape = SubResource("CylinderShape3D_0tsu2")
 
 [node name="floor4" type="StaticBody3D" parent="." groups=["ground"]]
 transform = Transform3D(0.996195, -0.0871557, 0, 0.0868241, 0.992404, -0.0871557, 0.00759612, 0.0868241, 0.996195, 0, 0, 0)
-physics_material_override = ExtResource("2_2vyji")
+physics_material_override = ExtResource("4_srnty")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="floor4"]
 shape = SubResource("CylinderShape3D_tp4v8")
 
 [node name="StaticBody3D" type="MeshInstance3D" parent="floor4" groups=["ground"]]
 transform = Transform3D(-360, 0, 0, 0, -0.046, 0, 0, 0, -360, 0, 0, 0)
-material_override = ExtResource("2_p0vmo")
+material_override = SubResource("StandardMaterial3D_pvth3")
 mesh = SubResource("TorusMesh_omolj")
 skeleton = NodePath("../../floor4")
 
 [node name="floor3" type="StaticBody3D" parent="." groups=["ground"]]
 transform = Transform3D(0.996195, 0.0871557, 0, -0.0868241, 0.992404, -0.0871557, -0.00759612, 0.0868241, 0.996195, -962.964, 0, 0)
-physics_material_override = ExtResource("2_2vyji")
+physics_material_override = ExtResource("4_srnty")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="floor3"]
 shape = SubResource("CylinderShape3D_tp4v8")
 
 [node name="StaticBody3D" type="MeshInstance3D" parent="floor3" groups=["ground"]]
 transform = Transform3D(-360, 0, 0, 0, -0.046, 0, 0, 0, -360, 0, 0, 0)
-material_override = ExtResource("2_p0vmo")
+material_override = SubResource("StandardMaterial3D_pvth3")
 mesh = SubResource("TorusMesh_omolj")
 
 [node name="floor2" type="StaticBody3D" parent="." groups=["ground"]]
-physics_material_override = ExtResource("2_2vyji")
+physics_material_override = ExtResource("4_srnty")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="floor2"]
 shape = SubResource("CylinderShape3D_tp4v8")
 
 [node name="StaticBody3D" type="MeshInstance3D" parent="floor2" groups=["ground"]]
 transform = Transform3D(360, 0, -5.43585e-05, 0, -0.046, 0, 5.43585e-05, 0, 360, 0, 0, 0)
-material_override = ExtResource("2_p0vmo")
+material_override = SubResource("StandardMaterial3D_pvth3")
 mesh = SubResource("TorusMesh_omolj")
 skeleton = NodePath("../..")
 
 [node name="floor" type="StaticBody3D" parent="." groups=["ground"]]
-physics_material_override = ExtResource("2_2vyji")
+physics_material_override = ExtResource("4_srnty")
 
 [node name="StaticBody3D2" type="MeshInstance3D" parent="floor"]
 transform = Transform3D(360, 0, -5.43585e-05, 0, -0.046, 0, 5.43585e-05, 0, 360, -962.964, 4.36557e-11, -10.731)
-material_override = ExtResource("2_p0vmo")
+material_override = SubResource("StandardMaterial3D_pvth3")
 mesh = SubResource("TorusMesh_omolj")
 skeleton = NodePath("../..")
 
@@ -129,33 +131,33 @@ compositor = SubResource("Compositor_e70mq")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -348.229, 109.98, -340.68)
 shadow_enabled = true
 
-[node name="checkpoint2" parent="." instance=ExtResource("5_e714g")]
+[node name="checkpoint2" parent="." instance=ExtResource("6_6kuk7")]
 transform = Transform3D(-1.65492, 0.0771371, -1.12039, 0.0610714, 1.99851, 0.0473855, 1.12138, 0.00499764, -1.65604, -640.24, 1.78326, -271.982)
 checkpointNum = 1
 
-[node name="checkpoint3" parent="." instance=ExtResource("5_e714g")]
+[node name="checkpoint3" parent="." instance=ExtResource("6_6kuk7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1371.95, 44.3803, 0)
 checkpointNum = 2
 
-[node name="checkpoint4" parent="." instance=ExtResource("5_e714g")]
+[node name="checkpoint4" parent="." instance=ExtResource("6_6kuk7")]
 transform = Transform3D(-1.54298, 0, 1.27248, 0, 2, 0, -1.27248, 0, -1.54298, -319.577, 0.499996, -257.795)
 checkpointNum = 3
 
-[node name="checkpoint5" parent="." instance=ExtResource("5_e714g")]
+[node name="checkpoint5" parent="." instance=ExtResource("6_6kuk7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 419.096, 46.7751, 0)
 checkpointNum = 0
 
-[node name="Boost" parent="." instance=ExtResource("6_ord32")]
+[node name="Boost" parent="." instance=ExtResource("7_cjwcx")]
 transform = Transform3D(-0.818219, 0, -0.574905, 0, 1, 0, 0.574905, 0, -0.818219, -620.35, 0.5, -241.107)
 
-[node name="Boost2" parent="." instance=ExtResource("6_ord32")]
+[node name="Boost2" parent="." instance=ExtResource("7_cjwcx")]
 transform = Transform3D(-0.787236, 0, 0.616651, 0, 1, 0, -0.616651, 0, -0.787236, -350.69, 4.36557e-11, -225.422)
 
-[node name="ui" parent="." instance=ExtResource("8_0r0bd")]
+[node name="ui" parent="." instance=ExtResource("8_04p1b")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["ground"]]
 transform = Transform3D(-19.8173, -0.0609184, 358.342, 145.123, 1.15914, 28.7667, -207.511, 0.816461, -14.1036, 24.3257, 8.46411, -503.569)
-physics_material_override = ExtResource("2_2vyji")
+physics_material_override = ExtResource("4_srnty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_etvq7")

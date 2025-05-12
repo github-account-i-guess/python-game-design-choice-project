@@ -60,9 +60,9 @@ func newLevel(name, path):
 	return Level.new(name, path, bests)
 var levels = [
 	newLevel("Random Map", "random"),
-	newLevel("Audrey Ville Autoracing Place", "audreyville_auto_racing_place.tscn"),
-	newLevel("Square Map", "square.tscn"),
-	newLevel("Craig Cyclinder", "craig_mall_but_not_a_mall.tscn"),
+	newLevel("Ramps", "ramps.tscn"),
+	newLevel("Square", "square.tscn"),
+	newLevel("Circles", "circles.tscn"),
 	newLevel("Auto-Map", "auto-map.tscn")
 ]
 func _ready() -> void:

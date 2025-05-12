@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://ci8wakxd1whaf"]
 
-[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="1_6krwj"]
-[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="1_r064m"]
-[ext_resource type="Script" path="res://level.gd" id="1_ut4mm"]
-[ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="2_ok1ub"]
-[ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="3_cpf2n"]
-[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="3_flppw"]
-[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="4_0qgot"]
-[ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="6_nry52"]
-[ext_resource type="Script" path="res://rotated.gd" id="7_2ko80"]
-[ext_resource type="Script" path="res://rotation_parent.gd" id="7_vokkp"]
-[ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="9_5olts"]
-[ext_resource type="PackedScene" uid="uid://k1ox2k0jgte0" path="res://lava.tscn" id="10_moxt5"]
+[ext_resource type="Script" path="res://level.gd" id="1_7w4ln"]
+[ext_resource type="PackedScene" uid="uid://b64hmb1pmb36a" path="res://ui.tscn" id="2_v0wxs"]
+[ext_resource type="PackedScene" uid="uid://drmyoipwem24v" path="res://vehicle.tscn" id="3_w1utr"]
+[ext_resource type="PackedScene" uid="uid://cjxirssdx25rd" path="res://checkpoint.tscn" id="4_em7wu"]
+[ext_resource type="PackedScene" uid="uid://ck0tat2hr2r0p" path="res://road.tscn" id="5_p5e74"]
+[ext_resource type="PackedScene" uid="uid://cgfhwo1y02ite" path="res://grass_scene.tscn" id="6_cls03"]
+[ext_resource type="Script" path="res://rotation_parent.gd" id="7_f8g0f"]
+[ext_resource type="PackedScene" uid="uid://dt8gm0t8uk8ij" path="res://wall.tscn" id="8_5r8ep"]
+[ext_resource type="Script" path="res://rotated.gd" id="9_u44nh"]
+[ext_resource type="PackedScene" uid="uid://slevdwyhxlxc" path="res://boost.tscn" id="10_ngcvd"]
+[ext_resource type="PackedScene" uid="uid://lb10vh1vh4nk" path="res://deathzone.tscn" id="11_anpqj"]
+[ext_resource type="PackedScene" uid="uid://k1ox2k0jgte0" path="res://lava.tscn" id="12_jruu0"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_esbta"]
 
@@ -19,141 +19,141 @@
 
 [node name="Audreyville AutoRacingPlace" type="Node3D"]
 transform = Transform3D(1.00157, 0, 0, 0, 1.00157, 0, 0, 0, 1.00157, 0, 0, 0)
-script = ExtResource("1_ut4mm")
+script = ExtResource("1_7w4ln")
 numCheckpoints = -1
 
-[node name="ui" parent="." instance=ExtResource("1_6krwj")]
+[node name="ui" parent="." instance=ExtResource("2_v0wxs")]
 
-[node name="vehicle" parent="." instance=ExtResource("1_r064m")]
+[node name="vehicle" parent="." instance=ExtResource("3_w1utr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="checkpoint1" parent="." instance=ExtResource("4_0qgot")]
-transform = Transform3D(-2.62268e-07, 0, 6, 0, 6, 0, -6, 0, -2.62268e-07, 0, 0, 0)
+[node name="checkpoint1" parent="." instance=ExtResource("4_em7wu")]
+transform = Transform3D(-2.62268e-07, 0, 6, 0, 6, 0, -6, 0, -2.62268e-07, 0, 1037.86, 0)
 checkpointNum = 0
 
-[node name="jumps" parent="." instance=ExtResource("2_ok1ub")]
+[node name="jumps" parent="." instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3400, 0, 700)
 
-[node name="grass2" parent="jumps" instance=ExtResource("3_cpf2n")]
+[node name="grass2" parent="jumps" instance=ExtResource("6_cls03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, -0.1, 0)
-script = ExtResource("7_vokkp")
+script = ExtResource("7_f8g0f")
 
-[node name="wall" parent="jumps/grass2" instance=ExtResource("6_nry52")]
+[node name="wall" parent="jumps/grass2" instance=ExtResource("8_5r8ep")]
 transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
-script = ExtResource("7_2ko80")
+script = ExtResource("9_u44nh")
 
-[node name="grass3" parent="jumps" instance=ExtResource("3_cpf2n")]
+[node name="grass3" parent="jumps" instance=ExtResource("6_cls03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, -0.1, 0)
-script = ExtResource("7_vokkp")
+script = ExtResource("7_f8g0f")
 
-[node name="wall" parent="jumps/grass3" instance=ExtResource("6_nry52")]
+[node name="wall" parent="jumps/grass3" instance=ExtResource("8_5r8ep")]
 transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
-script = ExtResource("7_2ko80")
+script = ExtResource("9_u44nh")
 
-[node name="grass" parent="jumps" instance=ExtResource("3_cpf2n")]
+[node name="grass" parent="jumps" instance=ExtResource("6_cls03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-script = ExtResource("7_vokkp")
+script = ExtResource("7_f8g0f")
 
-[node name="wall" parent="jumps/grass" instance=ExtResource("6_nry52")]
+[node name="wall" parent="jumps/grass" instance=ExtResource("8_5r8ep")]
 transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
-script = ExtResource("7_2ko80")
+script = ExtResource("9_u44nh")
 
-[node name="road12" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road12" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-1, 0, -4.37113e-07, 0, 1, 0, 4.37113e-07, 0, -1, 1100, 0, 1000)
 length = 200
 
-[node name="road15" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road15" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, 8.74226e-07, 0, 1, 0, -8.74226e-07, 0, 1, 1600, 0, 0)
 length = 600
 
-[node name="road14" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road14" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-3.93402e-07, 0, 1, 0, 1, 0, -1, 0, -3.93402e-07, 1300, 0, 500)
 
-[node name="road13" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road13" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 900, 0, 500)
 
-[node name="road11" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road11" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 900, 0, -700)
 
-[node name="road10" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road10" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(0.999853, 0, 0.0171383, 0, 1, 0, -0.0171383, 0, 0.999853, 700, 0, -1200)
 length = 200
 
-[node name="road9" parent="jumps" instance=ExtResource("2_ok1ub")]
+[node name="road9" parent="jumps" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 500, 0, -700)
 
-[node name="end segment" parent="." instance=ExtResource("2_ok1ub")]
+[node name="end segment" parent="." instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -752.562, 0, 2499.22)
 
-[node name="road10" parent="end segment" instance=ExtResource("2_ok1ub")]
+[node name="road10" parent="end segment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1900, 0, -1500)
 
-[node name="road13" parent="end segment" instance=ExtResource("2_ok1ub")]
+[node name="road13" parent="end segment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 600, 0, -2250)
 length = 699
 
-[node name="road11" parent="end segment" instance=ExtResource("2_ok1ub")]
+[node name="road11" parent="end segment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -1000)
 
-[node name="road8" parent="end segment" instance=ExtResource("2_ok1ub")]
+[node name="road8" parent="end segment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000)
 
-[node name="road7" parent="end segment" instance=ExtResource("2_ok1ub")]
+[node name="road7" parent="end segment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -700, 0, -500)
 
-[node name="road12" parent="end segment" instance=ExtResource("2_ok1ub")]
+[node name="road12" parent="end segment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -2000)
 
-[node name="checkpoint5" parent="." instance=ExtResource("4_0qgot")]
+[node name="checkpoint5" parent="." instance=ExtResource("4_em7wu")]
 transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 950, 0, 2400)
 checkpointNum = 3
 
-[node name="hill" parent="." instance=ExtResource("2_ok1ub")]
+[node name="hill" parent="." instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2700, 0, 2500)
 
-[node name="Boost" parent="hill" instance=ExtResource("3_flppw")]
+[node name="Boost" parent="hill" instance=ExtResource("10_ngcvd")]
 transform = Transform3D(-8.30516e-08, 0, -1.9, 0, 1.9, 0, 1.9, 0, -8.30516e-08, 0, 0, 0)
 
-[node name="wall2" parent="hill" instance=ExtResource("6_nry52")]
+[node name="wall2" parent="hill" instance=ExtResource("8_5r8ep")]
 transform = Transform3D(-1.87114, 1.64842e-07, 0.329932, 0.329932, -1.44218e-08, 1.87114, 1.64842e-07, 1.9, -1.44218e-08, -2311.13, 500, -100)
 
-[node name="wall" parent="hill" instance=ExtResource("6_nry52")]
+[node name="wall" parent="hill" instance=ExtResource("8_5r8ep")]
 transform = Transform3D(1.87113, 1.26175e-09, 0.329932, 0.329932, -1.44218e-08, -1.87113, 1.26175e-09, 1.9, -1.44218e-08, -1170, 500, -100)
 
-[node name="road17" parent="hill" instance=ExtResource("2_ok1ub")]
+[node name="road17" parent="hill" instance=ExtResource("5_p5e74")]
 transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 1, -2289.34, 205.262, 0)
 
-[node name="road18" parent="hill" instance=ExtResource("2_ok1ub")]
+[node name="road18" parent="hill" instance=ExtResource("5_p5e74")]
 transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, -1162.32, 205.262, 0)
 
-[node name="road8" parent="hill" instance=ExtResource("2_ok1ub")]
+[node name="road8" parent="hill" instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, 0)
 
-[node name="road7" parent="hill" instance=ExtResource("2_ok1ub")]
+[node name="road7" parent="hill" instance=ExtResource("5_p5e74")]
 
-[node name="rampSegment" parent="." instance=ExtResource("2_ok1ub")]
+[node name="rampSegment" parent="." instance=ExtResource("5_p5e74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
 
-[node name="road2" parent="rampSegment" instance=ExtResource("2_ok1ub")]
+[node name="road2" parent="rampSegment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 1190.89, 104.189, 0)
 
-[node name="road4" parent="rampSegment" instance=ExtResource("2_ok1ub")]
+[node name="road4" parent="rampSegment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1200, 0, -1200)
 
-[node name="road3" parent="rampSegment" instance=ExtResource("2_ok1ub")]
+[node name="road3" parent="rampSegment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 500, 0, -700)
 
-[node name="road6" parent="rampSegment" instance=ExtResource("2_ok1ub")]
+[node name="road6" parent="rampSegment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2900, 0, -500)
 
-[node name="road5" parent="rampSegment" instance=ExtResource("2_ok1ub")]
+[node name="road5" parent="rampSegment" instance=ExtResource("5_p5e74")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2400, 0, -1200)
 
-[node name="checkpoint3" parent="." instance=ExtResource("4_0qgot")]
+[node name="checkpoint3" parent="." instance=ExtResource("4_em7wu")]
 transform = Transform3D(-1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, 3100, 0, 2500)
 checkpointNum = 2
 
-[node name="checkpoint2" parent="." instance=ExtResource("4_0qgot")]
+[node name="checkpoint2" parent="." instance=ExtResource("4_em7wu")]
 transform = Transform3D(2.12132, 0, 2.12132, 0, 3, 0, -2.12132, 0, 2.12132, 3400, 0, 1200)
 checkpointNum = 1
 
@@ -165,26 +165,26 @@ shadow_enabled = true
 camera_attributes = SubResource("CameraAttributesPractical_esbta")
 compositor = SubResource("Compositor_qm2ux")
 
-[node name="Boost2" parent="." instance=ExtResource("3_flppw")]
+[node name="Boost2" parent="." instance=ExtResource("10_ngcvd")]
 transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648, -1, 7.5904e-09, -4.30473e-08, 2181.77, 193.378, -45)
 
-[node name="Boost" parent="." instance=ExtResource("3_flppw")]
+[node name="Boost" parent="." instance=ExtResource("10_ngcvd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 200, 0, 0)
 
-[node name="checkpoint4" parent="." instance=ExtResource("4_0qgot")]
+[node name="checkpoint4" parent="." instance=ExtResource("4_em7wu")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, -684.322, 70, 2400)
 checkpointNum = 3
 
-[node name="deathzone" parent="." instance=ExtResource("9_5olts")]
+[node name="deathzone" parent="." instance=ExtResource("11_anpqj")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 981.863, -390.303, -0.535095)
 
-[node name="lava" parent="." instance=ExtResource("10_moxt5")]
+[node name="lava" parent="." instance=ExtResource("12_jruu0")]
 transform = Transform3D(-4.95, 0, 0, 0, -4.95, 4.32743e-07, 0, -4.32743e-07, -4.95, 3500, -200, 662.958)
 
-[node name="grass2" parent="." instance=ExtResource("3_cpf2n")]
+[node name="grass2" parent="." instance=ExtResource("6_cls03")]
 transform = Transform3D(4.95, 0, 0, 0, 4.95, 0, 0, 0, 4.95, 0, -4, 666.081)
-script = ExtResource("7_vokkp")
+script = ExtResource("7_f8g0f")
 
-[node name="wall" parent="grass2" instance=ExtResource("6_nry52")]
+[node name="wall" parent="grass2" instance=ExtResource("8_5r8ep")]
 transform = Transform3D(-5.82673e-08, 1.333, -5.82673e-08, 0, -5.82673e-08, -1.333, -1.333, -5.82673e-08, 2.54694e-15, 398.6, -400, 0)
-script = ExtResource("7_2ko80")
+script = ExtResource("9_u44nh")

@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt8gm0t8uk8ij"]
+[gd_scene load_steps=7 format=3 uid="uid://dt8gm0t8uk8ij"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://duojanthew73q" path="res://wall.tres" id="1_qm4o4"]
-[ext_resource type="Material" uid="uid://dka56dvxct4jm" path="res://craigtile.tres" id="2_veh4b"]
+[ext_resource type="Texture2D" uid="uid://dhgh1cvp0mcwh" path="res://textures/cobblestone.jpg" id="2_bwt85"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvth3"]
+albedo_color = Color(0.61, 0.61, 0.61, 1)
+albedo_texture = ExtResource("2_bwt85")
+uv1_scale = Vector3(20, 20, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5ufoh"]
-material = ExtResource("2_veh4b")
+material = SubResource("StandardMaterial3D_pvth3")
 size = Vector3(600, 2, 600)
 
 [sub_resource type="Skin" id="Skin_jfiqp"]
