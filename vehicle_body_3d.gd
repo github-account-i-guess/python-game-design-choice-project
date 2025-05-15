@@ -30,6 +30,7 @@ var lapTime = 0
 var collidedCylinders = []
 #var cylinderTime = 0
 #var target_velocity = Vector3.ZERO
+var ghostData = {}
 func _ready():
 	backWheels = [$BackLeftWheel, $BackRightWheel]
 	frontWheels = [$FrontLeftWheel, $FrontRightWheel]
@@ -150,6 +151,11 @@ func _physics_process(delta):
 		linear_velocity += Vector3(x, 0, z)/25
 		
 	lapTime += delta
+	
+	ghostData[lapTime + time] = {
+		"pos":  global_position,
+		"angle": global_rotation
+	}
 	
 func die():
 	global_position = check_point.global_position

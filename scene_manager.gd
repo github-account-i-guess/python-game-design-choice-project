@@ -13,6 +13,7 @@ func load_bests():
 	else:
 		return {}
 var bests = load_bests()
+var ghostData = {}
 var curLevel = ""
 
 func formatTime(time: float):
@@ -68,7 +69,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if curLevel != "" and Input.is_action_just_pressed("pause"):
 		pauseMenu()
-	print(curLevel)
 func populateButtons(levels) -> void:
 	for i in range(len(levels)):
 		var button = Button.new()
@@ -82,6 +82,12 @@ func innerLambda(id: int):
 		return
 	var node = load(level.path).instantiate()
 	curLevel = level.name
+	print(ghostData)
+	if curLevel in ghostData:
+		print("ghost exists")
+		node.activeGhostData = ghostData[curLevel]
+		var ghostCar = load("res://ghost.tscn").instantiate()
+		node.add_child(ghostCar)
 	remove_child(get_child(0))
 	add_child(node)#.change_scene_to_file(level.path)
 func _on_mapbutton_pressed(id: int):
@@ -92,6 +98,7 @@ func clear():
 	for child in get_children():
 		remove_child(child)
 func lapCompleted(threeLap, lapTimes):
+	ghostData[curLevel] = 	get_child(0).get_node("vehicle").ghostData
 	clear()
 	add_child(preload("res://lap_completed.tscn").instantiate())
 	var timesContainer = $LapCompleted/container/timesContainer
@@ -104,9 +111,10 @@ func lapCompleted(threeLap, lapTimes):
 	totalTimeNode.text = "Total: %s:%s%s.%s" % formatTime(threeLap)
 	timesContainer.add_child(totalTimeNode)
 	#var bests = load_bests()
+
 	if bests[curLevel] > threeLap:
 		bests[curLevel] = threeLap
-		levels.filter(func(el): return el.name == curLevel)[0].setBest(threeLap)
+
 		save_bests(bests)
 	
 	curLevel = ""

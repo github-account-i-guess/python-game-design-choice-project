@@ -2,6 +2,7 @@ extends Node3D
 @export var numCheckpoints = 0
 var checkpoints = []
 var threeLap = -1
+var activeGhostData = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for node in get_children():
@@ -37,6 +38,13 @@ func doBackgroundGameplay():
 	else:
 		$vehicle.linear_velocity = (nextCheckpoint.global_position - $vehicle.global_position).normalized() * 1000
 func _process(delta: float) -> void:
+	var time = $vehicle.lapTime + $vehicle.time
+	if time in activeGhostData:
+		var data = activeGhostData[time]
+		print(data)
+		$ghost.global_position = data.pos
+		$ghost.global_rotation = data.angle
+	
 	$ui/rightAlign/speed.text = "Speed: " + str(round($vehicle.linear_velocity.length()))
 	$ui/rightAlign/airTime.text = "Air Time: " + str(round($vehicle.airTime))
 	$ui/leftAlign/time.text = "Total Time: " + str(round(($vehicle.lapTime + $vehicle.time)*100)/100)
@@ -46,10 +54,10 @@ func _process(delta: float) -> void:
 	var lapTimes = $vehicle.lapTimes
 	if len(lapTimes) > 0:
 		$ui/leftAlign/avgLap.text = "Average Lap: " + str(round($vehicle.time/len(lapTimes))+ 1)
-	if len(lapTimes) > 2:
+	if len(lapTimes) > 0:
 		if threeLap == -1:
 			threeLap = lapTimes.reduce(addLaps, 0)
-			
+			activeGhostData = {}
 			get_tree().root.get_child(0).lapCompleted(threeLap, lapTimes)
 		else:
 			doBackgroundGameplay()
