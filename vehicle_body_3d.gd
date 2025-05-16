@@ -188,7 +188,7 @@ func _on_body_exited(body: Node) -> void:
 
 func _on_vehicle_area_entered(area: Area3D) -> void:
 	if area.is_in_group("boost"):
-		linear_velocity += 200 * zAxis.rotated(xAxis, area.global_rotation.x).rotated(yAxis, area.global_rotation.y)
+		linear_velocity += 150 * zAxis.rotated(xAxis, area.global_rotation.x).rotated(yAxis, area.global_rotation.y)
 	if area.is_in_group("checkpoint"):
 		var num = area.checkpointNum
 		if num == curCheckpoint + 1:

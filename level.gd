@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	var lapTimes = $vehicle.lapTimes
 	if len(lapTimes) > 0:
 		$ui/leftAlign/avgLap.text = "Average Lap: " + str(round($vehicle.time/len(lapTimes))+ 1)
-	if len(lapTimes) > 0:
+	if len(lapTimes) > 2:
 		if threeLap == -1:
 			threeLap = lapTimes.reduce(addLaps, 0)
 			activeGhostData = {}
